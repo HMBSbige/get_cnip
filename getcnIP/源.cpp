@@ -34,14 +34,16 @@ string getSubnetMask(LL num){
 		mask[i] = NumToString(n[i]);
 	return mask[0] + "." + mask[1] + "." + mask[2] + "." + mask[3];
 }
-string getIP(string line) {
+string getIP(string line,string a="Mask") {
 	string temp(line,14,line.length()-14);
 	size_t pos1=temp.find("|");
 	string str1(temp, 0,pos1);
 	size_t pos2 = temp.find("|",pos1+1);
 	string str2(temp, pos1+1, pos2-pos1-1);
 	str2=getSubnetMask(StringToNum(str2));
-	return str1+" "+str2;
+	if (a == "IP")
+		return str1;
+	return str2;
 }
 bool isCNipv4(string line) {
 	string temp(line, 0, 14);
@@ -51,25 +53,35 @@ bool isCNipv4(string line) {
 }
 void main() {
 	ifstream rawdata("D:\\ip.txt");
-	ofstream outfile;
+	ofstream outfile,add,del;
 	outfile.open("D:\\cnIP.txt", ios::trunc);
-	string tempStr;
+	add.open("D:\\add.txt", ios::trunc);
+	del.open("D:\\del.txt", ios::trunc);
+	string tempStr,IP,mask;
 	size_t t = 0;
 	if (rawdata) {
-		cout << "正在载入IP..." << endl;
+		cout << "正在生成路由表..." << endl;
 		while (getline(rawdata, tempStr, '\n')) {
 			if (isCNipv4(tempStr)) {
-				if (t)
+				if (t) {
 					outfile << endl;
-				outfile << getIP(tempStr);
+					add << endl;
+					del << endl;
+				}
+				IP = getIP(tempStr, "IP");
+				mask = getIP(tempStr);
+				outfile << IP+" "+ mask;
+				add << "add "+IP+" mask "+mask+" default METRIC default IF default";
+				del<< "delete " + IP + " mask " + mask + " default METRIC default IF default";
 				++t;
 			}	
 		}
 		outfile.close();
-		cout << "载入成功，共有"<<t<<"条"<< endl;	
+		cout << "路由表生成成功，共有"<<t<<"条"<< endl;	
 	}
 	else {
 		cout << "ERROR!" << endl;
 	}
+
 	system("pause");
 }
