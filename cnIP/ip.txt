@@ -25,10 +25,17 @@
 #
 ######################################################################
 #
+<<<<<<< HEAD
 2|apnic|20161126|49572|19830613|20161125|+1000
 apnic|*|asn|*|7414|summary
 apnic|*|ipv4|*|36281|summary
 apnic|*|ipv6|*|5877|summary
+=======
+2|apnic|20161125|49557|19830613|20161124|+1000
+apnic|*|asn|*|7410|summary
+apnic|*|ipv4|*|36273|summary
+apnic|*|ipv6|*|5874|summary
+>>>>>>> origin/master
 apnic|JP|asn|173|1|20020801|allocated
 apnic|NZ|asn|681|1|20020801|allocated
 apnic|AU|asn|1221|1|20000131|allocated
@@ -7439,10 +7446,13 @@ apnic|AU|asn|136020|1|20161123|allocated
 apnic|AU|asn|136021|1|20161123|allocated
 apnic|HK|asn|136022|1|20161123|allocated
 apnic|TH|asn|136023|1|20161124|allocated
+<<<<<<< HEAD
 apnic|NZ|asn|136024|1|20161124|allocated
 apnic|US|asn|136025|1|20161125|allocated
 apnic|AU|asn|136026|1|20161125|allocated
 apnic|BD|asn|136027|1|20161125|allocated
+=======
+>>>>>>> origin/master
 apnic|AU|ipv4|1.0.0.0|256|20110811|assigned
 apnic|CN|ipv4|1.0.1.0|256|20110414|allocated
 apnic|CN|ipv4|1.0.2.0|512|20110414|allocated
@@ -18878,6 +18888,7 @@ apnic|IN|ipv4|103.80.34.0|512|20161124|assigned
 apnic|MM|ipv4|103.80.36.0|1024|20161124|allocated
 apnic|AU|ipv4|103.80.40.0|1024|20161124|allocated
 apnic|CN|ipv4|103.80.44.0|1024|20161124|allocated
+<<<<<<< HEAD
 apnic|TH|ipv4|103.80.48.0|1024|20161125|allocated
 apnic|IN|ipv4|103.80.52.0|256|20161125|assigned
 apnic|AU|ipv4|103.80.53.0|256|20161125|assigned
@@ -18886,6 +18897,8 @@ apnic|IN|ipv4|103.80.56.0|1024|20161125|assigned
 apnic|IN|ipv4|103.80.60.0|1024|20161125|allocated
 apnic|IN|ipv4|103.80.64.0|1024|20161125|assigned
 apnic|IN|ipv4|103.80.68.0|256|20161125|assigned
+=======
+>>>>>>> origin/master
 apnic|CN|ipv4|103.192.0.0|1024|20150715|allocated
 apnic|CN|ipv4|103.192.4.0|1024|20150715|allocated
 apnic|CN|ipv4|103.192.8.0|1024|20150715|allocated
@@ -25377,7 +25390,11 @@ apnic|CN|ipv4|118.67.112.0|4096|20070816|allocated
 apnic|KR|ipv4|118.67.128.0|16384|20070814|allocated
 apnic|NZ|ipv4|118.67.192.0|2048|20110210|allocated
 apnic|KH|ipv4|118.67.200.0|2048|20070821|allocated
+<<<<<<< HEAD
 apnic|BD|ipv4|118.67.208.0|4096|20070817|allocated
+=======
+apnic|AU|ipv4|118.67.208.0|4096|20070817|allocated
+>>>>>>> origin/master
 apnic|IN|ipv4|118.67.224.0|8192|20070817|allocated
 apnic|VN|ipv4|118.68.0.0|262144|20070808|allocated
 apnic|CN|ipv4|118.72.0.0|524288|20070810|allocated
@@ -45420,11 +45437,16 @@ apnic|AU|ipv6|2001:df6:c400::|48|20151019|assigned
 apnic|BD|ipv6|2001:df6:c600::|48|20161123|assigned
 apnic|IN|ipv6|2001:df6:c800::|48|20140624|assigned
 apnic|IN|ipv6|2001:df6:c801::|48|20161109|assigned
+<<<<<<< HEAD
 apnic|AU|ipv6|2001:df6:ca00::|48|20161125|assigned
 apnic|ID|ipv6|2001:df6:cc00::|48|20151020|assigned
 apnic|IN|ipv6|2001:df6:ce00::|48|20161125|assigned
 apnic|HK|ipv6|2001:df6:d000::|48|20131028|assigned
 apnic|IN|ipv6|2001:df6:d200::|48|20161125|assigned
+=======
+apnic|ID|ipv6|2001:df6:cc00::|48|20151020|assigned
+apnic|HK|ipv6|2001:df6:d000::|48|20131028|assigned
+>>>>>>> origin/master
 apnic|IN|ipv6|2001:df6:d400::|48|20151020|assigned
 apnic|BD|ipv6|2001:df6:d800::|48|20140625|assigned
 apnic|ID|ipv6|2001:df6:dc00::|48|20151022|assigned
