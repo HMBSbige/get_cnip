@@ -1,11 +1,12 @@
 # 获取国内IP及路由表
 
 首先获取国内IP及路由表：
-1.不想自己生成的可以直接下载cnIP目录内的文件
 
-2.从 http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest 获取 delegated-apnic-latest.txt
+(不想自己生成的可以直接下载cnIP目录内的文件)
 
-将文件拖进getcnIP.exe 
+1.从 http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest 获取 delegated-apnic-latest.txt
+
+2.将文件拖进getcnIP.exe 
 
 或使用命令 getcnIP.exe +文件名
 
