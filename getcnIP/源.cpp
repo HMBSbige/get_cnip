@@ -1,12 +1,11 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include <cstring>
 #include <sstream>
 #include  <io.h>
 using namespace std;
 typedef long long LL;
-//http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
+///////////////////////////////
 LL StringToNum(string s) {
 	LL num;
 	stringstream ss(s);
@@ -21,7 +20,6 @@ string NumToString(LL i) {
 string getSubnetMask(LL num) {
 	string mask[4];
 	LL n[4] = { 255,255,255,0 };
-	//int t=num >> 8;
 	if (num > (1 << 24)) {
 		n[0] -= (num >> 24) - 1;
 		n[1] = n[2] = 0;
@@ -50,25 +48,16 @@ string getIP(string line, string a = "Mask") {
 bool isCNipv4(string line) {
 	string temp(line, 0, 14);
 	if (temp == "apnic|CN|ipv4|")
-		return 1;
-	return 0;
+		return true;
+	return false;
 }
 int main(int argc, char* argv[]) {
 	string PATH = ".\\", filename = "delegated-apnic-latest.txt";
 	if (argc != 1) {
-		size_t x;
-		for (size_t i = 0; argv[1][i]; ++i) {
-			if (argv[1][i] == '\\')
-				x = i;
-		}
-		PATH = "";
-		for (size_t i = 0; i <= x; ++i) {
-			PATH.push_back(argv[1][i]);
-		}
-		filename = "";
-		for (size_t i = x + 1; argv[1][i]; ++i) {
-			filename.push_back(argv[1][i]);
-		}
+		string temp= argv[1];
+		size_t x = temp.rfind("\\");
+		PATH.assign(temp,0,x+1);
+		filename.assign(temp,x+1);
 	}
 	ifstream rawdata(PATH + filename);
 	if (rawdata) {
