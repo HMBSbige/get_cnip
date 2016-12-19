@@ -3275,6 +3275,7 @@ apnic|CN|ipv4|103.81.168.0|1024|20161214|allocated
 apnic|CN|ipv4|103.81.183.0|256|20161216|allocated
 apnic|CN|ipv4|103.81.184.0|1024|20161215|allocated
 apnic|CN|ipv4|103.81.200.0|1024|20161216|allocated
+apnic|CN|ipv4|103.81.232.0|1024|20161219|allocated
 apnic|CN|ipv4|103.192.0.0|1024|20150715|allocated
 apnic|CN|ipv4|103.192.4.0|1024|20150715|allocated
 apnic|CN|ipv4|103.192.8.0|1024|20150715|allocated
