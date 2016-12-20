@@ -16,6 +16,7 @@
 __delegated-apnic.txt__：
 
 直接放进ShadowsocksR目录内,代理规则选择"绕过局域网和大陆"
+
 __add.txt__：
 
 使用以下bat添加路由表，与[cmroute.dll](https://github.com/HMBSbige/getcnIP/releases/download/1.0/cmroute.dll)同目录
