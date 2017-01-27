@@ -3287,6 +3287,17 @@ apnic|CN|ipv4|103.83.120.0|1024|20170116|allocated
 apnic|CN|ipv4|103.83.132.0|1024|20170117|allocated
 apnic|CN|ipv4|103.83.180.0|1024|20170118|allocated
 apnic|CN|ipv4|103.84.0.0|1024|20170120|allocated
+apnic|CN|ipv4|103.84.12.0|1024|20170122|allocated
+apnic|CN|ipv4|103.84.16.0|1024|20170122|allocated
+apnic|CN|ipv4|103.84.20.0|1024|20170122|allocated
+apnic|CN|ipv4|103.84.24.0|1024|20170122|allocated
+apnic|CN|ipv4|103.84.28.0|1024|20170122|allocated
+apnic|CN|ipv4|103.84.48.0|1024|20170123|allocated
+apnic|CN|ipv4|103.84.56.0|1024|20170123|allocated
+apnic|CN|ipv4|103.84.64.0|1024|20170123|allocated
+apnic|CN|ipv4|103.84.72.0|1024|20170123|allocated
+apnic|CN|ipv4|103.84.92.0|1024|20170124|assigned
+apnic|CN|ipv4|103.84.108.0|1024|20170124|allocated
 apnic|CN|ipv4|103.192.0.0|1024|20150715|allocated
 apnic|CN|ipv4|103.192.4.0|1024|20150715|allocated
 apnic|CN|ipv4|103.192.8.0|1024|20150715|allocated
