@@ -59,6 +59,10 @@ int main(int argc, char* argv[]) {
 		PATH.assign(temp,0,x+1);
 		filename.assign(temp,x+1);
 	}
+	else {
+		cout << "程序以默认参数运行..." << endl;
+	}
+	cout << "文件路径：" << PATH + filename << endl;
 	ifstream rawdata(PATH + filename);
 	if (rawdata) {
 		//system(("rd /s/q " + PATH + "\\cnIP").c_str());
@@ -96,7 +100,7 @@ int main(int argc, char* argv[]) {
 		cout<<"路由表生成成功！共有"<<t << "条。" <<endl;
 	}
 	else {
-		cout << "文件打开错误!" << endl;
+		cout << "打开文件 "+ PATH + filename +" 错误。" << endl<<"请检查正确的路径或确定程序在 "+ PATH +" 目录是否有权限！"<< endl;
 	}
 
 	cout << endl;
