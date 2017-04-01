@@ -2,20 +2,28 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include  <io.h>
+#include <vector>
+#include <io.h>
+#include <direct.h>  
 using namespace std;
 typedef long long LL;
-///////////////////////////////
-LL StringToNum(string s) {
+/////////////////////////////////////////////////////////////////////////////
+struct IPList
+{
+	string IP, Mask,CNIPv4;
+	IPList(){}
+	IPList(string a, string b):IP(a), Mask(b){}
+};
+inline LL StringToNum(const string& s) {
 	LL num;
 	stringstream ss(s);
 	ss >> num;
 	return num;
 }
-string NumToString(LL i) {
-	stringstream ss;
-	ss << i;
-	return ss.str();
+inline string NumToString(const LL& i) {
+	ostringstream oss;
+	oss << i;
+	return oss.str();
 }
 string getSubnetMask(LL num) {
 	string mask[4];
@@ -34,16 +42,14 @@ string getSubnetMask(LL num) {
 		mask[i] = NumToString(n[i]);
 	return mask[0] + "." + mask[1] + "." + mask[2] + "." + mask[3];
 }
-string getIP(string line, string a = "Mask") {
+IPList getIP(string line) {
 	string temp(line, 14, line.length() - 14);
 	size_t pos1 = temp.find("|");
-	string str1(temp, 0, pos1);
+	string IP(temp, 0, pos1);
 	size_t pos2 = temp.find("|", pos1 + 1);
-	string str2(temp, pos1 + 1, pos2 - pos1 - 1);
-	str2 = getSubnetMask(StringToNum(str2));
-	if (a == "IP")
-		return str1;
-	return str2;
+	string Mask(temp, pos1 + 1, pos2 - pos1 - 1);
+	Mask = getSubnetMask(StringToNum(Mask));
+	return IPList(IP, Mask);
 }
 bool isCNipv4(string line) {
 	string temp(line, 0, 14);
@@ -51,7 +57,10 @@ bool isCNipv4(string line) {
 		return true;
 	return false;
 }
+/////////////////////////////////////////////////////////////////////////////
 int main(int argc, char* argv[]) {
+	std::ios::sync_with_stdio(false);
+	setlocale(LC_ALL, "");
 	string PATH = ".\\", filename = "delegated-apnic-latest.txt";
 	if (argc != 1) {
 		string temp= argv[1];
@@ -63,41 +72,49 @@ int main(int argc, char* argv[]) {
 		cout << "程序以默认参数运行..." << endl;
 	}
 	cout << "文件路径：" << PATH + filename << endl;
+/////////////////////////////////////////////////////////
 	ifstream rawdata(PATH + filename);
 	if (rawdata) {
-		//system(("rd /s/q " + PATH + "\\cnIP").c_str());
-		if(_access((PATH + "\\cnIP").c_str(),0)==-1)
-			system(("md " + PATH + "\\cnIP").c_str());
 		ofstream outfile, add, del, ssr;
+		string tempStr, IP, mask;
+		register size_t i = 0;
+		vector<IPList> IP_Mask;
+
+		if (_access((PATH + "\\cnIP").c_str(), 0) == -1)//判断文件夹是否存在
+			_mkdir((PATH + "\\cnIP").c_str());//system(("md " + PATH + "\\cnIP").c_str());
 		outfile.open(PATH + "\\cnIP\\" + "cnIP.txt", ios::trunc);
 		add.open(PATH + "\\cnIP\\" + "add.txt", ios::trunc);
 		del.open(PATH + "\\cnIP\\" + "del.txt", ios::trunc);
 		ssr.open(PATH + "\\cnIP\\" + "delegated-apnic.txt", ios::trunc);
-		string tempStr, IP, mask;
-		size_t t = 0;
-		cout << "正在生成路由表..." << endl;
+
+		cout << "正在分析路由表..." << endl;
 		while (getline(rawdata, tempStr, '\n')) {
 			if (isCNipv4(tempStr)) {
-				if (t) {
+				IPList tempList=getIP(tempStr);
+				tempList.CNIPv4 = tempStr;
+				IP_Mask.push_back(tempList);
+			}
+		}
+		cout << "正在生成路由表..." << endl;
+		for (i = 0;i<IP_Mask.size();++i) {
+				if (i) {
 					outfile << endl;
 					add << endl;
 					del << endl;
 					ssr << endl;
 				}
-				IP = getIP(tempStr, "IP");
-				mask = getIP(tempStr);
+				IP = IP_Mask.at(i).IP;
+				mask = IP_Mask.at(i).Mask;
 				outfile << IP + "|" + mask;
 				add << "add " + IP + " mask " + mask + " default METRIC default IF default";
 				del << "delete " + IP + " mask " + mask + " default METRIC default IF default";
-				ssr << tempStr;
-				++t;
-			}
+				ssr << IP_Mask.at(i).CNIPv4;
 		}
 		outfile.close();
 		add.close();
 		del.close();
 		ssr.close();
-		cout<<"路由表生成成功！共有"<<t << "条。" <<endl;
+		cout<<"路由表生成成功！共有"<< IP_Mask.size() << "条。" <<endl;
 	}
 	else {
 		cout << "打开文件 "+ PATH + filename +" 错误。" << endl<<"请检查正确的路径或确定程序在 "+ PATH +" 目录是否有权限！"<< endl;
