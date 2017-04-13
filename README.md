@@ -6,14 +6,14 @@
 
 * 从 [APNIC](http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 获取 delegated-apnic-latest.txt
 
-* 将文件拖进getcnIP.exe 
+* 将文件拖进getcnIP.exe
 
 * 或使用命令 getcnIP.exe +文件名
 
 * 或将文件放进getcnIP.exe同目录后双击getcnIP.exe
 
 ## Windows
-__delegated-apnic.txt__：
+__delegated-apnic.txt__ 或 __chn_ip.txt__：
 
 直接放进ShadowsocksR目录内,代理规则选择"绕过局域网和大陆"
 
