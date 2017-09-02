@@ -75,9 +75,9 @@ pause
 * 网关 跃点数 接口一般都默认（default）
 
 
-* 用`<route print>`命令查看__接口列表__
+* 用`route print` 命令查看 __接口列表__
 
-* METRIC__不可__省略，且不知道为什么跃点数只能是default，填数字无效。
+* METRIC __不可__ 省略，且不知道为什么跃点数只能是default，填数字无效。
 
 ## Linux
 看心情添加
