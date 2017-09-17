@@ -9,11 +9,11 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////////////
 void getcnip()
 {
-	const string filename = R"(delegated-apnic-latest.txt)";
+	const string filename = R"(.\delegated-apnic-latest.txt)";
 
 	ifstream rawdata(filename);
 	if (rawdata) {
-		ofstream outfile, add, del, ssr, newssr;
+		ofstream outfile, add, del,ssr;
 		string temp_str;
 		vector<ip_list> ip_mask;
 
@@ -22,8 +22,7 @@ void getcnip()
 		outfile.open(R"(\cnIP\cnIP.txt)", ios::trunc);
 		add.open(R"(\cnIP\add.txt)", ios::trunc);
 		del.open(R"(\cnIP\del.txt)", ios::trunc);
-		ssr.open(R"(\cnIP\delegated-apnic.txt)", ios::trunc);
-		newssr.open(R"(\cnIP\chn_ip.txt)", ios::trunc);
+		ssr.open(R"(\cnIP\chn_ip.txt)", ios::trunc);
 
 		cout << "正在分析路由表..." << endl;
 		while (getline(rawdata, temp_str, '\n')) {
@@ -40,21 +39,18 @@ void getcnip()
 				add << endl;
 				del << endl;
 				ssr << endl;
-				newssr << endl;
 			}
 			const auto ip = ip_mask.at(i).first_ip.str();
 			const auto mask = ip_mask.at(i).mask;
 			outfile << ip + "|" + mask;
 			add << "add " + ip + " mask " + mask + " default METRIC default IF default";
 			del << "delete " + ip + " mask " + mask + " default METRIC default IF default";
-			ssr << ip_mask.at(i).cn_ipv4;
-			newssr << ip_mask.at(i).first_ip.str() << " " << ip_mask.at(i).last_ip.str();
+			ssr << ip_mask.at(i).first_ip.str() << " " << ip_mask.at(i).last_ip.str();
 		}
 		outfile.close();
 		add.close();
 		del.close();
 		ssr.close();
-		newssr.close();
 		cout << "路由表生成成功！共有" << ip_mask.size() << "条。" << endl;
 	}
 	else {
