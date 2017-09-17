@@ -9,22 +9,21 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////////////
 void getcnip()
 {
-	const string path = R"(.\)";
 	const string filename = R"(delegated-apnic-latest.txt)";
 
-	ifstream rawdata(path + filename);
+	ifstream rawdata(filename);
 	if (rawdata) {
 		ofstream outfile, add, del, ssr, newssr;
 		string temp_str;
 		vector<ip_list> ip_mask;
 
-		if (_access((path + "\\cnIP").c_str(), 0) == -1)//判断文件夹是否存在
-			_mkdir((path + "\\cnIP").c_str());//system(("md " + PATH + "\\cnIP").c_str());
-		outfile.open(path + "\\cnIP\\" + "cnIP.txt", ios::trunc);
-		add.open(path + "\\cnIP\\" + "add.txt", ios::trunc);
-		del.open(path + "\\cnIP\\" + "del.txt", ios::trunc);
-		ssr.open(path + "\\cnIP\\" + "delegated-apnic.txt", ios::trunc);
-		newssr.open(path + "\\cnIP\\" + "chn_ip.txt", ios::trunc);
+		if (_access(string(R"(\cnIP)").c_str(), 0) == -1)//判断文件夹是否存在
+			_mkdir(string(R"(\cnIP)").c_str());//system(("md " + PATH + "\\cnIP").c_str());
+		outfile.open(R"(\cnIP\cnIP.txt)", ios::trunc);
+		add.open(R"(\cnIP\add.txt)", ios::trunc);
+		del.open(R"(\cnIP\del.txt)", ios::trunc);
+		ssr.open(R"(\cnIP\delegated-apnic.txt)", ios::trunc);
+		newssr.open(R"(\cnIP\chn_ip.txt)", ios::trunc);
 
 		cout << "正在分析路由表..." << endl;
 		while (getline(rawdata, temp_str, '\n')) {
@@ -59,7 +58,7 @@ void getcnip()
 		cout << "路由表生成成功！共有" << ip_mask.size() << "条。" << endl;
 	}
 	else {
-		cout << "未找到 " + path + filename << endl;
+		cout << "未找到 " + filename << endl;
 	}
 }
 int main() {
