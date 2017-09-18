@@ -11,6 +11,24 @@ std::string num_to_string(const ll& i) {
 	oss << i;
 	return oss.str();
 }
+std::string textfile2str(const std::string& PATH)
+{
+	std::ifstream file(PATH);
+	std::ostringstream oss;
+	oss << file.rdbuf();
+	file.close();
+	return oss.str();
+}
+std::string& replace_all_distinct(std::string& str, const std::string& old_value, const std::string& new_value)
+{
+	for (std::string::size_type pos(0); pos != std::string::npos; pos += new_value.length()) {
+		if ((pos = str.find(old_value, pos)) != std::string::npos)
+			str.replace(pos, old_value.length(), new_value);
+		else
+			break;
+	}
+	return str;
+}
 extern const std::string pac_front_str = R"FUCK(var direct = "__DIRECT__";
 if (direct == "__DIR" + "ECT__") direct = "DIRECT;";
 

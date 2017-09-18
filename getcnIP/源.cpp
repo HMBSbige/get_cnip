@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include <fstream>
+
 #include <string>
 #include <vector>
 #include <io.h>
@@ -63,24 +63,6 @@ void getcnip()
 	}
 	cout << endl;
 }
-string textfile2str(const string& PATH)
-{
-	ifstream file(PATH);
-	ostringstream oss;
-	oss << file.rdbuf();
-	file.close();
-	return oss.str();
-}
-string& replace_all_distinct(string& str,const string& old_value,const string& new_value)
-{
-	for (string::size_type pos(0); pos != string::npos; pos += new_value.length()) {
-		if ((pos = str.find(old_value, pos)) != string::npos)
-			str.replace(pos, old_value.length(), new_value);
-		else
-			break;
-	}
-	return str;
-}
 void gfwlist2pac()
 {
 	const string gfwlist = R"(gfwlist.txt)";
@@ -120,7 +102,7 @@ void gfwlist2pac()
 		cout << "共有"<<domains.size()<<"条。" << endl;
 
 		//output
-		cout << "正在生成pac..." << endl;
+		cout << "正在生成pac.txt..." << endl;
 		ofstream pac;
 		pac.open(R"(.\out\pac.txt)", ios::trunc);
 		pac << pac_front_str;
@@ -135,23 +117,83 @@ void gfwlist2pac()
 		pac << pac_back_str1;
 		pac << pac_back_str2;
 		pac.close();
-		cout << "pac生成成功！"<< endl;
+		cout << "pac.txt生成成功！"<< endl;
 	}
 	else 
 	{
 		cout << "未找到 " + gfwlist << endl;
 	}
+	cout << endl;
 }
 void get_cn_domains()
 {
-	
+	const string rawdata_name = R"(accelerated-domains.china.conf)";
+	const string whitelist = R"(whitelist.txt)";
+	queue<string> domains;
+	string temp_str;
+
+	ifstream domains_data(rawdata_name);
+	if (domains_data)
+	{
+		cout << "找到 " + rawdata_name << endl;
+		ifstream whitelist_data(whitelist);
+		if (whitelist_data)
+		{
+			cout << "找到 " + whitelist << endl;
+			while(getline(whitelist_data,temp_str,'\n'))
+			{
+				if(temp_str!="")
+				domains.push(temp_str);
+			}
+			cout << "用户自定义域名共" << domains.size() << "条。" << endl;
+		}
+		else
+		{
+			cout << "未找到 " + whitelist << endl;
+		}
+
+		cout << "正在分析 accelerated-domains.china.conf ..." << endl;
+
+		while (getline(domains_data, temp_str, '\n'))
+		{
+			if (temp_str != "")
+			{
+				//取出域名
+				auto pos1 = temp_str.find('/');
+				auto pos2 = temp_str.rfind('/');
+				domains.push("*." + temp_str.substr(pos1+1,pos2-pos1-1));
+			}
+		}
+		cout << "共有" << domains.size() << "条。" << endl;
+
+		//output
+		cout << "正在生成CNdomains.txt..." << endl;
+		ofstream cn_domains;
+		cn_domains.open(R"(.\out\CNdomains.txt)", ios::trunc);
+		while (!domains.empty())
+		{
+			cn_domains <<domains.front()<< endl;
+			domains.pop();
+		}
+		cn_domains.close();
+		cout << "CNdomains.txt生成成功！" << endl;
+	}
+	else
+	{
+		cout << "未找到 " + rawdata_name << endl;
+	}
+	cout << endl;
 }
 int main() {
 	std::ios::sync_with_stdio(false);
 	setlocale(LC_ALL, "");
+
 	getcnip();
+
 	gfwlist2pac();
+
 	get_cn_domains();
+
 	cout << endl;
 	//system("pause");
 	return 0;
