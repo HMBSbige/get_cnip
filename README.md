@@ -71,6 +71,15 @@ https://github.com/bitbeans/SimpleDnsCrypt
 
 把国内能正常解析的域名都屏蔽了，只解析国外域名，用备用DNS来解析国内域名。
 
+## 自用脚本
+```
+aria2c -x10 -s10 --https-proxy="https://127.0.0.1:23333" --allow-overwrite=true -Z https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf
+del delegated-apnic-latest.txt
+rename delegated-apnic-latest delegated-apnic-latest.txt
+getcnip
+pause
+```
+
 ## 关于cmroute.dll
 我能找到的文档：https://technet.microsoft.com/zh-cn/library/dd672665(v=ws.10).aspx
 
