@@ -1,0 +1,10 @@
+! Put user rules line by line in this file.
+! See https://adblockplus.org/en/filter-cheatsheet
+||cplusplus.com
+||uva.onlinejudge.org
+||raw.githubusercontent.com
+||github.io
+||humblebundle-a.akamaihd.net
+||humblebundle.com
+!||store.steampowered.com
+!||steamcommunity.com

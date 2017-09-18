@@ -1,0 +1,12 @@
+*.cn
+*.bige0.com
+*.steampowered.com
+steamcommunity.com
+video.mileweb.steampowered.com.8686c.com
+broadcast.mileweb.steampowered.com.8686c.com
+steamuserimages-a.akamaihd.net
+cdn.akamai.steamstatic.com
+store.akamai.steamstatic.com
+cloud-3.steamusercontent.com
+cdn.steamstatic.com.8686c.com
+cdn.mileweb.cs.steampowered.com.8686c.com
