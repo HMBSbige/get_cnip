@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <io.h>
@@ -8,6 +9,8 @@
 #include "ipv4.h"
 #include "Base64.h"
 using namespace std;
+queue<string> q_user_dot_rule_local_proxy;
+queue<string> q_user_dot_rule_ip_rules;
 /////////////////////////////////////////////////////////////////////////////
 void getcnip()
 {
@@ -41,7 +44,9 @@ void getcnip()
 			const auto mask = ip_mask.front().mask;
 			add << "add " + ip + " mask " + mask + " default METRIC default IF default" << endl;
 			del << "delete " + ip + " mask " + mask + " default METRIC default IF default" << endl;
-			ssr << ip_mask.front().first_ip.str() << " " << ip_mask.front().last_ip.str() << endl;
+			temp_str = ip_mask.front().first_ip.str() + " " + ip_mask.front().last_ip.str();
+			ssr << temp_str << endl;
+			q_user_dot_rule_ip_rules.push(temp_str);
 		}
 		add.close();
 		del.close();
@@ -84,7 +89,7 @@ void gfwlist2pac()
 		{
 			if (temp_str[0] != '!' && temp_str!="" && temp_str[0] != '[')
 			{
-				temp_str = replace_all_distinct(temp_str, R"(\)", R"(\\)");//将"\"替换成"\\"
+				replace_all_distinct(temp_str, R"(\)", R"(\\)");//将"\"替换成"\\"
 				domains.push(temp_str);
 			}
 				
@@ -133,7 +138,11 @@ void get_cn_domains()
 			while(getline(whitelist_data,temp_str,'\n'))
 			{
 				if(temp_str!="")
-				domains.push(temp_str);
+				{
+					domains.push(temp_str);
+					replace_all_distinct(temp_str, R"(*.)", R"(.)");//将"*."替换成"."
+					q_user_dot_rule_local_proxy.push(temp_str);
+				}
 			}
 			cout << "用户自定义域名共" << domains.size() << "条。" << endl;
 		}
@@ -151,7 +160,10 @@ void get_cn_domains()
 				//取出域名
 				const auto pos1 = temp_str.find('/');
 				const auto pos2 = temp_str.rfind('/');
-				domains.push("*." + temp_str.substr(pos1+1,pos2-pos1-1));
+				temp_str = temp_str.substr(pos1 + 1, pos2 - pos1 - 1);
+
+				q_user_dot_rule_local_proxy.push("."+temp_str);
+				domains.push("*." + temp_str);
 			}
 		}
 		cout << "共有" << domains.size() << "条。" << endl;
@@ -174,9 +186,61 @@ void get_cn_domains()
 	}
 	cout << endl;
 }
+
+void generate_user_dot_rule()
+{
+	if (q_user_dot_rule_ip_rules.empty() && q_user_dot_rule_local_proxy.empty()) {
+		cout << "未找到 accelerated-domains.china.conf 或 delegated-apnic-latest.txt" << endl;
+		return;
+	}
+	cout << "正在生成user.rule..." << endl;
+	ofstream user_dot_rule;
+	user_dot_rule.open(R"(.\out\user.rule)", ios::trunc);
+	user_dot_rule << user_dot_rule_front;
+	//output remote proxy rule
+	user_dot_rule << user_dot_rule_remote_proxy;
+	
+	//output local proxy rule
+	user_dot_rule << user_dot_rule_local_proxy;
+	while(!q_user_dot_rule_local_proxy.empty())
+	{
+		user_dot_rule << q_user_dot_rule_local_proxy.front()<< " localproxy" << endl;
+		q_user_dot_rule_local_proxy.pop();
+	}
+	user_dot_rule << endl;
+
+	//output direct
+	user_dot_rule << user_dot_rule_direct;
+
+	//output reject
+	user_dot_rule << user_dot_rule_reject;
+
+	//output host list
+	user_dot_rule << user_dot_rule_host;
+	user_dot_rule << R"(localhost 127.0.0.1)" << endl;
+
+	//output special rule
+	user_dot_rule << user_dot_rule_special;
+
+	//output ip rules
+	user_dot_rule << user_dot_rule_ip;
+	while(!q_user_dot_rule_ip_rules.empty())
+	{
+		user_dot_rule << q_user_dot_rule_ip_rules.front()<< " localproxy" <<endl;
+		q_user_dot_rule_ip_rules.pop();
+	}
+	user_dot_rule << endl;
+	user_dot_rule << user_dot_rule_local;
+	//output end
+	user_dot_rule.close();
+	cout << "user.rule生成成功！" << endl;
+}
+
 int main() {
 	std::ios::sync_with_stdio(false);
 	setlocale(LC_ALL, "");
+	queue<string>().swap(q_user_dot_rule_local_proxy);
+	queue<string>().swap(q_user_dot_rule_ip_rules);
 
 	if (_access(string(R"(.\out)").c_str(), 0) == -1)//判断文件夹是否存在
 	{
@@ -188,6 +252,8 @@ int main() {
 	gfwlist2pac();
 
 	get_cn_domains();
+
+	generate_user_dot_rule();
 
 	cout << endl;
 	//system("pause");

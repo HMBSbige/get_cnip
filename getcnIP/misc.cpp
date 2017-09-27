@@ -1,4 +1,5 @@
 #include "misc.h"
+#include <fstream>
 
 ll string_to_num(const std::string& s) {
 	ll num;
@@ -867,3 +868,39 @@ function FindProxyForURL(url, host) {
 	}
 	return direct;
 })FUCK";
+extern const std::string user_dot_rule_front = R"wtf(# A line which start with "#" is comment
+# The new one will overwrite the same item before
+# "a.com" means "a.com" only, "*.a.com" means all sub domains of "a.com" only, ".a.com" means "*.a.com" & "a.com"
+
+)wtf";
+extern const std::string user_dot_rule_remote_proxy = R"wtf(# remote proxy: transfer with server
+
+)wtf";
+extern const std::string user_dot_rule_local_proxy = R"wtf(# local proxy: direct connect or go through local proxy
+
+)wtf";
+extern const std::string user_dot_rule_direct =R"wtf(# direct
+
+)wtf";
+extern const std::string user_dot_rule_reject = R"wtf(# reject: reject this host
+
+)wtf";
+extern const std::string user_dot_rule_host = R"wtf(# host list
+
+)wtf";
+extern const std::string user_dot_rule_special = R"wtf(# special rule
+
+)wtf";
+extern const std::string user_dot_rule_ip = R"wtf(# ip rules, run this rules if not match any host rule
+
+:: ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff remoteproxy
+0.0.0.0 255.255.255.255 remoteproxy
+
+)wtf";
+extern const std::string user_dot_rule_local = R"wtf(# local
+10.0.0.0 10.255.255.255 direct
+172.16.0.0 172.31.255.255 direct
+192.168.0.0 192.168.255.255 direct
+169.254.0.0 169.254.255.255 direct
+127.0.0.0 127.255.255.255 direct
+)wtf";
