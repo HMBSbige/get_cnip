@@ -79,13 +79,15 @@ std::string get_last_ip(std::string ip, ll num) {
 		n[i] = 255;
 	return ipv4(n).str();
 }
+ll get_CIDR(ll Hosts)
+{
+	return ll(32 - log2(Hosts));
+}
 ip_list get_ip(std::string line) {
 	std::string temp(line, 14, line.length() - 14);
 	const auto pos1 = temp.find("|");
 	const std::string ip(temp, 0, pos1);
 	const auto pos2 = temp.find("|", pos1 + 1);
-	const std::string number_of_ip(temp, pos1 + 1, pos2 - pos1 - 1);
-	const auto mask = get_subnet_mask(string_to_num(number_of_ip));
-	const auto last_ip = get_last_ip(ip, string_to_num(number_of_ip));
-	return ip_list(ip, mask, last_ip);
+	const auto Hosts = string_to_num(std::string(temp, pos1 + 1, pos2 - pos1 - 1));
+	return ip_list(ip, get_subnet_mask(Hosts), get_last_ip(ip, Hosts),Hosts,get_CIDR(Hosts));
 }

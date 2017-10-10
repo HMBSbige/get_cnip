@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "misc.h"
 #include <vector>
-typedef long long ll;
 class ipv4 {
 private:
 	std::vector<ll> n_;
@@ -20,8 +19,10 @@ struct ip_list
 	ipv4 first_ip;
 	ipv4 last_ip;
 	std::string mask;
-	ip_list() {}
-	ip_list(std::string a, std::string b, std::string c) :first_ip(a), last_ip(c), mask(b) {}
+	ll Hosts;//IP个数
+	ll CIDR;
+	//ip_list() {}
+	ip_list(std::string a, std::string b, std::string c, ll d,ll e) :first_ip(a), last_ip(c), mask(b), Hosts(d),CIDR(e){}
 
 };
 bool is_cn_ipv4(std::string line);
