@@ -5,14 +5,71 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <map>
 #include <string>
 #include "ipv4.h"
 #include "Base64.h"
+#include "misc.h"
 
 using namespace std;
+
 queue<string> q_user_dot_rule_local_proxy;
 queue<string> q_user_dot_rule_ip_rules;
+queue<string> q_white_domains;
+string white_domains;
 
+pair<string,string> rsplit_dot(const string &str)
+{
+	const auto pos = str.rfind(".");
+	if (pos == std::string::npos)
+		return make_pair("", "");
+	return make_pair(str.substr(pos + 1),str.substr(0,pos));
+}
+multimap<string,string> white_domains_queue2dict(queue<string>& q)
+{
+	multimap<string, string> dict;
+	while(!q.empty())
+	{
+		dict.insert(rsplit_dot(q.front()));
+		q.pop();
+	}
+	return dict;
+}
+void make_white_domains(string& result)
+{
+	result="";
+	auto white_domains_dict = white_domains_queue2dict(q_white_domains);
+	pair<multimap<string, string>::iterator, multimap<string, string>::iterator> it_range;
+	auto is_first = true;
+	for (auto it = white_domains_dict.begin(); it != white_domains_dict.end(); it = it_range.second)
+	{
+		it_range = white_domains_dict.equal_range(it->first);
+		if (it->first == "")
+		{
+			continue;
+		}
+		if (!is_first)
+		{
+			result += R"(,)";
+		}
+		result += R"(")" + it->first + R"(":{
+)";
+		is_first = false;
+		const auto temp_it = it_range.first;
+		while (it_range.first != it_range.second)
+		{
+			if (temp_it != it_range.first)
+			{
+				result += R"(,
+)";
+			}
+			result += R"(")" + it_range.first->second + R"(":1)";
+			++it_range.first;
+		}
+		result += R"(
+})";
+	}
+}
 void getcnip()
 {
 	const string filename = R"(delegated-apnic-latest)";
@@ -148,7 +205,9 @@ void get_cn_domains()
 					domains.push(temp_str);
 					replace_all_distinct(temp_str, R"(*.)", R"(.)");//将"*."替换成"."
 					q_user_dot_rule_local_proxy.push(temp_str);
-
+					if (temp_str[0] == '.')
+						temp_str.erase(temp_str.begin());
+					q_white_domains.push(temp_str);
 				}
 			}
 			cout << "用户自定义域名共" << domains.size() << "条。" << endl;
@@ -171,6 +230,7 @@ void get_cn_domains()
 
 				q_user_dot_rule_local_proxy.push("." + temp_str);
 				domains.push("*." + temp_str);
+				q_white_domains.push(temp_str);
 			}
 		}
 		cout << "共有" << domains.size() << "条。" << endl;
@@ -193,11 +253,10 @@ void get_cn_domains()
 	}
 	cout << endl;
 }
-
 void generate_user_dot_rule()
 {
 	if (q_user_dot_rule_ip_rules.empty() && q_user_dot_rule_local_proxy.empty()) {
-		cout << "未找到 accelerated-domains.china.conf 或 delegated-apnic-latest.txt" << endl;
+		cout << "未找到 accelerated-domains.china.conf 或 delegated-apnic-latest" << endl;
 		return;
 	}
 	cout << "正在生成user.rule..." << endl;
@@ -241,4 +300,31 @@ void generate_user_dot_rule()
 	//output end
 	user_dot_rule.close();
 	cout << "user.rule生成成功！" << endl;
+}
+void generate_ss_cnip()
+{
+	if (q_white_domains.empty()) {
+		cout << "未找到 accelerated-domains.china.conf 或 delegated-apnic-latest" << endl;
+		return;
+	}
+	
+	ofstream ss_cnip_dot_pac;
+	ss_cnip_dot_pac.open(R"(.\out\ss_cnip.pac)", ios::trunc);
+	cout << "正在生成ss_cnip.pac..." << endl;
+
+	ss_cnip_dot_pac << ss_cnip_front;
+	//output cnIpRange
+	ss_cnip_dot_pac << ss_cnip_cnIpRange1 << ss_cnip_cnIpRange2 << ss_cnip_cnIpRange3 << ss_cnip_cnIpRange4 << ss_cnip_cnIpRange5 << ss_cnip_cnIpRange6 << ss_cnip_cnIpRange7 << ss_cnip_cnIp16Range;
+	//output whiteIpList
+	ss_cnip_dot_pac << ss_cnip_whiteIpList;
+	//output subnetIpRangeList
+	ss_cnip_dot_pac << ss_cnip_subnetIpRangeList;
+	//output white_domains
+	make_white_domains(white_domains);
+	ss_cnip_dot_pac <<R"(var white_domains = {)"<<white_domains<<R"(};
+
+)";
+	ss_cnip_dot_pac << ss_cnip_back;
+	ss_cnip_dot_pac.close();
+	cout << "ss_cnip.pac生成成功！" << endl;
 }

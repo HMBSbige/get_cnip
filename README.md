@@ -57,7 +57,7 @@ pause
 
 __gfwlist.pac__：
 
-ShadowsocksR目录内的pac.txt，重启ShadowsocksR后生效。
+ShadowsocksR目录内的pac.txt。
 
 ~~其实用SSR自己生成的就行了~~
 
@@ -77,9 +77,18 @@ __user.rule__：
 
 本程序生成的规则配合使用全局模式可绕过国内域名和ip，只代理国外的。
 
-~~并没有什么用，不知道为什么响应时间太长，还是用pac模式快~~
+~~并没有什么用，不知道为什么**响应时间太长**，还是用pac模式快~~
 
 https://github.com/HMBSbige/shadowsocks-rss/wiki/C%23-Proxy-Rule
+
+__ss_cnip.pac__：
+
+ShadowsocksR目录内的pac.txt。
+
+上面user.rule的替代品，客户端设置为PAC模式，代理规则选择全局。
+
+可绕过国内域名和ip。
+
 
 ## 自用脚本
 ```

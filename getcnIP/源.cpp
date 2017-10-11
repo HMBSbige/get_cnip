@@ -1,9 +1,7 @@
 ﻿#include <iostream>
 #include <string>
-#include <vector>
 #include <io.h>
 #include <direct.h>
-#include <queue>
 #include "generatefile.h"
 using namespace std;
 
@@ -25,6 +23,8 @@ int main() {
 	get_cn_domains();
 
 	generate_user_dot_rule();
+
+	generate_ss_cnip();
 
 	cout << endl;
 	//system("pause");
