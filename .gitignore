@@ -3,7 +3,7 @@
 
 # ignore pac
 out/* linguist-vendored
-testfile/* linguist-vendored
+gfwlist.pac linguist-vendored=false
 
 # User-specific files
 *.suo
