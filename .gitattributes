@@ -1,0 +1,3 @@
+# ignore pac
+out/* linguist-vendored
+testfile/* linguist-vendored
