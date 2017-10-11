@@ -21,12 +21,14 @@ void getcnip()
 		ofstream add, del,ssr;
 		string temp_str;
 		queue<ip_list> ip_mask;
+		ofstream test;
 
 		cout << "找到 " + filename << endl;
 		
 		add.open(R"(.\out\add.txt)", ios::trunc);
 		del.open(R"(.\out\del.txt)", ios::trunc);
 		ssr.open(R"(.\out\chn_ip.txt)", ios::trunc);
+		test.open(R"(.\out\test.txt)", ios::trunc);
 
 		cout << "正在分析路由表..." << endl;
 
@@ -46,11 +48,14 @@ void getcnip()
 			del << "delete " + ip + " mask " + mask + " default METRIC default IF default" << endl;
 			temp_str = ip_mask.front().first_ip.str() + " " + ip_mask.front().last_ip.str();
 			ssr << temp_str << endl;
+			test << ip_mask.front().first_ip.str() << " " << ip_mask.front().last_ip.str() << " " << ip_mask.front().first_ip.ip_to_long() << " " << ip_mask.front().last_ip.ip_to_long() << " " << ip_mask.front().mask << " " << ip_mask.front().Hosts << " " << ip_mask.front().CIDR  << endl;
+			
 			q_user_dot_rule_ip_rules.push(temp_str);
 		}
 		add.close();
 		del.close();
 		ssr.close();
+		test.close();
 		cout << "路由表生成成功！共有" << number_of_ip << "条。" << endl;
 	}
 	else {
@@ -99,7 +104,7 @@ void gfwlist2pac()
 		//output
 		cout << "正在生成pac.txt..." << endl;
 		ofstream pac;
-		pac.open(R"(.\out\pac.txt)", ios::trunc);
+		pac.open(R"(.\out\gfwList.pac)", ios::trunc);
 		pac << pac_front_str;
 		while(!domains.empty())
 		{
@@ -235,7 +240,6 @@ void generate_user_dot_rule()
 	user_dot_rule.close();
 	cout << "user.rule生成成功！" << endl;
 }
-
 int main() {
 	std::ios::sync_with_stdio(false);
 	setlocale(LC_ALL, "");

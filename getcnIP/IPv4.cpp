@@ -13,23 +13,23 @@ ipv4::ipv4(ll n1,ll n2,ll n3,ll n4) :n_(4)
 	n_[2] = n3;
 	n_[3] = n4;
 }
-ipv4::ipv4(std::string ip) :n_(4)
+ipv4::ipv4(std::string strip) :n_(4)
 {
-	get_ipv4(ip);
+	get_ipv4(strip);
 }
 ipv4::ipv4(std::vector<ll> a)
 {
 	n_ = a;
 }
-void ipv4::get_ipv4(std::string ip) {
-	auto pos1 = ip.find(".");
-	n_[0] = string_to_num(std::string(ip, 0, pos1));
-	auto pos2 = ip.find(".", pos1 + 1);
-	n_[1] = string_to_num(std::string(ip, pos1 + 1, pos2 - pos1 - 1));
-	pos1 = ip.find(".", pos2 + 1);
-	n_[2] = string_to_num(std::string(ip, pos2 + 1, pos1 - pos2 - 1));
-	pos2 = ip.size();
-	n_[3] = string_to_num(std::string(ip, pos1 + 1, pos2 - pos1 - 1));
+void ipv4::get_ipv4(std::string strip) {
+	auto pos1 = strip.find(".");
+	n_[0] = string_to_num(std::string(strip, 0, pos1));
+	auto pos2 = strip.find(".", pos1 + 1);
+	n_[1] = string_to_num(std::string(strip, pos1 + 1, pos2 - pos1 - 1));
+	pos1 = strip.find(".", pos2 + 1);
+	n_[2] = string_to_num(std::string(strip, pos2 + 1, pos1 - pos2 - 1));
+	pos2 = strip.size();
+	n_[3] = string_to_num(std::string(strip, pos1 + 1, pos2 - pos1 - 1));
 }
 ll ipv4::get_ipv4(size_t i) {
 	return this->n_.at(i);
@@ -90,4 +90,14 @@ ip_list get_ip(std::string line) {
 	const auto pos2 = temp.find("|", pos1 + 1);
 	const auto Hosts = string_to_num(std::string(temp, pos1 + 1, pos2 - pos1 - 1));
 	return ip_list(ip, get_subnet_mask(Hosts), get_last_ip(ip, Hosts),Hosts,get_CIDR(Hosts));
+}
+ll ipv4::ip_to_long()
+{
+	ll ipl = 0;
+	for (auto&x:n_)
+	{
+		ipl <<= 8;
+		ipl += x;
+	}
+	return ipl;
 }

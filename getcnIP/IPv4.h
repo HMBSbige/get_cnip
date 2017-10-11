@@ -6,13 +6,14 @@ private:
 	std::vector<ll> n_;
 public:
 	ipv4(const ipv4& a);
+	ipv4(std::string strip);//用ip字符串初始化，如x.x.x.x
 	explicit ipv4(ll n1 = 0, ll n2 = 0, ll n3 = 0, ll n4 = 0);//用点分十进制初始化
-	explicit ipv4(std::string ip);//用ip字符串初始化，如x.x.x.x
 	explicit ipv4(std::vector<ll> a);//用大小为4的vector初始化
-	void get_ipv4(std::string ip);//
+	void get_ipv4(std::string strip);//
 	ll get_ipv4(size_t i);//返回ipv4第i个十进制数，i=0,1,2,3
 	std::vector<ll> get_ipv4() const;//返回大小为4的vector，4个用小数点分开的十进制数
 	std::string str();//返回ipv4字符串，如x.x.x.x
+	ll ip_to_long();
 };
 struct ip_list
 {
