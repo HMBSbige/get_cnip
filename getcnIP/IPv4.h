@@ -6,7 +6,7 @@ private:
 	std::vector<ll> n_;
 public:
 	ipv4(const ipv4& a);
-	ipv4(std::string strip);//用ip字符串初始化，如x.x.x.x
+	explicit ipv4(std::string strip);//用ip字符串初始化，如x.x.x.x
 	explicit ipv4(ll n1 = 0, ll n2 = 0, ll n3 = 0, ll n4 = 0);//用点分十进制初始化
 	explicit ipv4(std::vector<ll> a);//用大小为4的vector初始化
 	void get_ipv4(std::string strip);//

@@ -20,7 +20,7 @@ void getcnip()
 	if (rawdata) {
 		ofstream add, del,ssr;
 		string temp_str;
-		queue<ip_list> ip_mask;
+		queue<ip_list> cn_ip_queue;
 		ofstream test;
 
 		cout << "找到 " + filename << endl;
@@ -34,21 +34,21 @@ void getcnip()
 
 		while (getline(rawdata, temp_str, '\n')) {
 			if (is_cn_ipv4(temp_str)) {
-				ip_mask.push(get_ip(temp_str));
+				cn_ip_queue.push(get_ip(temp_str));
 			}
 		}
 
 		cout << "正在生成路由表..." << endl;
 
-		const auto number_of_ip = ip_mask.size();
-		for (;!ip_mask.empty();ip_mask.pop()) {
-			const auto ip = ip_mask.front().first_ip.str();
-			const auto mask = ip_mask.front().mask;
+		const auto number_of_ip = cn_ip_queue.size();
+		for (;!cn_ip_queue.empty();cn_ip_queue.pop()) {
+			const auto ip = cn_ip_queue.front().first_ip.str();
+			const auto mask = cn_ip_queue.front().mask;
 			add << "add " + ip + " mask " + mask + " default METRIC default IF default" << endl;
 			del << "delete " + ip + " mask " + mask + " default METRIC default IF default" << endl;
-			temp_str = ip_mask.front().first_ip.str() + " " + ip_mask.front().last_ip.str();
+			temp_str = cn_ip_queue.front().first_ip.str() + " " + cn_ip_queue.front().last_ip.str();
 			ssr << temp_str << endl;
-			test << ip_mask.front().first_ip.str() << " " << ip_mask.front().last_ip.str() << " " << ip_mask.front().first_ip.ip_to_long() << " " << ip_mask.front().last_ip.ip_to_long() << " " << ip_mask.front().mask << " " << ip_mask.front().Hosts << " " << ip_mask.front().CIDR  << endl;
+			test << cn_ip_queue.front().first_ip.str() << " " << cn_ip_queue.front().last_ip.str() << " " << cn_ip_queue.front().first_ip.ip_to_long() << " " << cn_ip_queue.front().last_ip.ip_to_long() << " " << cn_ip_queue.front().mask << " " << cn_ip_queue.front().Hosts << " " << cn_ip_queue.front().CIDR  << endl;
 			
 			q_user_dot_rule_ip_rules.push(temp_str);
 		}
