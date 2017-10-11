@@ -148,6 +148,7 @@ void get_cn_domains()
 					domains.push(temp_str);
 					replace_all_distinct(temp_str, R"(*.)", R"(.)");//将"*."替换成"."
 					q_user_dot_rule_local_proxy.push(temp_str);
+
 				}
 			}
 			cout << "用户自定义域名共" << domains.size() << "条。" << endl;

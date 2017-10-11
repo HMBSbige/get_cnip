@@ -2,15 +2,10 @@
 #include <fstream>
 
 ll string_to_num(const std::string& s) {
-	ll num;
-	std::stringstream ss(s);
-	ss >> num;
-	return num;
+	return std::stoll(s);
 }
 std::string num_to_string(const ll& i) {
-	std::ostringstream oss;
-	oss << i;
-	return oss.str();
+	return std::to_string(i);
 }
 std::string textfile2str(const std::string& PATH)
 {
@@ -30,23 +25,15 @@ std::string& replace_all_distinct(std::string& str, const std::string& old_value
 	}
 	return str;
 }
-template<class T>
-T StringToNum(const std::string& s)//×Ö·û´®×ªÊı×Ö
-{
-	T num;
-	std::stringstream ss(s);
-	ss >> num;
-	return num;
-}
 std::string NumberBaseConversion(const uint8_t& x, const uint8_t& y, const std::string& s) //2<=x,y<=36
 {
 	std::string res;
-	size_t sum = 0;
+	ll sum = 0;
 	if (x == 10)
 		if (s[0] == '-')
-			sum = StringToNum<size_t>(s.substr(1));
+			sum = string_to_num(s.substr(1));
 		else
-			sum = StringToNum<size_t>(s);
+			sum = string_to_num(s);
 	else
 		for (int i = 0; i < s.size(); ++i) {
 			if (s[i] >= '0' && s[i] <= '9')
