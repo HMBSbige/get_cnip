@@ -1,7 +1,9 @@
-*.cn
 *.bige0.com
+*.xxskins.com
+cn.download.nvidia.com
 *.steampowered.com
 steamcommunity.com
+*.steamcontent.com
 video.mileweb.steampowered.com.8686c.com
 broadcast.mileweb.steampowered.com.8686c.com
 steamuserimages-a.akamaihd.net
@@ -10,3 +12,7 @@ store.akamai.steamstatic.com
 cloud-3.steamusercontent.com
 cdn.steamstatic.com.8686c.com
 cdn.mileweb.cs.steampowered.com.8686c.com
+steampipe.akamaized.net
+steamcdn-a.akamaihd.net
+steamstore-a.akamaihd.net
+steamcommunity-a.akamaihd.net

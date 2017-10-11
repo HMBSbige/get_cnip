@@ -4,8 +4,8 @@
 
 所需文件：
 
-* [delegated-apnic-latest.txt](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
-* [gfwlist](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
+* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
+* [gfwlist.txt](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
 * (可选)gfwlist自定义规则文件 user-rule.txt
 * (可选)不想被解析的域名名单 whitelist.txt
@@ -55,9 +55,9 @@ pause
 ```
 注：重启系统后自动清空路由表
 
-__pac.txt__：
+__gfwlist.pac__：
 
-直接放进ShadowsocksR目录内，重启生效。
+ShadowsocksR目录内的pac.txt，重启ShadowsocksR后生效。
 
 ~~其实用SSR自己生成的就行了~~
 
@@ -75,15 +75,15 @@ __user.rule__：
 
 放进ShadowsocksR目录内,代理规则选择"用户自定义"
 
-本程序生成的规则可绕过国内域名和ip，只代理国外的
+本程序生成的规则配合使用全局模式可绕过国内域名和ip，只代理国外的。
+
+~~并没有什么用，不知道为什么响应时间太长，还是用pac模式快~~
 
 https://github.com/HMBSbige/shadowsocks-rss/wiki/C%23-Proxy-Rule
 
 ## 自用脚本
 ```
 aria2c -x10 -s10 --https-proxy="https://127.0.0.1:23333" --allow-overwrite=true -Z https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf
-del delegated-apnic-latest.txt
-rename delegated-apnic-latest delegated-apnic-latest.txt
 getcnip
 pause
 ```

@@ -27,6 +27,9 @@
     <ClCompile Include="IPv4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="generatefile.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base64.h">
@@ -36,6 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IPv4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="generatefile.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

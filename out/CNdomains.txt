@@ -1097,6 +1097,7 @@ steamcommunity-a.akamaihd.net
 *.139life.com
 *.139s.com
 *.139shop.com
+*.139shu.com
 *.139talk.com
 *.139w.com
 *.139wanke.com
@@ -1305,6 +1306,7 @@ steamcommunity-a.akamaihd.net
 *.173on.com
 *.173py.com
 *.173sy.com
+*.173um.com
 *.173vpna.com
 *.173yx.net
 *.173zy.com
@@ -1581,6 +1583,7 @@ steamcommunity-a.akamaihd.net
 *.1kewang.com
 *.1kj.com
 *.1kongzhifa.com
+*.1ksz.com
 *.1kuang.com
 *.1kxun.com
 *.1lo0.net
@@ -1859,6 +1862,7 @@ steamcommunity-a.akamaihd.net
 *.2345.com
 *.2345.gd
 *.234579.com
+*.2345a.com
 *.2345ff.com
 *.2345xt.com
 *.2366.com
@@ -2176,6 +2180,7 @@ steamcommunity-a.akamaihd.net
 *.31kan.com
 *.31mada.com
 *.31mold.com
+*.31myhome.com
 *.31pump.com
 *.31rzp.com
 *.31seal.com
@@ -2919,6 +2924,7 @@ steamcommunity-a.akamaihd.net
 *.49you.com
 *.4a8a.com
 *.4azz.com
+*.4c8t.com
 *.4cudc.com
 *.4cun.com
 *.4dai.com
@@ -3314,6 +3320,7 @@ steamcommunity-a.akamaihd.net
 *.51qiangda.com
 *.51qianguo.com
 *.51qicheng.com
+*.51qila.com
 *.51qilv.com
 *.51qingjiao.com
 *.51qu.me
@@ -4808,6 +4815,7 @@ steamcommunity-a.akamaihd.net
 *.7xz.com
 *.7y7.com
 *.7ymm.com
+*.7ysc.com
 *.7yueji.com
 *.7yun.com
 *.7yuw.com
@@ -5311,6 +5319,7 @@ steamcommunity-a.akamaihd.net
 *.91nzh.com
 *.91open.com
 *.91otv.com
+*.91pdf.com
 *.91pod.com
 *.91px.com
 *.91qingmai.com
@@ -5835,6 +5844,7 @@ steamcommunity-a.akamaihd.net
 *.9you.com
 *.9you.net
 *.9youxi.com
+*.9yread.com
 *.9yuonline.com
 *.9zc.cc
 *.9zhiad.com
@@ -6994,6 +7004,7 @@ steamcommunity-a.akamaihd.net
 *.archgo.com
 *.archiant.com
 *.archina.com
+*.archiname.com
 *.architbang.com
 *.archlinuxcn.org
 *.archsummit.com
@@ -7251,6 +7262,7 @@ steamcommunity-a.akamaihd.net
 *.axjsw.com
 *.axmgh.com
 *.axmro.com
+*.axshuyuan.com
 *.axure.org
 *.axure.us
 *.ay99.net
@@ -7525,6 +7537,7 @@ steamcommunity-a.akamaihd.net
 *.banciyuan.me
 *.bandenghui.com
 *.bandwagong.com
+*.bandwagonhost.net
 *.bane.im
 *.banfuzg.com
 *.bang5mai.com
@@ -7801,6 +7814,7 @@ steamcommunity-a.akamaihd.net
 *.bdyunys.com
 *.be90.com
 *.beaconguide.me
+*.bearead.com
 *.beargoo.com
 *.bearjoy.com
 *.bearyboard.com
@@ -8353,6 +8367,7 @@ steamcommunity-a.akamaihd.net
 *.blctwed.com
 *.bldjy.com
 *.bleachcn.net
+*.bleege.com
 *.bleju.com
 *.blemall.com
 *.blendercn.org
@@ -9893,6 +9908,7 @@ steamcommunity-a.akamaihd.net
 *.china-cba.net
 *.china-cbn.com
 *.china-cbs.com
+*.china-ccie.com
 *.china-ccw.com
 *.china-changlin.com
 *.china-channel.com
@@ -10115,6 +10131,7 @@ steamcommunity-a.akamaihd.net
 *.chinafudaoban.com
 *.chinagames.net
 *.chinagayles.com
+*.chinagb.net
 *.chinagb.org
 *.chinagba.com
 *.chinagcd.com
@@ -10384,6 +10401,7 @@ steamcommunity-a.akamaihd.net
 *.chinesejk.com
 *.chinesejy.com
 *.chinesetown.net
+*.chinesewriter.net
 *.chingkun.com
 *.chingwt.com
 *.chinhatonokaze.net
@@ -10480,6 +10498,7 @@ steamcommunity-a.akamaihd.net
 *.chuangke18.com
 *.chuangkit.com
 *.chuanglian.net
+*.chuangread.com
 *.chuangshizhenghe.com
 *.chuangxin.com
 *.chuangye.com
@@ -12281,6 +12300,7 @@ steamcommunity-a.akamaihd.net
 *.daoisms.org
 *.daojia.com
 *.daoke.fm
+*.daokoudai.com
 *.daolegu.com
 *.daomengad.com
 *.daomubiji.org
@@ -12329,6 +12349,7 @@ steamcommunity-a.akamaihd.net
 *.dataman-inc.com
 *.datang.com
 *.datang.net
+*.datangzww.com
 *.dataodu.com
 *.dataoke.com
 *.datapanda.net
@@ -12973,6 +12994,7 @@ steamcommunity-a.akamaihd.net
 *.djye.com
 *.djyjob.com
 *.djyyh.com
+*.dkdangle.com
 *.dker.cc
 *.dkill.net
 *.dkjl.net
@@ -13229,6 +13251,7 @@ steamcommunity-a.akamaihd.net
 *.donghuabus.com
 *.donghuads.com
 *.dongke.org
+*.donglibbs.com
 *.donglingying.cc
 *.donglinsy.com
 *.donglishuzhai.net
@@ -13921,6 +13944,7 @@ steamcommunity-a.akamaihd.net
 *.eceibs20.com
 *.ecer.com
 *.eces66.com
+*.ecgbnet.com
 *.ecgoods.com
 *.echangye.com
 *.echatsoft.com
@@ -14321,6 +14345,7 @@ steamcommunity-a.akamaihd.net
 *.ept-team.com
 *.eptxw.com
 *.epub360.com
+*.epubchina.com
 *.eput.com
 *.epweike.com
 *.epwk.com
@@ -14823,6 +14848,7 @@ steamcommunity-a.akamaihd.net
 *.fcmscn.com
 *.fcpiao.com
 *.fcrc114.com
+*.fcsjw.com
 *.fcvvip.com
 *.fcw6.com
 *.fcxxh.org
@@ -14936,6 +14962,7 @@ steamcommunity-a.akamaihd.net
 *.fengchedm.com
 *.fengchinet3.com
 *.fengchizixun.com
+*.fengchusheng.com
 *.fengdu.com
 *.fengdunan.com
 *.fengedu.com
@@ -16485,6 +16512,7 @@ steamcommunity-a.akamaihd.net
 *.gst-china.net
 *.gsuo.com
 *.gsxservice.com
+*.gszj.net
 *.gszph.com
 *.gtags.net
 *.gtan.com
@@ -17344,6 +17372,7 @@ steamcommunity-a.akamaihd.net
 *.hbzjr.com
 *.hbzkw.com
 *.hbzlw.com
+*.hbzuojia.com
 *.hbzwl.com
 *.hbzycpj.com
 *.hc-byq.com
@@ -17778,6 +17807,7 @@ steamcommunity-a.akamaihd.net
 *.hitutu.com
 *.hitv.com
 *.hiued.org
+*.hive-ss.com
 *.hiveview.com
 *.hivr.me
 *.hiwifi.com
@@ -17878,6 +17908,7 @@ steamcommunity-a.akamaihd.net
 *.hlyy.cc
 *.hm-3223.net
 *.hm-analyse.com
+*.hm-yc.com
 *.hm120.com
 *.hm16888.net
 *.hm86.com
@@ -18886,6 +18917,7 @@ steamcommunity-a.akamaihd.net
 *.icastlewar.com
 *.icax.org
 *.icbc-ltd.com
+*.iccchina.com
 *.icccq.com
 *.iccgame.com
 *.iccgame.net
@@ -19221,6 +19253,7 @@ steamcommunity-a.akamaihd.net
 *.ijinzhuan.com
 *.ijita.com
 *.ijiujiao.com
+*.ijiwen.com
 *.ijizhi.com
 *.ijjnews.com
 *.ijogame.com
@@ -19904,6 +19937,7 @@ steamcommunity-a.akamaihd.net
 *.iwjw.com
 *.iwjwagent.com
 *.iwms.net
+*.iwodu.com
 *.iwoju.net
 *.iwordnet.com
 *.iworm.net
@@ -19972,9 +20006,11 @@ steamcommunity-a.akamaihd.net
 *.iyiyun.com
 *.iyizhai.com
 *.iyocloud.com
+*.iyooread.com
 *.iyoucai.com
 *.iyouet.com
 *.iyouji.xyz
+*.iyoule.com
 *.iyouman.com
 *.iyouqian.com
 *.iyouxia.com
@@ -21648,6 +21684,7 @@ steamcommunity-a.akamaihd.net
 *.kejiadz.com
 *.kejiansteel.com
 *.kejianyi.com
+*.kejibear.club
 *.kejibeidou.com
 *.kejihai.com
 *.kejimeixue.com
@@ -22251,6 +22288,7 @@ steamcommunity-a.akamaihd.net
 *.kx9221.com
 *.kx9h.com
 *.kxdao.com
+*.kxfsw.com
 *.kxmav14.com
 *.kxpay.net
 *.kxt.com
@@ -22391,6 +22429,7 @@ steamcommunity-a.akamaihd.net
 *.langyabang.com
 *.langyuseo.com
 *.lanhii.com
+*.lanjing5.com
 *.lanjinger.com
 *.lanjingtmt.com
 *.lankdo.net
@@ -22959,6 +22998,7 @@ steamcommunity-a.akamaihd.net
 *.liminwang.com
 *.linban.com
 *.linboz.me
+*.linchain.com
 *.linchen.me
 *.linduwang.com
 *.linecg.com
@@ -22987,6 +23027,7 @@ steamcommunity-a.akamaihd.net
 *.linglongart.com
 *.lingmihaitao.com
 *.lingmovie.com
+*.lingphone.net
 *.lingqianwu.com
 *.lingqujz.com
 *.lingrengame.com
@@ -23367,6 +23408,7 @@ steamcommunity-a.akamaihd.net
 *.longwiki.net
 *.longxiaogang.com
 *.longyu.cc
+*.longyuedu.com
 *.longyun1216.com
 *.longyusheng.org
 *.longzhongtv.com
@@ -23930,6 +23972,7 @@ steamcommunity-a.akamaihd.net
 *.manboker.com
 *.mandarincapital.net
 *.mandarinedu.org
+*.manduwu.com
 *.manew.com
 *.manewvr.com
 *.manfen.net
@@ -24203,6 +24246,7 @@ steamcommunity-a.akamaihd.net
 *.meifang8.com
 *.meigmama.com
 *.meigong8.com
+*.meiguiwxw.com
 *.meiguoshenpo.com
 *.meiguozhuji.com
 *.meihaoxueyuan.com
@@ -25358,6 +25402,7 @@ steamcommunity-a.akamaihd.net
 *.mzzjw.com
 *.n0808.com
 *.n21.cc
+*.n3sd.com
 *.n548.com
 *.n9377e.com
 *.n981.com
@@ -25488,6 +25533,7 @@ steamcommunity-a.akamaihd.net
 *.ncdxbbs.com
 *.ncfcw.net
 *.ncfstatic.com
+*.ncfyb.com
 *.ncfz.com
 *.nciku.com
 *.nciyuan.com
@@ -25939,6 +25985,7 @@ steamcommunity-a.akamaihd.net
 *.nuomi.com
 *.nuowoo.com
 *.nuoyanet.com
+*.nuozhan.com
 *.nuqk.com
 *.nushai.com
 *.nutscn.com
@@ -26866,6 +26913,7 @@ steamcommunity-a.akamaihd.net
 *.pinxx.me
 *.pinyh.com
 *.pinyuan.cc
+*.pinyuew.com
 *.pinzs.com
 *.pip919.com
 *.pipa.com
@@ -27490,6 +27538,7 @@ steamcommunity-a.akamaihd.net
 *.qieta.com
 *.qiewo.com
 *.qieyou.com
+*.qieyuedu.com
 *.qiezibt.com
 *.qifangw.com
 *.qifuguang.me
@@ -27746,6 +27795,7 @@ steamcommunity-a.akamaihd.net
 *.qmail.com
 *.qmango.com
 *.qmcc.net
+*.qmcmw.com
 *.qmconfig.com
 *.qmji.net
 *.qmkz.com
@@ -27935,6 +27985,7 @@ steamcommunity-a.akamaihd.net
 *.qstatic.com
 *.qsw521.com
 *.qswhcb.com
+*.qswtxt.com
 *.qsxgjg.com
 *.qszt.com
 *.qszt.net
@@ -28226,6 +28277,7 @@ steamcommunity-a.akamaihd.net
 *.rbzygs.com
 *.rc.cc
 *.rc114.com
+*.rccchina.com
 *.rcchw.net
 *.rcdang.com
 *.rcdio.com
@@ -28625,6 +28677,7 @@ steamcommunity-a.akamaihd.net
 *.ruochu.com
 *.ruoren.com
 *.ruoshui.com
+*.ruoxia.com
 *.rupeng.com
 *.ruru.la
 *.rushangdai.com
@@ -28994,6 +29047,7 @@ steamcommunity-a.akamaihd.net
 *.semfeeds.com
 *.semgg.com
 *.semidata.info
+*.semorn.com
 *.semplus.org
 *.semptian.com
 *.sen-lan.net
@@ -29493,6 +29547,7 @@ steamcommunity-a.akamaihd.net
 *.shopzoom.net
 *.shou555.com
 *.shou99.net
+*.shoubanjiang.com
 *.shoubus.com
 *.shoucw.com
 *.shoudian.org
@@ -30105,6 +30160,7 @@ steamcommunity-a.akamaihd.net
 *.socomic.com
 *.sodao.com
 *.sodu.cc
+*.soduso.com
 *.soepub.com
 *.sofang.com
 *.sofi.sh
@@ -30476,6 +30532,7 @@ steamcommunity-a.akamaihd.net
 *.stirlingchinese.com
 *.stjscn.s-msn.com
 *.stjunshi.com
+*.stjy.net
 *.stnn.cc
 *.stnts.com
 *.sto.cc
@@ -30871,6 +30928,7 @@ steamcommunity-a.akamaihd.net
 *.szc.com
 *.szcec.com
 *.szchd.net
+*.szcud.com
 *.szcyztb.com
 *.szdc.org
 *.szdcjd.com
@@ -31289,6 +31347,7 @@ steamcommunity-a.akamaihd.net
 *.techsir.com
 *.techuangyi.com
 *.techug.com
+*.techwalker.com
 *.techxinwen.com
 *.techxue.com
 *.teclast.com
@@ -32092,6 +32151,7 @@ steamcommunity-a.akamaihd.net
 *.ttthing.com
 *.tttxing.com
 *.tttz.com
+*.ttu9.net
 *.ttufo.com
 *.ttunion.com
 *.ttunion.info
@@ -33165,6 +33225,7 @@ steamcommunity-a.akamaihd.net
 *.vsread.com
 *.vst.cc
 *.vstart.net
+*.vstou.com
 *.vsuch.com
 *.vsyo.com
 *.vtale.org
@@ -33463,6 +33524,7 @@ steamcommunity-a.akamaihd.net
 *.wanshitong.com
 *.wanshouai.com
 *.wanshouyou.net
+*.wansongpu.com
 *.wantattoo.com
 *.wantgame.net
 *.wantiku.com
@@ -34504,6 +34566,7 @@ steamcommunity-a.akamaihd.net
 *.wtser.com
 *.wtsw.net
 *.wtszx.com
+*.wtzw.com
 *.wu369.com
 *.wuaik.com
 *.wuaiso.com
@@ -34747,6 +34810,7 @@ steamcommunity-a.akamaihd.net
 *.wzssbs.com
 *.wzxun.com
 *.wzyestar.com
+*.wzzww.com
 *.x-cti.org
 *.x-equals-y.com
 *.x-mol.com
@@ -35031,6 +35095,7 @@ steamcommunity-a.akamaihd.net
 *.xianms.com
 *.xiannw.com
 *.xianpp.com
+*.xianruan.com
 *.xianse.cc
 *.xianshuabao.com
 *.xianxiadao.com
@@ -35143,6 +35208,7 @@ steamcommunity-a.akamaihd.net
 *.xiaoshouzhi.com
 *.xiaoshuo.com
 *.xiaoshuo1-sm.com
+*.xiaoshuo520.com
 *.xiaoshuoba.com
 *.xiaoshuokan.com
 *.xiaoshuomi.cc
@@ -36364,6 +36430,7 @@ steamcommunity-a.akamaihd.net
 *.ygkmp.com
 *.ygliuxue.com
 *.ygobbs.com
+*.ygread.com
 *.ygxcl.com
 *.ygym.org
 *.ygzq777.com
@@ -36785,6 +36852,7 @@ steamcommunity-a.akamaihd.net
 *.yn58.com
 *.yn86.com
 *.ynbes.com
+*.ynbojie.com
 *.yncunguan.com
 *.ynet.com
 *.yngfw.com
@@ -37062,6 +37130,7 @@ steamcommunity-a.akamaihd.net
 *.youyuanw.com
 *.youyudf.com
 *.youyueke.com
+*.youyuezw.com
 *.youyur.com
 *.youyuwei.com
 *.youyy.com
@@ -37259,6 +37328,7 @@ steamcommunity-a.akamaihd.net
 *.yuejiewangluo.com
 *.yuelol.com
 *.yueloo.com
+*.yuelu.net
 *.yuelvxing.com
 *.yuemei.com
 *.yuemeiw.com
@@ -37359,6 +37429,7 @@ steamcommunity-a.akamaihd.net
 *.yunfuntv.com
 *.yungangbj.com
 *.yungouos.com
+*.yunhaicangshu.com
 *.yunhaike.com
 *.yunhosting.com
 *.yunhou.com
@@ -37621,6 +37692,7 @@ steamcommunity-a.akamaihd.net
 *.yzmg.com
 *.yzmjw.com
 *.yzmoney.com
+*.yznovel.com
 *.yzprofile.me
 *.yzracing.com
 *.yzrb.com
@@ -38190,6 +38262,7 @@ steamcommunity-a.akamaihd.net
 *.zhipingke.com
 *.zhiqiang.org
 *.zhiquyuan.com
+*.zhiread.com
 *.zhiren.com
 *.zhiren.ren
 *.zhirenhr.com
@@ -38417,6 +38490,7 @@ steamcommunity-a.akamaihd.net
 *.zhujia360.com
 *.zhujiaimg.com
 *.zhujiangbeer.com
+*.zhujiange.com
 *.zhujiangrc.com
 *.zhujiboke.com
 *.zhujiceping.com
@@ -38612,6 +38686,7 @@ steamcommunity-a.akamaihd.net
 *.zjytyz.com
 *.zjzffz.com
 *.zjzg.com
+*.zjzj.org
 *.zk528.com
 *.zk71.com
 *.zkcx.com
@@ -38847,6 +38922,7 @@ steamcommunity-a.akamaihd.net
 *.zuimeia.com
 *.zuimoban.com
 *.zuiniuwang.com
+*.zuitang.com
 *.zuitu.com
 *.zuixiaoyao.com
 *.zuixindianying123.com

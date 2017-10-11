@@ -147,12 +147,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Base64.cpp" />
+    <ClCompile Include="generatefile.cpp" />
     <ClCompile Include="IPv4.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base64.h" />
+    <ClInclude Include="generatefile.h" />
     <ClInclude Include="IPv4.h" />
     <ClInclude Include="misc.h" />
   </ItemGroup>
