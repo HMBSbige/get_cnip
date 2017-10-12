@@ -6,6 +6,7 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <set>
 #include <string>
 #include "ipv4.h"
 #include "Base64.h"
@@ -16,21 +17,16 @@ using namespace std;
 queue<string> q_user_dot_rule_local_proxy;
 queue<string> q_user_dot_rule_ip_rules;
 queue<string> q_white_domains;
-queue<pair<ll, ll> > q_cnIpRange;
+vector<pair<ll, ll> > lines_list;
 string white_domains="";
 string cnIpRange="";
+string cnIp16Range = "";
 
 void make_cnIpRange(string& list_result)
 {
-	list_result="";
-	vector<pair<ll,ll> > lines_list;
+	list_result= "[\n{";
 	string temp_str;
-	while (!q_cnIpRange.empty())
-	{
-		lines_list.push_back(q_cnIpRange.front());
-		q_cnIpRange.pop();
-	}
-	list_result.append("[\n{");
+
 	ll start_num = 0;
 	auto comma = "";
 	for (auto&line : lines_list)
@@ -48,6 +44,33 @@ void make_cnIpRange(string& list_result)
 		comma = ",";
 	}
 	list_result.append("}\n];\n");
+}
+void make_cnIp16Range(string& list_result)
+{
+	list_result = "{\n";
+	string temp_str;
+	vector<ll> master_net;
+	set<ll> master_net_set;
+
+	for (auto&line : lines_list)
+	{
+		if (line.second < 1 << 14) {
+			master_net_set.insert(line.first >> 14);
+		}
+	}
+	for (auto&x : master_net_set)
+	{
+		master_net.push_back(x);
+	}
+	sort(master_net.begin(), master_net.end());
+	for (auto&s : master_net)
+	{
+		list_result.append("0x");
+		list_result.append(NumberBaseConversion(10, 16, to_string(s)));
+		list_result.append(":1,");
+	}
+	list_result.erase(list_result.end() - 1);
+	list_result.append("\n};\n\n");
 }
 multimap<string,string> white_domains_queue2dict(queue<string>& q)
 {
@@ -133,7 +156,7 @@ void getcnip()
 			test << cn_ip_queue.front().first_ip.ip_to_long() <<" "<<cn_ip_queue.front().Hosts << endl;
 
 			q_user_dot_rule_ip_rules.push(temp_str);
-			q_cnIpRange.push(make_pair(cn_ip_queue.front().first_ip.ip_to_long(), cn_ip_queue.front().Hosts));
+			lines_list.push_back(make_pair(cn_ip_queue.front().first_ip.ip_to_long(), cn_ip_queue.front().Hosts));
 		}
 		add.close();
 		del.close();
@@ -329,7 +352,7 @@ void generate_user_dot_rule()
 }
 void generate_ss_cnip()
 {
-	if (q_white_domains.empty() || q_cnIpRange.empty()) {
+	if (q_white_domains.empty() || lines_list.empty()) {
 		cout << "Î´ÕÒµ½ accelerated-domains.china.conf ºÍ delegated-apnic-latest" << endl;
 		return;
 	}
@@ -343,7 +366,8 @@ void generate_ss_cnip()
 	make_cnIpRange(cnIpRange);
 	ss_cnip_dot_pac << ss_cnip_cnIpRange << cnIpRange;
 	//output cnIp16Range
-	ss_cnip_dot_pac << ss_cnip_cnIp16Range;
+	make_cnIp16Range(cnIp16Range);
+	ss_cnip_dot_pac << ss_cnip_cnIp16Range<< cnIp16Range;
 	//output whiteIpList
 	ss_cnip_dot_pac << ss_cnip_whiteIpList;
 	//output subnetIpRangeList
