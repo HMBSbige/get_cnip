@@ -1,6 +1,8 @@
 # 获取国内IP、域名
 
-不想自己生成的可以直接下载out目录内的文件
+不想自己生成的可以直接下载
+* https://github.com/HMBSbige/GetCNDomainsAndIPv4/tree/master/out
+* 部分ShadowsocksR文件：https://github.com/HMBSbige/Text_Translation/tree/master/ShadowsocksR
 
 所需文件：
 
