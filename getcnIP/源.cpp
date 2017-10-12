@@ -9,7 +9,7 @@ using namespace std;
 
 int main() {
 	std::ios::sync_with_stdio(false);
-	setlocale(LC_ALL, "");
+	//_wsetlocale(LC_ALL, L"");
 
 	if (_access(string(R"(.\out)").c_str(), 0) == -1)//判断文件夹是否存在
 	{
