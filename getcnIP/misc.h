@@ -30,4 +30,4 @@ extern const std::string ss_cnip_subnetIpRangeList;
 extern const std::string ss_cnip_back;
 extern const std::string ss_white_back;
 extern const std::string ss_white_r_front;
-extern const std::string local_cnip_front;
+extern const std::string proxy_pac_front;

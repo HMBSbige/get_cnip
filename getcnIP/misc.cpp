@@ -1258,7 +1258,7 @@ var ip_proxy = function(){ return nowall_proxy(); };
 var ipv6_proxy = function(){ return wall_v6_proxy(); };
 
 )wtf";
-extern const std::string local_cnip_front = R"wtf(var direct = "DIRECT;";
+extern const std::string proxy_pac_front = R"wtf(var direct = "DIRECT;";
 if (direct == "__DIR" + "ECT__") direct = "DIRECT;";
 
 var wall_proxy = function(){ return "PROXY 127.0.0.1:23333;DIRECT;"; };

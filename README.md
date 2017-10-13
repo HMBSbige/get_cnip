@@ -103,7 +103,7 @@ ShadowsocksR目录内的pac.txt。
 
 仅通过国内域名（国外访问大陆）。
 
-__local_cnip.pac__：
+__proxy.pac__：
 
 自用。
 

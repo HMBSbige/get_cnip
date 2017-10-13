@@ -445,10 +445,10 @@ void generate_local_cnip()
 	}
 
 	ofstream local_cnip_dot_pac;
-	local_cnip_dot_pac.open(R"(.\out\local_cnip.pac)", ios::trunc);
-	cout << "正在生成local_cnip.pac..." << endl;
+	local_cnip_dot_pac.open(R"(.\out\proxy.pac)", ios::trunc);
+	cout << "正在生成proxy.pac..." << endl;
 
-	local_cnip_dot_pac << local_cnip_front;
+	local_cnip_dot_pac << proxy_pac_front;
 	//output cnIpRange
 	local_cnip_dot_pac << ss_cnip_cnIpRange << cnIpRange;
 	//output cnIp16Range
@@ -463,6 +463,6 @@ void generate_local_cnip()
 )";
 	local_cnip_dot_pac << ss_white_back;
 	local_cnip_dot_pac.close();
-	cout << "local_cnip.pac生成成功！" << endl;
+	cout << "proxy.pac生成成功！" << endl;
 	cout << endl;
 }
