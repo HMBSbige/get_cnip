@@ -1,8 +1,8 @@
-var direct = "__DIRECT__";
+var direct = "DIRECT;";
 if (direct == "__DIR" + "ECT__") direct = "DIRECT;";
 
-var wall_proxy = function(){ return "__PROXY__"; };
-var wall_v6_proxy = function(){ return "__PROXY__"; };
+var wall_proxy = function(){ return "PROXY 127.0.0.1:23333;DIRECT;"; };
+var wall_v6_proxy = function(){ return "PROXY 127.0.0.1:23333;DIRECT;"; };
 
 var nowall_proxy = function(){ return direct; };
 var ip_proxy = function(){ return wall_proxy(); };
@@ -39370,13 +39370,7 @@ function FindProxyForURL(url, host) {
 	if ( isInDomains(white_domains, host) === true ) {
 		return nowall_proxy();
 	}
-
-	var strIp = dnsResolve(host);
-	if ( !strIp ) {
-		return wall_proxy();
-	}
-	
-	return getProxyFromIP(strIp);
+	return wall_proxy();
 }
 
 function FindProxyForURLEx(url, host) {
@@ -39391,20 +39385,6 @@ function FindProxyForURLEx(url, host) {
 	}
 	if ( isInDomains(white_domains, host) === true ) {
 		return nowall_proxy();
-	}
-
-	var strIp = dnsResolveEx(host);
-	if ( !strIp ) {
-		return wall_proxy();
-	}
-	if ( check_ipv6_dns(strIp) === true ) {
-		return ipv6_proxy();
-	}
-	var dnsIps = strIp.split(";");
-	if (check_ipv4(dnsIps[0]) === true) {
-		return getProxyFromIP(dnsIps[0]);
-	} else if (check_ipv6_dns(dnsIps[0]) === true) {
-		return ipv6_proxy();
 	}
 	return wall_proxy();
 }

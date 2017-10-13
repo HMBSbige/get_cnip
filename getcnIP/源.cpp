@@ -25,6 +25,9 @@ int main() {
 	generate_user_dot_rule();
 
 	generate_ss_cnip();
+	generate_ss_white();
+	generate_ss_white_r();
+	generate_local_cnip();
 
 	cout << endl;
 	//system("pause");

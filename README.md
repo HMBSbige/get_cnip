@@ -89,8 +89,27 @@ ShadowsocksR目录内的pac.txt。
 
 上面user.rule的替代品，客户端设置为PAC模式，代理规则选择全局。
 
-可绕过国内域名和ip。
+可绕过国内域名和国内ip。
 
+__ss_white.pac__：
+
+ShadowsocksR目录内的pac.txt。
+
+可绕过国内域名。
+
+__ss_white_r.pac__：
+
+ShadowsocksR目录内的pac.txt。
+
+仅通过国内域名（国外访问大陆）。
+
+__local_cnip.pac__：
+
+自用。
+
+ShadowsocksR选择"保持当前状态不修改"。将Internet属性里的自动配置脚本的地址设为本地路径。
+
+只是觉得IDM里的代理设置总是要改太麻烦，然而好像IDM里的自动配置脚本不支持本地路径？
 
 ## 自用脚本
 ```
