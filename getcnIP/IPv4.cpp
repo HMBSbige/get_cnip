@@ -1,27 +1,27 @@
 ﻿#include "ipv4.h"
-ipv4::ipv4(const ipv4& a) :n_(4)
+ipv4::ipv4(const ipv4& a) :n_(4,0)
 {
 	n_[0] = a.n_[0];
 	n_[1] = a.n_[1];
 	n_[2] = a.n_[2];
 	n_[3] = a.n_[3];
 }
-ipv4::ipv4(ll n1,ll n2,ll n3,ll n4) :n_(4)
+ipv4::ipv4(const ll& n1, const ll& n2, const ll& n3, const ll& n4) :n_(4,0)
 {
 	n_[0] = n1;
 	n_[1] = n2;
 	n_[2] = n3;
 	n_[3] = n4;
 }
-ipv4::ipv4(std::string strip) :n_(4)
+ipv4::ipv4(const std::string& strip) :n_(4,0)
 {
 	get_ipv4(strip);
 }
-ipv4::ipv4(std::vector<ll> a)
+ipv4::ipv4(const std::vector<ll>& a)
 {
 	n_ = a;
 }
-void ipv4::get_ipv4(std::string strip) {
+void ipv4::get_ipv4(const std::string& strip) {
 	auto pos1 = strip.find(".");
 	n_[0] = string_to_num(std::string(strip, 0, pos1));
 	auto pos2 = strip.find(".", pos1 + 1);
@@ -31,7 +31,7 @@ void ipv4::get_ipv4(std::string strip) {
 	pos2 = strip.size();
 	n_[3] = string_to_num(std::string(strip, pos1 + 1, pos2 - pos1 - 1));
 }
-ll ipv4::get_ipv4(size_t i) {
+ll ipv4::get_ipv4(const std::size_t& i) {
 	return this->n_.at(i);
 }
 std::vector<ll> ipv4::get_ipv4() const
@@ -42,13 +42,13 @@ std::string ipv4::str() {
 	return num_to_string(n_[0]) + "." + num_to_string(n_[1]) + "." + num_to_string(n_[2]) + "." + num_to_string(n_[3]);
 }
 
-bool is_cn_ipv4(std::string line) {
+bool is_cn_ipv4(const std::string& line) {
 	const std::string temp(line, 0, 14);
 	if (temp == "apnic|CN|ipv4|")
 		return true;
 	return false;
 }
-std::string get_subnet_mask(ll num) {
+std::string get_subnet_mask(const ll& num) {
 	std::string mask[4];
 	ll n[4] = { 255,255,255,0 };
 	if (num > (1 << 24)) {
@@ -65,8 +65,8 @@ std::string get_subnet_mask(ll num) {
 		mask[i] = num_to_string(n[i]);
 	return mask[0] + "." + mask[1] + "." + mask[2] + "." + mask[3];
 }
-std::string get_last_ip(std::string ip, ll num) {
-	size_t i = 2;
+std::string get_last_ip(const std::string& ip, ll num) {
+	std::size_t i = 2;
 	while (num / 256 > 256) {
 		--i;
 		num /= 256;
@@ -79,7 +79,7 @@ std::string get_last_ip(std::string ip, ll num) {
 		n[i] = 255;
 	return ipv4(n).str();
 }
-ll get_CIDR(ll Hosts)
+ll get_CIDR(const ll& Hosts)
 {
 	return ll(32 - log2(Hosts));
 }
