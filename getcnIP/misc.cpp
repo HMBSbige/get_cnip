@@ -1,4 +1,4 @@
-#include "misc.h"
+ï»¿#include "misc.h"
 #include <fstream>
 #include <string>
 
@@ -1287,31 +1287,31 @@ var ip_proxy = function(){ return wall_proxy(); };
 var ipv6_proxy = function(){ return wall_v6_proxy(); };
 
 )wtf";
-extern const std::string whitelist_acl_front = R"wtf(#**********************************************************************
-# [proxy_all] Ä¬ÈÏ´úÀí
-# [bypass_all] Ä¬ÈÏÖ±Á¬
-# [outbound_block_list] ½ûÖ¹·ÃÎÊÁĞ±í
-# [bypass_list] Ö±Á¬ÁĞ±í
-# [proxy_list] ´úÀíÁĞ±í
-# [remote_dns] Ô¶³Ì DNS ½âÎö -²»¼ÓÊ¹ÓÃ±¾µØ DNS
+extern const std::string whitelist_acl_front = u8R"wtf(#**********************************************************************
+# [proxy_all] é»˜è®¤ä»£ç†
+# [bypass_all] é»˜è®¤ç›´è¿
+# [outbound_block_list] ç¦æ­¢è®¿é—®åˆ—è¡¨
+# [bypass_list] ç›´è¿åˆ—è¡¨
+# [proxy_list] ä»£ç†åˆ—è¡¨
+# [remote_dns] è¿œç¨‹ DNS è§£æ -ä¸åŠ ä½¿ç”¨æœ¬åœ° DNS
 #**********************************************************************
 [proxy_all]
 
 )wtf";
-extern const std::string whitelist_acl_bypass_list = R"wtf([bypass_list]
+extern const std::string whitelist_acl_bypass_list = u8R"wtf([bypass_list]
 
-# CNÓòÃûÖ±Á¬
+# CNåŸŸåç›´è¿
 ^(.*)\.cn$
 
-# ÖĞ¹ú¹úÄÚ³£¼ûÓòÃû¹Ø¼ü´ÊÖ±Á¬
+# ä¸­å›½å›½å†…å¸¸è§åŸŸåå…³é”®è¯ç›´è¿
 ^cn\.\w(.*)$
 (^|\.)\w*-cn\w*\.\w*$
 ^.*steam.*$
 
 # accelerated-domains china
 )wtf";
-extern const std::string whitelist_acl_local = R"wtf(#**********************************************************************
-# ±¾µØ/¾ÖÓòÍøµØÖ·
+extern const std::string whitelist_acl_local = u8R"wtf(#**********************************************************************
+# æœ¬åœ°/å±€åŸŸç½‘åœ°å€
 ^(.*\.)?local$
 ^(.*\.)?localhost$
 ^(.*\.)?ip6-localhost$
@@ -1333,6 +1333,6 @@ extern const std::string whitelist_acl_local = R"wtf(#**************************
 203.0.113.0/24
 224.0.0.0/4
 
-# ¹úÄÚipµØÖ·
+# å›½å†…ipåœ°å€
 )wtf";
 // = R"wtf()wtf";

@@ -1,4 +1,4 @@
-#include "generatefile.h"
+ï»¿#include "generatefile.h"
 
 #include <iostream>
 #include <fstream>
@@ -130,14 +130,14 @@ void getcnip()
 		queue<ip_list> cn_ip_queue;
 		//ofstream test;
 
-		cout << "ÕÒµ½ " + filename << endl;
+		cout << "æ‰¾åˆ° " + filename << endl;
 
 		add.open(R"(.\out\add.txt)", ios::trunc);
 		del.open(R"(.\out\del.txt)", ios::trunc);
 		ssr.open(R"(.\out\chn_ip.txt)", ios::trunc);
 		//test.open(R"(.\out\test.txt)", ios::trunc);
 
-		cout << "ÕıÔÚ·ÖÎöÂ·ÓÉ±í..." << endl;
+		cout << "æ­£åœ¨åˆ†æè·¯ç”±è¡¨..." << endl;
 
 		while (getline(rawdata, temp_str, '\n')) {
 			if (is_cn_ipv4(temp_str)) {
@@ -145,7 +145,7 @@ void getcnip()
 			}
 		}
 
-		cout << "ÕıÔÚÉú³ÉÂ·ÓÉ±í..." << endl;
+		cout << "æ­£åœ¨ç”Ÿæˆè·¯ç”±è¡¨..." << endl;
 
 		const auto number_of_ip = cn_ip_queue.size();
 		for (; !cn_ip_queue.empty(); cn_ip_queue.pop()) {
@@ -165,10 +165,10 @@ void getcnip()
 		del.close();
 		ssr.close();
 		//test.close();
-		cout << "Â·ÓÉ±íÉú³É³É¹¦£¡¹²ÓĞ" << number_of_ip << "Ìõ¡£" << endl;
+		cout << "è·¯ç”±è¡¨ç”ŸæˆæˆåŠŸï¼å…±æœ‰" << number_of_ip << "æ¡ã€‚" << endl;
 	}
 	else {
-		cout << "Î´ÕÒµ½ " + filename << endl;
+		cout << "æœªæ‰¾åˆ° " + filename << endl;
 	}
 	cout << endl;
 }
@@ -181,20 +181,20 @@ void gfwlist2pac()
 
 	if (gfwdata)
 	{
-		cout << "ÕÒµ½ " + gfwlist << endl;
+		cout << "æ‰¾åˆ° " + gfwlist << endl;
 		auto list = Base64::Decode(textfile2str(gfwlist));//decode gfwlist
 		const ifstream userdata(userrule);
 		if (userdata)
 		{
-			cout << "ÕÒµ½ " + userrule << endl;
+			cout << "æ‰¾åˆ° " + userrule << endl;
 			list += textfile2str(userrule);
 		}
 		else
 		{
-			cout << "Î´ÕÒµ½ " + userrule << endl;
+			cout << "æœªæ‰¾åˆ° " + userrule << endl;
 		}
 
-		cout << "ÕıÔÚ·ÖÎöGFWList..." << endl;
+		cout << "æ­£åœ¨åˆ†æGFWList..." << endl;
 		string temp_str;
 		istringstream ss_list(list);
 		queue<string> domains;
@@ -203,15 +203,15 @@ void gfwlist2pac()
 		{
 			if (temp_str[0] != '!' && temp_str != "" && temp_str[0] != '[')
 			{
-				replace_all_distinct(temp_str, R"(\)", R"(\\)");//½«"\"Ìæ»»³É"\\"
+				replace_all_distinct(temp_str, R"(\)", R"(\\)");//å°†"\"æ›¿æ¢æˆ"\\"
 				domains.push(temp_str);
 			}
 
 		}
-		cout << "¹²ÓĞ" << domains.size() << "Ìõ¡£" << endl;
+		cout << "å…±æœ‰" << domains.size() << "æ¡ã€‚" << endl;
 
 		//output
-		cout << "ÕıÔÚÉú³Épac.txt..." << endl;
+		cout << "æ­£åœ¨ç”Ÿæˆpac.txt..." << endl;
 		ofstream pac;
 		pac.open(R"(.\out\gfwlist.pac)", ios::trunc);
 		pac << pac_front_str;
@@ -226,11 +226,11 @@ void gfwlist2pac()
 		pac << pac_back_str1;
 		pac << pac_back_str2;
 		pac.close();
-		cout << "pac.txtÉú³É³É¹¦£¡" << endl;
+		cout << "pac.txtç”ŸæˆæˆåŠŸï¼" << endl;
 	}
 	else
 	{
-		cout << "Î´ÕÒµ½ " + gfwlist << endl;
+		cout << "æœªæ‰¾åˆ° " + gfwlist << endl;
 	}
 	cout << endl;
 }
@@ -244,38 +244,38 @@ void get_cn_domains()
 	ifstream domains_data(rawdata_name);
 	if (domains_data)
 	{
-		cout << "ÕÒµ½ " + rawdata_name << endl;
+		cout << "æ‰¾åˆ° " + rawdata_name << endl;
 		ifstream whitelist_data(whitelist);
 		if (whitelist_data)
 		{
-			cout << "ÕÒµ½ " + whitelist << endl;
+			cout << "æ‰¾åˆ° " + whitelist << endl;
 			while (getline(whitelist_data, temp_str, '\n'))
 			{
 				if (temp_str != "")
 				{
 					domains.push(temp_str);
-					replace_all_distinct(temp_str, R"(*.)", R"(.)");//½«"*."Ìæ»»³É"."
+					replace_all_distinct(temp_str, R"(*.)", R"(.)");//å°†"*."æ›¿æ¢æˆ"."
 					q_user_dot_rule_local_proxy.push(temp_str);
 					if (temp_str[0] == '.')
 						temp_str.erase(temp_str.begin());
 					q_white_domains.push(temp_str);
-					q_acl_white_domains.push(R"(^(.*\.)?)"+ replace_all_distinct(temp_str,R"(.)", R"(\.)")+ R"($)");//½«"."Ìæ»»³É"\."
+					q_acl_white_domains.push(R"(^(.*\.)?)"+ replace_all_distinct(temp_str,R"(.)", R"(\.)")+ R"($)");//å°†"."æ›¿æ¢æˆ"\."
 				}
 			}
-			cout << "ÓÃ»§×Ô¶¨ÒåÓòÃû¹²" << domains.size() << "Ìõ¡£" << endl;
+			cout << "ç”¨æˆ·è‡ªå®šä¹‰åŸŸåå…±" << domains.size() << "æ¡ã€‚" << endl;
 		}
 		else
 		{
-			cout << "Î´ÕÒµ½ " + whitelist << endl;
+			cout << "æœªæ‰¾åˆ° " + whitelist << endl;
 		}
 
-		cout << "ÕıÔÚ·ÖÎö accelerated-domains.china.conf ..." << endl;
+		cout << "æ­£åœ¨åˆ†æ accelerated-domains.china.conf ..." << endl;
 
 		while (getline(domains_data, temp_str, '\n'))
 		{
 			if (temp_str != "")
 			{
-				//È¡³öÓòÃû
+				//å–å‡ºåŸŸå
 				const auto pos1 = temp_str.find('/');
 				const auto pos2 = temp_str.rfind('/');
 				temp_str = temp_str.substr(pos1 + 1, pos2 - pos1 - 1);
@@ -283,13 +283,13 @@ void get_cn_domains()
 				q_user_dot_rule_local_proxy.push("." + temp_str);
 				domains.push("*." + temp_str);
 				q_white_domains.push(temp_str);
-				q_acl_white_domains.push(R"(^(.*\.)?)" + replace_all_distinct(temp_str, R"(.)", R"(\.)") + R"($)");//½«"."Ìæ»»³É"\."
+				q_acl_white_domains.push(R"(^(.*\.)?)" + replace_all_distinct(temp_str, R"(.)", R"(\.)") + R"($)");//å°†"."æ›¿æ¢æˆ"\."
 			}
 		}
-		cout << "¹²ÓĞ" << domains.size() << "Ìõ¡£" << endl;
+		cout << "å…±æœ‰" << domains.size() << "æ¡ã€‚" << endl;
 
 		//output
-		cout << "ÕıÔÚÉú³ÉCNdomains.txt..." << endl;
+		cout << "æ­£åœ¨ç”ŸæˆCNdomains.txt..." << endl;
 		ofstream cn_domains;
 		cn_domains.open(R"(.\out\CNdomains.txt)", ios::trunc);
 		while (!domains.empty())
@@ -298,21 +298,21 @@ void get_cn_domains()
 			domains.pop();
 		}
 		cn_domains.close();
-		cout << "CNdomains.txtÉú³É³É¹¦£¡" << endl;
+		cout << "CNdomains.txtç”ŸæˆæˆåŠŸï¼" << endl;
 	}
 	else
 	{
-		cout << "Î´ÕÒµ½ " + rawdata_name << endl;
+		cout << "æœªæ‰¾åˆ° " + rawdata_name << endl;
 	}
 	cout << endl;
 }
 void generate_user_dot_rule()
 {
 	if (q_user_dot_rule_ip_rules.empty() && q_user_dot_rule_local_proxy.empty()) {
-		cout << "Î´ÕÒµ½ accelerated-domains.china.conf »ò delegated-apnic-latest" << endl;
+		cout << "æœªæ‰¾åˆ° accelerated-domains.china.conf æˆ– delegated-apnic-latest" << endl;
 		return;
 	}
-	cout << "ÕıÔÚÉú³Éuser.rule..." << endl;
+	cout << "æ­£åœ¨ç”Ÿæˆuser.rule..." << endl;
 	ofstream user_dot_rule;
 	user_dot_rule.open(R"(.\out\user.rule)", ios::trunc);
 	user_dot_rule << user_dot_rule_front;
@@ -352,19 +352,19 @@ void generate_user_dot_rule()
 	user_dot_rule << user_dot_rule_local;
 	//output end
 	user_dot_rule.close();
-	cout << "user.ruleÉú³É³É¹¦£¡" << endl;
+	cout << "user.ruleç”ŸæˆæˆåŠŸï¼" << endl;
 	cout << endl;
 }
 void generate_ss_cnip()
 {
 	if (q_white_domains.empty() || lines_list.empty()) {
-		cout << "Î´ÕÒµ½ accelerated-domains.china.conf ºÍ delegated-apnic-latest" << endl;
+		cout << "æœªæ‰¾åˆ° accelerated-domains.china.conf å’Œ delegated-apnic-latest" << endl;
 		return;
 	}
 	
 	ofstream ss_cnip_dot_pac;
 	ss_cnip_dot_pac.open(R"(.\out\ss_cnip.pac)", ios::trunc);
-	cout << "ÕıÔÚÉú³Éss_cnip.pac..." << endl;
+	cout << "æ­£åœ¨ç”Ÿæˆss_cnip.pac..." << endl;
 
 	ss_cnip_dot_pac << ss_cnip_front;
 	//output cnIpRange
@@ -384,7 +384,7 @@ void generate_ss_cnip()
 )";
 	ss_cnip_dot_pac << ss_cnip_back;
 	ss_cnip_dot_pac.close();
-	cout << "ss_cnip.pacÉú³É³É¹¦£¡" << endl;
+	cout << "ss_cnip.pacç”ŸæˆæˆåŠŸï¼" << endl;
 	cout << endl;
 }
 void generate_ss_white()
@@ -395,7 +395,7 @@ void generate_ss_white()
 
 	ofstream ss_white_dot_pac;
 	ss_white_dot_pac.open(R"(.\out\ss_white.pac)", ios::trunc);
-	cout << "ÕıÔÚÉú³Éss_white.pac..." << endl;
+	cout << "æ­£åœ¨ç”Ÿæˆss_white.pac..." << endl;
 
 	ss_white_dot_pac << ss_cnip_front;
 	//output cnIpRange
@@ -412,7 +412,7 @@ void generate_ss_white()
 )";
 	ss_white_dot_pac << ss_white_back;
 	ss_white_dot_pac.close();
-	cout << "ss_white.pacÉú³É³É¹¦£¡" << endl;
+	cout << "ss_white.pacç”ŸæˆæˆåŠŸï¼" << endl;
 	cout << endl;
 }
 void generate_ss_white_r()
@@ -423,7 +423,7 @@ void generate_ss_white_r()
 
 	ofstream ss_white_r_dot_pac;
 	ss_white_r_dot_pac.open(R"(.\out\ss_white_r.pac)", ios::trunc);
-	cout << "ÕıÔÚÉú³Éss_white_r.pac..." << endl;
+	cout << "æ­£åœ¨ç”Ÿæˆss_white_r.pac..." << endl;
 
 	ss_white_r_dot_pac << ss_white_r_front;
 	//output cnIpRange
@@ -440,7 +440,7 @@ void generate_ss_white_r()
 )";
 	ss_white_r_dot_pac << ss_white_back;
 	ss_white_r_dot_pac.close();
-	cout << "ss_white_r.pacÉú³É³É¹¦£¡" << endl;
+	cout << "ss_white_r.pacç”ŸæˆæˆåŠŸï¼" << endl;
 	cout << endl;
 }
 void generate_local_cnip()
@@ -451,7 +451,7 @@ void generate_local_cnip()
 
 	ofstream local_cnip_dot_pac;
 	local_cnip_dot_pac.open(R"(.\out\proxy.pac)", ios::trunc);
-	cout << "ÕıÔÚÉú³Éproxy.pac..." << endl;
+	cout << "æ­£åœ¨ç”Ÿæˆproxy.pac..." << endl;
 
 	local_cnip_dot_pac << proxy_pac_front;
 	//output cnIpRange
@@ -468,19 +468,19 @@ void generate_local_cnip()
 )";
 	local_cnip_dot_pac << ss_white_back;
 	local_cnip_dot_pac.close();
-	cout << "proxy.pacÉú³É³É¹¦£¡" << endl;
+	cout << "proxy.pacç”ŸæˆæˆåŠŸï¼" << endl;
 	cout << endl;
 }
 void generate_whitelist_acl()
 {
 	if (q_acl_white_domains.empty() || q_IP_CIDR.empty()) {
-		cout << "Î´ÕÒµ½ accelerated-domains.china.conf ºÍ delegated-apnic-latest" << endl;
+		cout << "æœªæ‰¾åˆ° accelerated-domains.china.conf å’Œ delegated-apnic-latest" << endl;
 		return;
 	}
 
 	ofstream whitelist_acl;
 	whitelist_acl.open(R"(.\out\whitelist.acl)", ios::trunc);
-	cout << "ÕıÔÚÉú³Éwhitelist.acl..." << endl;
+	cout << "æ­£åœ¨ç”Ÿæˆwhitelist.acl..." << endl;
 
 	whitelist_acl << whitelist_acl_front
 	<< whitelist_acl_bypass_list;
@@ -496,6 +496,6 @@ void generate_whitelist_acl()
 		q_IP_CIDR.pop();
 	}
 	whitelist_acl.close();
-	cout << "whitelist.aclÉú³É³É¹¦£¡" << endl;
+	cout << "whitelist.aclç”ŸæˆæˆåŠŸï¼" << endl;
 	cout << endl;
 }
