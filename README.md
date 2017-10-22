@@ -111,6 +111,10 @@ ShadowsocksR选择"保持当前状态不修改"。将Internet属性里的自动�
 
 只是觉得IDM里的代理设置总是要改太麻烦，然而好像IDM里的自动配置脚本不支持本地路径？
 
+__whitelist.acl__
+
+ShadowsocksR 安卓客户端用ACL文件
+
 ## 自用脚本
 ```
 aria2c -x10 -s10 --https-proxy="https://127.0.0.1:23333" --allow-overwrite=true -Z https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf
