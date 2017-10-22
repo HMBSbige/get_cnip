@@ -851,11 +851,20 @@ for (var i = 0; i < rules.length; i++) {
 }
 
 var subnetIpRangeList = [
-0,1,
+0,16777216,				//0.0.0.0/8
 167772160,184549376,	//10.0.0.0/8
+1681915904,1686110208,	//100.64.0.0/10
+2130706432,2147483648,	//127.0.0.0/8
+2851995648,2852061184,	//169.254.0.0/16
 2886729728,2887778304,	//172.16.0.0/12
+3221225472,3221225728,	//192.0.0.0/24
+3221225984,3221226240,	//192.0.2.0/24
+3227017984,3227018240,	//192.88.99.0/24
 3232235520,3232301056,	//192.168.0.0/16
-2130706432,2130706688	//127.0.0.0/24
+3323068416,3323199488,	//198.18.0.0/15
+3325256704,3325256960,	//198.51.100.0/24
+3405803776,3405804032,	//203.0.113.0/24
+3758096384,4026531840	//224.0.0.0/4
 ];
 
 function convertAddress(ipchars) {
@@ -886,7 +895,7 @@ function check_ipv6_dns(dnsstr) {
 	}
 }
 function isInSubnetRange(ipRange, intIp) {
-	for ( var i = 0; i < 10; i += 2 ) {
+	for ( var i = 0; i < 28; i += 2 ) {
 		if ( ipRange[i] <= intIp && intIp < ipRange[i+1] )
 			return true;
 	}
@@ -1030,7 +1039,7 @@ function isInSingleRange(ipRange, intIp) {
 	}
 }
 function isInSubnetRange(ipRange, intIp) {
-	for ( var i = 0; i < 10; i += 2 ) {
+	for ( var i = 0; i < 28; i += 2 ) {
 		if ( ipRange[i] <= intIp && intIp < ipRange[i+1] )
 			return true;
 	}
@@ -1175,7 +1184,7 @@ function isInSingleRange(ipRange, intIp) {
 	}
 }
 function isInSubnetRange(ipRange, intIp) {
-	for ( var i = 0; i < 10; i += 2 ) {
+	for ( var i = 0; i < 28; i += 2 ) {
 		if ( ipRange[i] <= intIp && intIp < ipRange[i+1] )
 			return true;
 	}
