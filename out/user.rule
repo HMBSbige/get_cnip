@@ -8,6 +8,7 @@
 
 .bige0.com localproxy
 .xxskins.com localproxy
+.gt798.com localproxy
 cn.download.nvidia.com localproxy
 .steampowered.com localproxy
 steamcommunity.com localproxy
@@ -17,7 +18,6 @@ broadcast.mileweb.steampowered.com.8686c.com localproxy
 steamuserimages-a.akamaihd.net localproxy
 cdn.akamai.steamstatic.com localproxy
 store.akamai.steamstatic.com localproxy
-cloud-3.steamusercontent.com localproxy
 cdn.steamstatic.com.8686c.com localproxy
 cdn.mileweb.cs.steampowered.com.8686c.com localproxy
 steampipe.akamaized.net localproxy
@@ -138,6 +138,7 @@ steamcommunity-a.akamaihd.net localproxy
 .020icp.com localproxy
 .020job.com localproxy
 .020vv.com localproxy
+.020yhy.com localproxy
 .020zp.net localproxy
 .021.net localproxy
 .0214.com localproxy
@@ -3286,6 +3287,7 @@ steamcommunity-a.akamaihd.net localproxy
 .51mdq.com localproxy
 .51meishu.com localproxy
 .51mike.com localproxy
+.51miz.com localproxy
 .51mmm.com localproxy
 .51mobilejob.com localproxy
 .51modo.cc localproxy
@@ -4254,6 +4256,7 @@ steamcommunity-a.akamaihd.net localproxy
 .6661666.net localproxy
 .6665.com localproxy
 .66667676.com localproxy
+.6669667.com localproxy
 .666ccc.com localproxy
 .666pic.com localproxy
 .666wan.com localproxy
@@ -7016,6 +7019,7 @@ steamcommunity-a.akamaihd.net localproxy
 .architbang.com localproxy
 .archlinuxcn.org localproxy
 .archsummit.com localproxy
+.arctime.org localproxy
 .ardme.net localproxy
 .area-11.com localproxy
 .arefly.com localproxy
@@ -8486,6 +8490,7 @@ steamcommunity-a.akamaihd.net localproxy
 .bohaishibei.com localproxy
 .bohaiyun.com localproxy
 .bohutmt.com localproxy
+.boip.net localproxy
 .bojoy.net localproxy
 .boke.com localproxy
 .boke112.com localproxy
@@ -10487,6 +10492,7 @@ steamcommunity-a.akamaihd.net localproxy
 .chris-tina.com localproxy
 .christianlouboutin-shop.com localproxy
 .chromecj.com localproxy
+.chrstatic.com localproxy
 .chs.so localproxy
 .chshcms.com localproxy
 .cht-f.com localproxy
@@ -11542,6 +11548,7 @@ steamcommunity-a.akamaihd.net localproxy
 .cpcpcp222.com localproxy
 .cpcpcp555.com localproxy
 .cpcv.cc localproxy
+.cpcwe.com localproxy
 .cpdyj.com localproxy
 .cphoto.net localproxy
 .cphoto.org localproxy
@@ -11921,6 +11928,7 @@ steamcommunity-a.akamaihd.net localproxy
 .cuyoo.com localproxy
 .cvchina.info localproxy
 .cvrobot.net localproxy
+.cvz5.com localproxy
 .cw100.com localproxy
 .cwan.com localproxy
 .cwbgj.com localproxy
@@ -13380,6 +13388,7 @@ steamcommunity-a.akamaihd.net localproxy
 .download-ssl.xbox.com localproxy
 .download.gfe.nvidia.com localproxy
 .download.microsoft.com localproxy
+.download.visualstudio.microsoft.com localproxy
 .download.windowsupdate.com localproxy
 .download.xbox.com localproxy
 .download.xboxlive.com localproxy
@@ -13650,6 +13659,7 @@ steamcommunity-a.akamaihd.net localproxy
 .dw.la localproxy
 .dw178.com localproxy
 .dw188.com localproxy
+.dw361.com localproxy
 .dwjoy.com localproxy
 .dwqcw.com localproxy
 .dwrh.net localproxy
@@ -13731,6 +13741,7 @@ steamcommunity-a.akamaihd.net localproxy
 .dylxx.net localproxy
 .dymi.cc localproxy
 .dymjl.com localproxy
+.dyndes.com localproxy
 .dyonr.com localproxy
 .dyp2p.com localproxy
 .dypf8.com localproxy
@@ -14080,6 +14091,7 @@ steamcommunity-a.akamaihd.net localproxy
 .eeboard.com localproxy
 .eec168.com localproxy
 .eechina.com localproxy
+.eecn.cc localproxy
 .eedns.com localproxy
 .eeduol.com localproxy
 .eee114.com localproxy
@@ -14496,6 +14508,7 @@ steamcommunity-a.akamaihd.net localproxy
 .everet.org localproxy
 .evergrande.com localproxy
 .everlose.com localproxy
+.eversino.com localproxy
 .evervc.com localproxy
 .everychina.com localproxy
 .everyinch.net localproxy
@@ -15751,6 +15764,7 @@ steamcommunity-a.akamaihd.net localproxy
 .gamerlol.com localproxy
 .gamersky.com localproxy
 .games4f.com localproxy
+.gamesas.com localproxy
 .gamescl.com localproxy
 .gameservice.com localproxy
 .gamesifu.com localproxy
@@ -15981,6 +15995,7 @@ steamcommunity-a.akamaihd.net localproxy
 .geekluo.com localproxy
 .geekniu.com localproxy
 .geekpark.net localproxy
+.geekpie.org localproxy
 .geeks.vc localproxy
 .geeku.net localproxy
 .geekwom.com localproxy
@@ -16827,6 +16842,7 @@ steamcommunity-a.akamaihd.net localproxy
 .gzhphb.com localproxy
 .gzhtg.com localproxy
 .gzhuake.cc localproxy
+.gzhzcj.com localproxy
 .gzibokan.com localproxy
 .gzidc.com localproxy
 .gzittc.net localproxy
@@ -18542,6 +18558,7 @@ steamcommunity-a.akamaihd.net localproxy
 .hujiangxian.com localproxy
 .hujuntao.com localproxy
 .hukai.me localproxy
+.huke88.com localproxy
 .hukoushanghai.com localproxy
 .huladai.com localproxy
 .hulai.com localproxy
@@ -19302,6 +19319,7 @@ steamcommunity-a.akamaihd.net localproxy
 .ikxs.org localproxy
 .il8r.com localproxy
 .ilanni.com localproxy
+.ilast.cc localproxy
 .ilazycat.com localproxy
 .ileci.com localproxy
 .ileehoo.com localproxy
@@ -20089,6 +20107,7 @@ steamcommunity-a.akamaihd.net localproxy
 .jarhu.com localproxy
 .jaseywang.me localproxy
 .jaskni.com localproxy
+.jasolar.com localproxy
 .jason-z.com localproxy
 .jasve.com localproxy
 .java-er.com localproxy
@@ -20593,6 +20612,7 @@ steamcommunity-a.akamaihd.net localproxy
 .jinjie365.com localproxy
 .jinkan.org localproxy
 .jinke3d.com localproxy
+.jinkosolar.com localproxy
 .jinku.com localproxy
 .jinlianchu.com localproxy
 .jinlinghotels.com localproxy
@@ -21627,6 +21647,7 @@ steamcommunity-a.akamaihd.net localproxy
 .kaoyan001.com localproxy
 .kaoyan1v1.com localproxy
 .kapai8.com localproxy
+.kappmob.com localproxy
 .kaqi-f.com localproxy
 .kaquanbao.com localproxy
 .kartlover.com localproxy
@@ -22395,6 +22416,7 @@ steamcommunity-a.akamaihd.net localproxy
 .lameng.net localproxy
 .lamian.tv localproxy
 .lamiu.com localproxy
+.lammek.com localproxy
 .lamoart.com localproxy
 .lamost.org localproxy
 .lampbrother.net localproxy
@@ -25491,6 +25513,7 @@ steamcommunity-a.akamaihd.net localproxy
 .nasboq.com localproxy
 .nasgetinfo.com localproxy
 .nashangban.com localproxy
+.nasiosoft.com localproxy
 .nasyun.com localproxy
 .nature-museum.net localproxy
 .nav80.com localproxy
@@ -25825,6 +25848,7 @@ steamcommunity-a.akamaihd.net localproxy
 .njhengyou.com localproxy
 .njiaren.com localproxy
 .njibhu.com localproxy
+.njjzgg.com localproxy
 .njkfcw.com localproxy
 .njlzsx.net localproxy
 .njmama.com localproxy
@@ -26170,6 +26194,7 @@ steamcommunity-a.akamaihd.net localproxy
 .okideaad.com localproxy
 .okimgs.com localproxy
 .okinfo.org localproxy
+.okjike.com localproxy
 .okjingying.com localproxy
 .okjoys.com localproxy
 .oklai.name localproxy
@@ -27835,6 +27860,7 @@ steamcommunity-a.akamaihd.net localproxy
 .qosq.com localproxy
 .qp46.com localproxy
 .qpdiy.com localproxy
+.qpgame.com localproxy
 .qplus.com localproxy
 .qpstar.com localproxy
 .qpx.com localproxy
@@ -28198,6 +28224,7 @@ steamcommunity-a.akamaihd.net localproxy
 .qyrb.com localproxy
 .qyslxjc.com localproxy
 .qysyj.com localproxy
+.qyubaba.com localproxy
 .qyule.org localproxy
 .qyxxpd.com localproxy
 .qyzc.net localproxy
@@ -29739,6 +29766,7 @@ steamcommunity-a.akamaihd.net localproxy
 .shuoping.net localproxy
 .shuoqian.net localproxy
 .shuosanguo.com localproxy
+.shuosc.org localproxy
 .shuoshuokong.com localproxy
 .shuoshuoxinqing.com localproxy
 .shuowan.com localproxy
@@ -31746,6 +31774,7 @@ steamcommunity-a.akamaihd.net localproxy
 .tl-vogue.com localproxy
 .tl88.net localproxy
 .tladyu.com localproxy
+.tlanyan.me localproxy
 .tlbaby.com localproxy
 .tlbbq.com localproxy
 .tlby120.com localproxy
@@ -34024,6 +34053,7 @@ steamcommunity-a.akamaihd.net localproxy
 .wfmhw.net localproxy
 .wfun.com localproxy
 .wfxspc.com localproxy
+.wfyqc.com localproxy
 .wgcljc.com localproxy
 .wgcss.com localproxy
 .wgfcdn.com localproxy
@@ -34727,6 +34757,7 @@ steamcommunity-a.akamaihd.net localproxy
 .wx8s.com localproxy
 .wxavu.com localproxy
 .wxb.com localproxy
+.wxbdfm.com localproxy
 .wxbsgc.com localproxy
 .wxcha.com localproxy
 .wxcsgd.com localproxy
@@ -34980,6 +35011,7 @@ steamcommunity-a.akamaihd.net localproxy
 .xfpllay.com localproxy
 .xfsrrc.net localproxy
 .xfsub.com localproxy
+.xftnam.com localproxy
 .xfwed.com localproxy
 .xfzhsf.com localproxy
 .xfztc.com localproxy
@@ -35473,6 +35505,7 @@ steamcommunity-a.akamaihd.net localproxy
 .xinlvtu.com localproxy
 .xinmanyuan.com localproxy
 .xinmima.com localproxy
+.xinmt.com localproxy
 .xinnet.com localproxy
 .xinniangjie.com localproxy
 .xinnong.com localproxy
@@ -36068,6 +36101,7 @@ steamcommunity-a.akamaihd.net localproxy
 .xycdn.com localproxy
 .xychen.me localproxy
 .xycq.net localproxy
+.xydfn.com localproxy
 .xydhl.com localproxy
 .xydjp.com localproxy
 .xydyrc.com localproxy
@@ -36464,6 +36498,7 @@ steamcommunity-a.akamaihd.net localproxy
 .yhwsn.com localproxy
 .yhxx.com localproxy
 .yhy50.com localproxy
+.yhy66.com localproxy
 .yhyshop.com localproxy
 .yhzx.cc localproxy
 .yi-jy.com localproxy
@@ -37808,6 +37843,7 @@ steamcommunity-a.akamaihd.net localproxy
 .zbkszx.net localproxy
 .zbnews.net localproxy
 .zbqzy.com localproxy
+.zbred.com localproxy
 .zbtvart.com localproxy
 .zbusa.com localproxy
 .zbwbbs.com localproxy
@@ -38905,6 +38941,7 @@ steamcommunity-a.akamaihd.net localproxy
 .zubunet.com localproxy
 .zuche.com localproxy
 .zuchecdn.com localproxy
+.zuciwang.com localproxy
 .zudong.com localproxy
 .zufang.com localproxy
 .zufangbao.com localproxy
@@ -39207,7 +39244,6 @@ localhost 127.0.0.1
 14.130.0.0 14.131.255.255 localproxy
 14.134.0.0 14.135.255.255 localproxy
 14.144.0.0 14.159.255.255 localproxy
-14.192.4.0 14.192.7.255 localproxy
 14.192.60.0 14.192.63.255 localproxy
 14.192.76.0 14.192.79.255 localproxy
 14.196.0.0 14.197.255.255 localproxy
@@ -42234,7 +42270,6 @@ localhost 127.0.0.1
 103.72.132.0 103.72.135.255 localproxy
 103.72.144.0 103.72.147.255 localproxy
 103.72.148.0 103.72.151.255 localproxy
-103.72.164.0 103.72.167.255 localproxy
 103.72.172.0 103.72.175.255 localproxy
 103.72.180.0 103.72.183.255 localproxy
 103.72.224.0 103.72.227.255 localproxy
@@ -42287,7 +42322,6 @@ localhost 127.0.0.1
 103.74.204.0 103.74.207.255 localproxy
 103.74.232.0 103.74.235.255 localproxy
 103.75.16.0 103.75.19.255 localproxy
-103.75.84.0 103.75.87.255 localproxy
 103.75.88.0 103.75.91.255 localproxy
 103.75.92.0 103.75.95.255 localproxy
 103.75.104.0 103.75.107.255 localproxy
@@ -42713,6 +42747,8 @@ localhost 127.0.0.1
 103.101.184.0 103.101.187.255 localproxy
 103.102.76.0 103.102.79.255 localproxy
 103.102.80.0 103.102.83.255 localproxy
+103.102.168.0 103.102.171.255 localproxy
+103.102.172.0 103.102.175.255 localproxy
 103.192.0.0 103.192.3.255 localproxy
 103.192.4.0 103.192.7.255 localproxy
 103.192.8.0 103.192.11.255 localproxy
@@ -44754,7 +44790,6 @@ localhost 127.0.0.1
 157.156.0.0 157.156.255.255 localproxy
 157.255.0.0 157.255.255.255 localproxy
 159.226.0.0 159.226.255.255 localproxy
-160.19.48.0 160.19.51.255 localproxy
 160.19.208.0 160.19.211.255 localproxy
 160.19.212.0 160.19.215.255 localproxy
 160.19.216.0 160.19.219.255 localproxy

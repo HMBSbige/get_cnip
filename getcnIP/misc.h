@@ -31,3 +31,6 @@ extern const std::string ss_cnip_back;
 extern const std::string ss_white_back;
 extern const std::string ss_white_r_front;
 extern const std::string proxy_pac_front;
+extern const std::string whitelist_acl_front;
+extern const std::string whitelist_acl_bypass_list;
+extern const std::string whitelist_acl_local;

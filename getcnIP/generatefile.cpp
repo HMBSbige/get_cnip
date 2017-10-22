@@ -17,6 +17,8 @@ using namespace std;
 queue<string> q_user_dot_rule_local_proxy;
 queue<string> q_user_dot_rule_ip_rules;
 queue<string> q_white_domains;
+queue<string> q_acl_white_domains;
+queue<string> q_IP_CIDR;
 vector<pair<ll, ll> > lines_list;
 string white_domains="";
 string cnIpRange="";
@@ -126,14 +128,14 @@ void getcnip()
 		ofstream add, del, ssr;
 		string temp_str;
 		queue<ip_list> cn_ip_queue;
-		ofstream test;
+		//ofstream test;
 
 		cout << "找到 " + filename << endl;
 
 		add.open(R"(.\out\add.txt)", ios::trunc);
 		del.open(R"(.\out\del.txt)", ios::trunc);
 		ssr.open(R"(.\out\chn_ip.txt)", ios::trunc);
-		test.open(R"(.\out\test.txt)", ios::trunc);
+		//test.open(R"(.\out\test.txt)", ios::trunc);
 
 		cout << "正在分析路由表..." << endl;
 
@@ -153,15 +155,16 @@ void getcnip()
 			del << "delete " + ip + " mask " + mask + " default METRIC default IF default" << endl;
 			temp_str = cn_ip_queue.front().first_ip.str() + " " + cn_ip_queue.front().last_ip.str();
 			ssr << temp_str << endl;
-			test << cn_ip_queue.front().first_ip.ip_to_long() <<" "<<cn_ip_queue.front().Hosts << endl;
+			//test << cn_ip_queue.front().first_ip.ip_to_long() <<" "<<cn_ip_queue.front().Hosts << endl;
 
 			q_user_dot_rule_ip_rules.push(temp_str);
 			lines_list.push_back(make_pair(cn_ip_queue.front().first_ip.ip_to_long(), cn_ip_queue.front().Hosts));
+			q_IP_CIDR.push(cn_ip_queue.front().first_ip.str()+R"(/)"+ to_string(cn_ip_queue.front().CIDR));
 		}
 		add.close();
 		del.close();
 		ssr.close();
-		test.close();
+		//test.close();
 		cout << "路由表生成成功！共有" << number_of_ip << "条。" << endl;
 	}
 	else {
@@ -256,6 +259,7 @@ void get_cn_domains()
 					if (temp_str[0] == '.')
 						temp_str.erase(temp_str.begin());
 					q_white_domains.push(temp_str);
+					q_acl_white_domains.push(R"(^(.*\.)?)"+ replace_all_distinct(temp_str,R"(.)", R"(\.)")+ R"($)");//将"."替换成"\."
 				}
 			}
 			cout << "用户自定义域名共" << domains.size() << "条。" << endl;
@@ -279,6 +283,7 @@ void get_cn_domains()
 				q_user_dot_rule_local_proxy.push("." + temp_str);
 				domains.push("*." + temp_str);
 				q_white_domains.push(temp_str);
+				q_acl_white_domains.push(R"(^(.*\.)?)" + replace_all_distinct(temp_str, R"(.)", R"(\.)") + R"($)");//将"."替换成"\."
 			}
 		}
 		cout << "共有" << domains.size() << "条。" << endl;
@@ -464,5 +469,33 @@ void generate_local_cnip()
 	local_cnip_dot_pac << ss_white_back;
 	local_cnip_dot_pac.close();
 	cout << "proxy.pac生成成功！" << endl;
+	cout << endl;
+}
+void generate_whitelist_acl()
+{
+	if (q_acl_white_domains.empty() || q_IP_CIDR.empty()) {
+		cout << "未找到 accelerated-domains.china.conf 和 delegated-apnic-latest" << endl;
+		return;
+	}
+
+	ofstream whitelist_acl;
+	whitelist_acl.open(R"(.\out\whitelist.acl)", ios::trunc);
+	cout << "正在生成whitelist.acl..." << endl;
+
+	whitelist_acl << whitelist_acl_front
+	<< whitelist_acl_bypass_list;
+	while(!q_acl_white_domains.empty())
+	{
+		whitelist_acl << q_acl_white_domains.front() << endl;
+		q_acl_white_domains.pop();
+	}
+	whitelist_acl << whitelist_acl_local;
+	while (!q_IP_CIDR.empty())
+	{
+		whitelist_acl << q_IP_CIDR.front() << endl;
+		q_IP_CIDR.pop();
+	}
+	whitelist_acl.close();
+	cout << "whitelist.acl生成成功！" << endl;
 	cout << endl;
 }

@@ -1,5 +1,6 @@
 *.bige0.com
 *.xxskins.com
+*.gt798.com
 cn.download.nvidia.com
 *.steampowered.com
 steamcommunity.com
@@ -9,7 +10,6 @@ broadcast.mileweb.steampowered.com.8686c.com
 steamuserimages-a.akamaihd.net
 cdn.akamai.steamstatic.com
 store.akamai.steamstatic.com
-cloud-3.steamusercontent.com
 cdn.steamstatic.com.8686c.com
 cdn.mileweb.cs.steampowered.com.8686c.com
 steampipe.akamaized.net
@@ -130,6 +130,7 @@ steamcommunity-a.akamaihd.net
 *.020icp.com
 *.020job.com
 *.020vv.com
+*.020yhy.com
 *.020zp.net
 *.021.net
 *.0214.com
@@ -3278,6 +3279,7 @@ steamcommunity-a.akamaihd.net
 *.51mdq.com
 *.51meishu.com
 *.51mike.com
+*.51miz.com
 *.51mmm.com
 *.51mobilejob.com
 *.51modo.cc
@@ -4246,6 +4248,7 @@ steamcommunity-a.akamaihd.net
 *.6661666.net
 *.6665.com
 *.66667676.com
+*.6669667.com
 *.666ccc.com
 *.666pic.com
 *.666wan.com
@@ -7008,6 +7011,7 @@ steamcommunity-a.akamaihd.net
 *.architbang.com
 *.archlinuxcn.org
 *.archsummit.com
+*.arctime.org
 *.ardme.net
 *.area-11.com
 *.arefly.com
@@ -8478,6 +8482,7 @@ steamcommunity-a.akamaihd.net
 *.bohaishibei.com
 *.bohaiyun.com
 *.bohutmt.com
+*.boip.net
 *.bojoy.net
 *.boke.com
 *.boke112.com
@@ -10479,6 +10484,7 @@ steamcommunity-a.akamaihd.net
 *.chris-tina.com
 *.christianlouboutin-shop.com
 *.chromecj.com
+*.chrstatic.com
 *.chs.so
 *.chshcms.com
 *.cht-f.com
@@ -11534,6 +11540,7 @@ steamcommunity-a.akamaihd.net
 *.cpcpcp222.com
 *.cpcpcp555.com
 *.cpcv.cc
+*.cpcwe.com
 *.cpdyj.com
 *.cphoto.net
 *.cphoto.org
@@ -11913,6 +11920,7 @@ steamcommunity-a.akamaihd.net
 *.cuyoo.com
 *.cvchina.info
 *.cvrobot.net
+*.cvz5.com
 *.cw100.com
 *.cwan.com
 *.cwbgj.com
@@ -13372,6 +13380,7 @@ steamcommunity-a.akamaihd.net
 *.download-ssl.xbox.com
 *.download.gfe.nvidia.com
 *.download.microsoft.com
+*.download.visualstudio.microsoft.com
 *.download.windowsupdate.com
 *.download.xbox.com
 *.download.xboxlive.com
@@ -13642,6 +13651,7 @@ steamcommunity-a.akamaihd.net
 *.dw.la
 *.dw178.com
 *.dw188.com
+*.dw361.com
 *.dwjoy.com
 *.dwqcw.com
 *.dwrh.net
@@ -13723,6 +13733,7 @@ steamcommunity-a.akamaihd.net
 *.dylxx.net
 *.dymi.cc
 *.dymjl.com
+*.dyndes.com
 *.dyonr.com
 *.dyp2p.com
 *.dypf8.com
@@ -14072,6 +14083,7 @@ steamcommunity-a.akamaihd.net
 *.eeboard.com
 *.eec168.com
 *.eechina.com
+*.eecn.cc
 *.eedns.com
 *.eeduol.com
 *.eee114.com
@@ -14488,6 +14500,7 @@ steamcommunity-a.akamaihd.net
 *.everet.org
 *.evergrande.com
 *.everlose.com
+*.eversino.com
 *.evervc.com
 *.everychina.com
 *.everyinch.net
@@ -15743,6 +15756,7 @@ steamcommunity-a.akamaihd.net
 *.gamerlol.com
 *.gamersky.com
 *.games4f.com
+*.gamesas.com
 *.gamescl.com
 *.gameservice.com
 *.gamesifu.com
@@ -15973,6 +15987,7 @@ steamcommunity-a.akamaihd.net
 *.geekluo.com
 *.geekniu.com
 *.geekpark.net
+*.geekpie.org
 *.geeks.vc
 *.geeku.net
 *.geekwom.com
@@ -16819,6 +16834,7 @@ steamcommunity-a.akamaihd.net
 *.gzhphb.com
 *.gzhtg.com
 *.gzhuake.cc
+*.gzhzcj.com
 *.gzibokan.com
 *.gzidc.com
 *.gzittc.net
@@ -18534,6 +18550,7 @@ steamcommunity-a.akamaihd.net
 *.hujiangxian.com
 *.hujuntao.com
 *.hukai.me
+*.huke88.com
 *.hukoushanghai.com
 *.huladai.com
 *.hulai.com
@@ -19294,6 +19311,7 @@ steamcommunity-a.akamaihd.net
 *.ikxs.org
 *.il8r.com
 *.ilanni.com
+*.ilast.cc
 *.ilazycat.com
 *.ileci.com
 *.ileehoo.com
@@ -20081,6 +20099,7 @@ steamcommunity-a.akamaihd.net
 *.jarhu.com
 *.jaseywang.me
 *.jaskni.com
+*.jasolar.com
 *.jason-z.com
 *.jasve.com
 *.java-er.com
@@ -20585,6 +20604,7 @@ steamcommunity-a.akamaihd.net
 *.jinjie365.com
 *.jinkan.org
 *.jinke3d.com
+*.jinkosolar.com
 *.jinku.com
 *.jinlianchu.com
 *.jinlinghotels.com
@@ -21619,6 +21639,7 @@ steamcommunity-a.akamaihd.net
 *.kaoyan001.com
 *.kaoyan1v1.com
 *.kapai8.com
+*.kappmob.com
 *.kaqi-f.com
 *.kaquanbao.com
 *.kartlover.com
@@ -22387,6 +22408,7 @@ steamcommunity-a.akamaihd.net
 *.lameng.net
 *.lamian.tv
 *.lamiu.com
+*.lammek.com
 *.lamoart.com
 *.lamost.org
 *.lampbrother.net
@@ -25483,6 +25505,7 @@ steamcommunity-a.akamaihd.net
 *.nasboq.com
 *.nasgetinfo.com
 *.nashangban.com
+*.nasiosoft.com
 *.nasyun.com
 *.nature-museum.net
 *.nav80.com
@@ -25817,6 +25840,7 @@ steamcommunity-a.akamaihd.net
 *.njhengyou.com
 *.njiaren.com
 *.njibhu.com
+*.njjzgg.com
 *.njkfcw.com
 *.njlzsx.net
 *.njmama.com
@@ -26162,6 +26186,7 @@ steamcommunity-a.akamaihd.net
 *.okideaad.com
 *.okimgs.com
 *.okinfo.org
+*.okjike.com
 *.okjingying.com
 *.okjoys.com
 *.oklai.name
@@ -27827,6 +27852,7 @@ steamcommunity-a.akamaihd.net
 *.qosq.com
 *.qp46.com
 *.qpdiy.com
+*.qpgame.com
 *.qplus.com
 *.qpstar.com
 *.qpx.com
@@ -28190,6 +28216,7 @@ steamcommunity-a.akamaihd.net
 *.qyrb.com
 *.qyslxjc.com
 *.qysyj.com
+*.qyubaba.com
 *.qyule.org
 *.qyxxpd.com
 *.qyzc.net
@@ -29731,6 +29758,7 @@ steamcommunity-a.akamaihd.net
 *.shuoping.net
 *.shuoqian.net
 *.shuosanguo.com
+*.shuosc.org
 *.shuoshuokong.com
 *.shuoshuoxinqing.com
 *.shuowan.com
@@ -31738,6 +31766,7 @@ steamcommunity-a.akamaihd.net
 *.tl-vogue.com
 *.tl88.net
 *.tladyu.com
+*.tlanyan.me
 *.tlbaby.com
 *.tlbbq.com
 *.tlby120.com
@@ -34016,6 +34045,7 @@ steamcommunity-a.akamaihd.net
 *.wfmhw.net
 *.wfun.com
 *.wfxspc.com
+*.wfyqc.com
 *.wgcljc.com
 *.wgcss.com
 *.wgfcdn.com
@@ -34719,6 +34749,7 @@ steamcommunity-a.akamaihd.net
 *.wx8s.com
 *.wxavu.com
 *.wxb.com
+*.wxbdfm.com
 *.wxbsgc.com
 *.wxcha.com
 *.wxcsgd.com
@@ -34972,6 +35003,7 @@ steamcommunity-a.akamaihd.net
 *.xfpllay.com
 *.xfsrrc.net
 *.xfsub.com
+*.xftnam.com
 *.xfwed.com
 *.xfzhsf.com
 *.xfztc.com
@@ -35465,6 +35497,7 @@ steamcommunity-a.akamaihd.net
 *.xinlvtu.com
 *.xinmanyuan.com
 *.xinmima.com
+*.xinmt.com
 *.xinnet.com
 *.xinniangjie.com
 *.xinnong.com
@@ -36060,6 +36093,7 @@ steamcommunity-a.akamaihd.net
 *.xycdn.com
 *.xychen.me
 *.xycq.net
+*.xydfn.com
 *.xydhl.com
 *.xydjp.com
 *.xydyrc.com
@@ -36456,6 +36490,7 @@ steamcommunity-a.akamaihd.net
 *.yhwsn.com
 *.yhxx.com
 *.yhy50.com
+*.yhy66.com
 *.yhyshop.com
 *.yhzx.cc
 *.yi-jy.com
@@ -37800,6 +37835,7 @@ steamcommunity-a.akamaihd.net
 *.zbkszx.net
 *.zbnews.net
 *.zbqzy.com
+*.zbred.com
 *.zbtvart.com
 *.zbusa.com
 *.zbwbbs.com
@@ -38897,6 +38933,7 @@ steamcommunity-a.akamaihd.net
 *.zubunet.com
 *.zuche.com
 *.zuchecdn.com
+*.zuciwang.com
 *.zudong.com
 *.zufang.com
 *.zufangbao.com

@@ -1287,3 +1287,52 @@ var ip_proxy = function(){ return wall_proxy(); };
 var ipv6_proxy = function(){ return wall_v6_proxy(); };
 
 )wtf";
+extern const std::string whitelist_acl_front = R"wtf(#**********************************************************************
+# [proxy_all] 默认代理
+# [bypass_all] 默认直连
+# [outbound_block_list] 禁止访问列表
+# [bypass_list] 直连列表
+# [proxy_list] 代理列表
+# [remote_dns] 远程 DNS 解析 -不加使用本地 DNS
+#**********************************************************************
+[proxy_all]
+
+)wtf";
+extern const std::string whitelist_acl_bypass_list = R"wtf([bypass_list]
+
+# CN域名直连
+^(.*)\.cn$
+
+# 中国国内常见域名关键词直连
+^cn\.\w(.*)$
+(^|\.)\w*-cn\w*\.\w*$
+^.*steam.*$
+
+# accelerated-domains china
+)wtf";
+extern const std::string whitelist_acl_local = R"wtf(#**********************************************************************
+# 本地/局域网地址
+^(.*\.)?local$
+^(.*\.)?localhost$
+^(.*\.)?ip6-localhost$
+^(.*\.)?ip6-loopback$
+
+# https://zh.wikipedia.org/wiki/%E4%BF%9D%E7%95%99IP%E5%9C%B0%E5%9D%80
+0.0.0.0/8
+10.0.0.0/8
+100.64.0.0/10
+127.0.0.0/8
+169.254.0.0/16
+172.16.0.0/12
+192.0.0.0/24
+192.0.2.0/24
+192.88.99.0/24
+192.168.0.0/16
+198.18.0.0/15
+198.51.100.0/24
+203.0.113.0/24
+224.0.0.0/4
+
+# 国内ip地址
+)wtf";
+// = R"wtf()wtf";

@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
 	std::ios::sync_with_stdio(false);
-	_wsetlocale(LC_ALL, L"");
+	//_wsetlocale(LC_ALL, L"");
 
 	if (_access(string(R"(.\out)").c_str(), 0) == -1)//判断文件夹是否存在
 	{
@@ -32,6 +32,8 @@ int main() {
 	generate_ss_white_r();
 
 	generate_local_cnip();
+
+	generate_whitelist_acl();
 
 	cout << endl;
 	//system("pause");
