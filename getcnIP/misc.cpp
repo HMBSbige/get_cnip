@@ -1306,7 +1306,7 @@ extern const std::string whitelist_acl_bypass_list = u8R"wtf([bypass_list]
 # 中国国内常见域名关键词直连
 ^cn\.\w(.*)$
 (^|\.)\w*-cn\w*\.\w*$
-^.*steam.*$
+# ^.*steam.*$
 
 # accelerated-domains china
 )wtf";
