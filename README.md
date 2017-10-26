@@ -19,7 +19,7 @@ __chn_ip.txt__：
 
 直接放进 ShadowsocksR 目录内,代理规则选择"绕过局域网和大陆"
 
-~~其实将 delegated-apnic-latest.txt 放入 ShadowsocksR 根目录后重启 ShadowsocksR 也可以自己生成~~
+~~其实将 delegated-apnic-latest 放入 ShadowsocksR 根目录后重启 ShadowsocksR 也可以自己生成~~
 
 __add.txt__：
 
