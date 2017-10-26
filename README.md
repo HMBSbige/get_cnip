@@ -1,15 +1,17 @@
 # 获取国内IP、域名
 
 不想自己生成的可以直接下载
-* https://github.com/HMBSbige/GetCNDomainsAndIPv4/tree/master/out
-* 部分ShadowsocksR文件：https://github.com/HMBSbige/Text_Translation/tree/master/ShadowsocksR
+* 路由表文件：https://github.com/HMBSbige/Text_Translation/tree/master/chnroute
+* ShadowsocksR 文件：https://github.com/HMBSbige/Text_Translation/tree/master/ShadowsocksR
+* 国内域名表：https://raw.githubusercontent.com/HMBSbige/Text_Translation/master/chndomains.txt
+* ShadowsocksR 安卓客户端用 ACL 文件：https://raw.githubusercontent.com/HMBSbige/Text_Translation/master/ShadowsocksR/whitelist.acl
 
 所需文件：
 
 * [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
 * [gfwlist.txt](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
-* (可选)gfwlist自定义规则文件 user-rule.txt
+* (可选)gfwlist 自定义规则文件 user-rule.txt
 * (可选)域名白名单 whitelist.txt
 
 ## 输出文件用处
