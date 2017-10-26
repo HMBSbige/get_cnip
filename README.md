@@ -10,14 +10,14 @@
 * [gfwlist.txt](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
 * (可选)gfwlist自定义规则文件 user-rule.txt
-* (可选)不想被解析的域名名单 whitelist.txt
+* (可选)域名白名单 whitelist.txt
 
 ## 输出文件用处
 __chn_ip.txt__：
 
-直接放进ShadowsocksR目录内,代理规则选择"绕过局域网和大陆"
+直接放进 ShadowsocksR 目录内,代理规则选择"绕过局域网和大陆"
 
-~~其实将delegated-apnic-latest.txt放入ShadowsocksR根目录后重启ShadowsocksR也可以自己生成~~
+~~其实将 delegated-apnic-latest.txt 放入 ShadowsocksR 根目录后重启 ShadowsocksR 也可以自己生成~~
 
 __add.txt__：
 
@@ -59,15 +59,15 @@ pause
 
 __gfwlist.pac__：
 
-ShadowsocksR目录内的pac.txt。
+ShadowsocksR 目录内的 pac.txt（GFWList）。
 
 ~~其实用SSR自己生成的就行了~~
 
-__CNdomains.txt__：
+__chndomains.txt__：
 
 https://github.com/bitbeans/SimpleDnsCrypt
 
-可以用来一键自建Windows的DNS服务器
+↑可以用来一键自建 Windows 的DNS服务器
 
 给这软件里的屏蔽域名用的。
 
@@ -75,31 +75,31 @@ https://github.com/bitbeans/SimpleDnsCrypt
 
 __user.rule__：
 
-放进ShadowsocksR目录内,代理规则选择"用户自定义"
+放进 ShadowsocksR 目录内,代理规则选择"用户自定义"
 
-本程序生成的规则配合使用全局模式可绕过国内域名和ip，只代理国外的。
+本程序生成的规则配合使用"全局模式"可绕过国内域名和IP，只代理国外的。
 
-~~并没有什么用，不知道为什么**响应时间太长**，还是用pac模式快~~
+~~并没有什么用，不知道为什么**响应时间太长**，还是用 pac 模式快~~
 
 https://github.com/HMBSbige/shadowsocks-rss/wiki/C%23-Proxy-Rule
 
 __ss_cnip.pac__：
 
-ShadowsocksR目录内的pac.txt。
+ShadowsocksR 目录内的 pac.txt。
 
-上面user.rule的替代品，客户端设置为PAC模式，代理规则选择全局。
+上面user.rule的替代品
 
-可绕过国内域名和国内ip。
+客户端设置为"PAC 模式"、代理规则选择"全局"，可绕过国内域名和IP，只代理国外的。
 
 __ss_white.pac__：
 
-ShadowsocksR目录内的pac.txt。
+ShadowsocksR 目录内的 pac.txt。
 
 可绕过国内域名。
 
 __ss_white_r.pac__：
 
-ShadowsocksR目录内的pac.txt。
+ShadowsocksR 目录内的 pac.txt。
 
 仅通过国内域名（国外访问大陆）。
 
@@ -107,13 +107,17 @@ __proxy.pac__：
 
 自用。
 
-ShadowsocksR选择"保持当前状态不修改"。将Internet属性里的自动配置脚本的地址设为本地路径。
+ShadowsocksR 选择"保持当前状态不修改"。将Internet属性里的自动配置脚本的地址设为本地路径。
 
-只是觉得IDM里的代理设置总是要改太麻烦，然而好像IDM里的自动配置脚本不支持本地路径？
+只是觉得IDM里的代理设置总是要改太麻烦
+
+~~然而好像IDM里的自动配置脚本不支持本地路径？~~
 
 __whitelist.acl__
 
-ShadowsocksR 安卓客户端用ACL文件
+ShadowsocksR 安卓客户端用 ACL 文件
+
+可绕过国内域名和IP，只代理国外的。
 
 ## 自用脚本
 ```
