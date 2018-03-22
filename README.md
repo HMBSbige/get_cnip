@@ -75,16 +75,6 @@ https://github.com/bitbeans/SimpleDnsCrypt
 
 把国内能正常解析的域名都屏蔽了，只解析国外域名，用备用DNS来解析国内域名。
 
-__user.rule__：
-
-放进 ShadowsocksR 目录内,代理规则选择"用户自定义"
-
-本程序生成的规则配合使用"全局模式"可绕过国内域名和IP，只代理国外的。
-
-~~并没有什么用，不知道为什么**响应时间太长**，还是用 pac 模式快~~
-
-https://github.com/HMBSbige/shadowsocks-rss/wiki/C%23-Proxy-Rule
-
 __ss_cnip.pac__：
 
 ShadowsocksR 目录内的 pac.txt。
@@ -104,16 +94,6 @@ __ss_white_r.pac__：
 ShadowsocksR 目录内的 pac.txt。
 
 仅通过国内域名（国外访问大陆）。
-
-__proxy.pac__：
-
-自用。
-
-ShadowsocksR 选择"保持当前状态不修改"。将Internet属性里的自动配置脚本的地址设为本地路径。
-
-只是觉得IDM里的代理设置总是要改太麻烦
-
-~~然而好像IDM里的自动配置脚本不支持本地路径？~~
 
 __whitelist.acl__
 

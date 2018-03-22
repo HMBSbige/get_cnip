@@ -8,7 +8,7 @@
 #include <map>
 #include <set>
 #include <string>
-#include "ipv4.h"
+#include "IPv4.h"
 #include "Base64.h"
 #include "misc.h"
 
@@ -20,9 +20,9 @@ queue<string> q_white_domains;
 queue<string> q_acl_white_domains;
 queue<string> q_IP_CIDR;
 vector<pair<ll, ll> > lines_list;
-string white_domains="";
-string cnIpRange="";
-string cnIp16Range = "";
+string white_domains;
+string cn_ip_range;
+string cn_ip16_range;
 
 void make_cnIpRange(string& list_result)
 {
@@ -60,6 +60,7 @@ void make_cnIp16Range(string& list_result)
 			master_net_set.insert(line.first >> 14);
 		}
 	}
+	master_net.reserve(master_net_set.size());
 	for (auto&x : master_net_set)
 	{
 		master_net.push_back(x);
@@ -93,7 +94,7 @@ void make_white_domains(string& result)
 	for (auto it = white_domains_dict.begin(); it != white_domains_dict.end(); it = it_range.second)
 	{
 		it_range = white_domains_dict.equal_range(it->first);
-		if (it->first == "")
+		if (it->first.empty())
 		{
 			continue;
 		}
@@ -158,7 +159,7 @@ void getcnip()
 			//test << cn_ip_queue.front().first_ip.ip_to_long() <<" "<<cn_ip_queue.front().Hosts << endl;
 
 			q_user_dot_rule_ip_rules.push(temp_str);
-			lines_list.push_back(make_pair(cn_ip_queue.front().first_ip.ip_to_long(), cn_ip_queue.front().Hosts));
+			lines_list.emplace_back(cn_ip_queue.front().first_ip.ip_to_long(), cn_ip_queue.front().Hosts);
 			q_IP_CIDR.push(cn_ip_queue.front().first_ip.str()+R"(/)"+ to_string(cn_ip_queue.front().CIDR));
 		}
 		add.close();
@@ -201,7 +202,7 @@ void gfwlist2pac()
 
 		while (getline(ss_list, temp_str, '\n'))
 		{
-			if (temp_str[0] != '!' && temp_str != "" && temp_str[0] != '[')
+			if (temp_str[0] != '!' && !temp_str.empty() && temp_str[0] != '[')
 			{
 				replace_all_distinct(temp_str, R"(\)", R"(\\)");//将"\"替换成"\\"
 				domains.push(temp_str);
@@ -251,7 +252,7 @@ void get_cn_domains()
 			cout << "找到 " + whitelist << endl;
 			while (getline(whitelist_data, temp_str, '\n'))
 			{
-				if (temp_str != "")
+				if (!temp_str.empty())
 				{
 					q_user_dot_rule_local_proxy.push("."+temp_str);
 					q_white_domains.push(temp_str);
@@ -269,7 +270,7 @@ void get_cn_domains()
 
 		while (getline(domains_data, temp_str, '\n'))
 		{
-			if (temp_str != "")
+			if (!temp_str.empty())
 			{
 				//取出域名
 				const auto pos1 = temp_str.find('/');
@@ -302,64 +303,6 @@ void get_cn_domains()
 	}
 	cout << endl;
 }
-void generate_user_dot_rule()
-{
-	if (q_user_dot_rule_local_proxy.empty() && q_user_dot_rule_ip_rules.empty())
-	{
-		cout << "未找到 accelerated-domains.china.conf 或 whitelist.txt 或 delegated-apnic-latest ，无法生成 user.rule" << endl;
-		return;
-	}
-	if (q_user_dot_rule_local_proxy.empty()) {
-		cout << "未找到 accelerated-domains.china.conf 或 whitelist.txt" << endl;
-	}
-	if(q_user_dot_rule_ip_rules.empty())
-	{
-		cout << "未找到 delegated-apnic-latest" << endl;
-	}
-
-	cout << "正在生成user.rule..." << endl;
-	ofstream user_dot_rule;
-	user_dot_rule.open(R"(.\out\user.rule)", ios::trunc);
-	user_dot_rule << user_dot_rule_front;
-	//output remote proxy rule
-	user_dot_rule << user_dot_rule_remote_proxy;
-
-	//output local proxy rule
-	user_dot_rule << user_dot_rule_local_proxy;
-	while (!q_user_dot_rule_local_proxy.empty())
-	{
-		user_dot_rule << q_user_dot_rule_local_proxy.front() << " localproxy" << endl;
-		q_user_dot_rule_local_proxy.pop();
-	}
-	user_dot_rule << endl;
-
-	//output direct
-	user_dot_rule << user_dot_rule_direct;
-
-	//output reject
-	user_dot_rule << user_dot_rule_reject;
-
-	//output host list
-	user_dot_rule << user_dot_rule_host;
-	user_dot_rule << R"(localhost 127.0.0.1)" << endl;
-
-	//output special rule
-	user_dot_rule << user_dot_rule_special;
-
-	//output ip rules
-	user_dot_rule << user_dot_rule_ip;
-	while (!q_user_dot_rule_ip_rules.empty())
-	{
-		user_dot_rule << q_user_dot_rule_ip_rules.front() << " localproxy" << endl;
-		q_user_dot_rule_ip_rules.pop();
-	}
-	user_dot_rule << endl;
-	user_dot_rule << user_dot_rule_local;
-	//output end
-	user_dot_rule.close();
-	cout << "user.rule生成成功！" << endl;
-	cout << endl;
-}
 void generate_ss_cnip()
 {
 	if (q_white_domains.empty() || lines_list.empty()) {
@@ -373,11 +316,11 @@ void generate_ss_cnip()
 
 	ss_cnip_dot_pac << ss_cnip_front;
 	//output cnIpRange
-	make_cnIpRange(cnIpRange);
-	ss_cnip_dot_pac << ss_cnip_cnIpRange << cnIpRange;
+	make_cnIpRange(cn_ip_range);
+	ss_cnip_dot_pac << ss_cnip_cnIpRange << cn_ip_range;
 	//output cnIp16Range
-	make_cnIp16Range(cnIp16Range);
-	ss_cnip_dot_pac << ss_cnip_cnIp16Range<< cnIp16Range;
+	make_cnIp16Range(cn_ip16_range);
+	ss_cnip_dot_pac << ss_cnip_cnIp16Range<< cn_ip16_range;
 	//output whiteIpList
 	ss_cnip_dot_pac << ss_cnip_whiteIpList;
 	//output subnetIpRangeList
@@ -394,7 +337,7 @@ void generate_ss_cnip()
 }
 void generate_ss_white()
 {
-	if (cnIpRange == "") {
+	if (cn_ip_range.empty()) {
 		return;
 	}
 
@@ -404,9 +347,9 @@ void generate_ss_white()
 
 	ss_white_dot_pac << ss_cnip_front;
 	//output cnIpRange
-	ss_white_dot_pac << ss_cnip_cnIpRange << cnIpRange;
+	ss_white_dot_pac << ss_cnip_cnIpRange << cn_ip_range;
 	//output cnIp16Range
-	ss_white_dot_pac << ss_cnip_cnIp16Range << cnIp16Range;
+	ss_white_dot_pac << ss_cnip_cnIp16Range << cn_ip16_range;
 	//output whiteIpList
 	ss_white_dot_pac << ss_cnip_whiteIpList;
 	//output subnetIpRangeList
@@ -422,7 +365,7 @@ void generate_ss_white()
 }
 void generate_ss_white_r()
 {
-	if (cnIpRange == "") {
+	if (cn_ip_range.empty()) {
 		return;
 	}
 
@@ -432,9 +375,9 @@ void generate_ss_white_r()
 
 	ss_white_r_dot_pac << ss_white_r_front;
 	//output cnIpRange
-	ss_white_r_dot_pac << ss_cnip_cnIpRange << cnIpRange;
+	ss_white_r_dot_pac << ss_cnip_cnIpRange << cn_ip_range;
 	//output cnIp16Range
-	ss_white_r_dot_pac << ss_cnip_cnIp16Range << cnIp16Range;
+	ss_white_r_dot_pac << ss_cnip_cnIp16Range << cn_ip16_range;
 	//output whiteIpList
 	ss_white_r_dot_pac << ss_cnip_whiteIpList;
 	//output subnetIpRangeList
@@ -446,34 +389,6 @@ void generate_ss_white_r()
 	ss_white_r_dot_pac << ss_white_back;
 	ss_white_r_dot_pac.close();
 	cout << "ss_white_r.pac生成成功！" << endl;
-	cout << endl;
-}
-void generate_local_cnip()
-{
-	if (cnIpRange == "") {
-		return;
-	}
-
-	ofstream local_cnip_dot_pac;
-	local_cnip_dot_pac.open(R"(.\out\proxy.pac)", ios::trunc);
-	cout << "正在生成proxy.pac..." << endl;
-
-	local_cnip_dot_pac << proxy_pac_front;
-	//output cnIpRange
-	local_cnip_dot_pac << ss_cnip_cnIpRange << cnIpRange;
-	//output cnIp16Range
-	local_cnip_dot_pac << ss_cnip_cnIp16Range << cnIp16Range;
-	//output whiteIpList
-	local_cnip_dot_pac << ss_cnip_whiteIpList;
-	//output subnetIpRangeList
-	local_cnip_dot_pac << ss_cnip_subnetIpRangeList;
-	//output white_domains
-	local_cnip_dot_pac << R"(var white_domains = {)" << white_domains << R"(};
-
-)";
-	local_cnip_dot_pac << ss_white_back;
-	local_cnip_dot_pac.close();
-	cout << "proxy.pac生成成功！" << endl;
 	cout << endl;
 }
 void generate_whitelist_acl()

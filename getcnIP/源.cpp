@@ -2,7 +2,6 @@
 #include <string>
 #include <io.h>
 #include <direct.h>
-#include <locale.h>
 #include "generatefile.h"
 using namespace std;
 
@@ -23,15 +22,11 @@ int main() {
 
 	get_cn_domains();
 
-	generate_user_dot_rule();
-
 	generate_ss_cnip();
 
 	generate_ss_white();
 
 	generate_ss_white_r();
-
-	generate_local_cnip();
 
 	generate_whitelist_acl();
 
