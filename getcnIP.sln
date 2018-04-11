@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "getcnIP", "getcnIP\getcnIP.vcxproj", "{E08ED8DE-D8DB-408E-B91F-549692312802}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getcnIP-dotnetcore", "getcnIP-dotnetcore\getcnIP-dotnetcore.csproj", "{C714F0EE-B97F-4CE4-9AA8-ACB26EA2F1BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "getcnIP-dotnetcore", "getcnIP-dotnetcore\getcnIP-dotnetcore.csproj", "{C714F0EE-B97F-4CE4-9AA8-ACB26EA2F1BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +18,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E08ED8DE-D8DB-408E-B91F-549692312802}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{E08ED8DE-D8DB-408E-B91F-549692312802}.Debug|Any CPU.Build.0 = Debug|Win32
 		{E08ED8DE-D8DB-408E-B91F-549692312802}.Debug|x64.ActiveCfg = Debug|x64
 		{E08ED8DE-D8DB-408E-B91F-549692312802}.Debug|x64.Build.0 = Debug|x64
 		{E08ED8DE-D8DB-408E-B91F-549692312802}.Debug|x86.ActiveCfg = Debug|Win32
