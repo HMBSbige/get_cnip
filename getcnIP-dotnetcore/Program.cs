@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-			GenerateFile.Writesscnip(GetCNIP.Read(),GetCNDomains.Read());
+			GenerateFile.Write_whitelist_acl(GetCNIP.ReadFromFile(),GetCNDomains.ReadFromFile());
         }
     }
 }

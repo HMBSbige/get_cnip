@@ -93,7 +93,7 @@ namespace getcnIP_dotnetcore
 		    return null;
 	    }
 
-		public static Dictionary<IPAddress, int> Read()
+		public static Dictionary<IPAddress, int> ReadFromFile()
 	    {
 		    if (!File.Exists(Path))
 		    {

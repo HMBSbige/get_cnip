@@ -61,6 +61,37 @@ namespace getcnIP_dotnetcore {
         }
         
         /// <summary>
+        ///   查找类似 #**********************************************************************
+        ///# [proxy_all] 默认代理
+        ///# [bypass_all] 默认直连
+        ///# [outbound_block_list] 禁止访问列表
+        ///# [bypass_list] 直连列表
+        ///# [proxy_list] 代理列表
+        ///# [remote_dns] 远程 DNS 解析 -不加使用本地 DNS
+        ///#**********************************************************************
+        ///[proxy_all]
+        ///
+        ///[bypass_list]
+        ///
+        ///# CN域名直连
+        ///^(.*)\.cn$
+        ///
+        ///# 中国国内常见域名关键词直连
+        ///^cn\.\w(.*)$
+        ///(^|\.)\w*-cn\w*\.\w*$
+        ///# ^.*steam.*$
+        ///
+        ///# accelerated-domains china
+        ///__white_domains__
+        ///#************************************ [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string acl_whitelist_template {
+            get {
+                return ResourceManager.GetString("acl_whitelist_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 var direct = &quot;__DIRECT__&quot;;
         ///if (direct == &quot;__DIR&quot; + &quot;ECT__&quot;) direct = &quot;DIRECT;&quot;;
         ///
@@ -84,6 +115,60 @@ namespace getcnIP_dotnetcore {
         internal static string ss_cnip_template {
             get {
                 return ResourceManager.GetString("ss_cnip_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 var direct = &quot;__DIRECT__&quot;;
+        ///if (direct == &quot;__DIR&quot; + &quot;ECT__&quot;) direct = &quot;DIRECT;&quot;;
+        ///
+        ///var wall_proxy = function(){ return direct; };
+        ///var wall_v6_proxy = function(){ return direct; };
+        ///
+        ///var nowall_proxy = function(){ return &quot;__PROXY__&quot;; };
+        ///var ip_proxy = function(){ return nowall_proxy(); };
+        ///var ipv6_proxy = function(){ return wall_v6_proxy(); };
+        ///
+        ///var cnIpRange = __cnIpRange__
+        ///var cnIp16Range = __cnIp16Range__
+        ///
+        ///var whiteIpList = {
+        ///	&quot;188.188.188.188&quot;:1,
+        ///	&quot;100.100.100.100&quot;:1
+        ///};
+        ///
+        ///var subnetIpRangeLi [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string ss_white_r_template {
+            get {
+                return ResourceManager.GetString("ss_white_r_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 var direct = &quot;__DIRECT__&quot;;
+        ///if (direct == &quot;__DIR&quot; + &quot;ECT__&quot;) direct = &quot;DIRECT;&quot;;
+        ///
+        ///var wall_proxy = function(){ return &quot;__PROXY__&quot;; };
+        ///var wall_v6_proxy = function(){ return &quot;__PROXY__&quot;; };
+        ///
+        ///var nowall_proxy = function(){ return direct; };
+        ///var ip_proxy = function(){ return wall_proxy(); };
+        ///var ipv6_proxy = function(){ return wall_v6_proxy(); };
+        ///
+        ///var cnIpRange = __cnIpRange__
+        ///var cnIp16Range = __cnIp16Range__
+        ///
+        ///var whiteIpList = {
+        ///	&quot;188.188.188.188&quot;:1,
+        ///	&quot;100.100.100.100&quot;:1
+        ///};
+        ///
+        ///var subnetIpRang [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string ss_white_template {
+            get {
+                return ResourceManager.GetString("ss_white_template", resourceCulture);
             }
         }
     }

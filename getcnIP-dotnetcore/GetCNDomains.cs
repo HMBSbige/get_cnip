@@ -15,7 +15,7 @@ namespace getcnIP_dotnetcore
 		    return sArray[1];
 	    }
 
-		public static List<string> Read()
+		public static IEnumerable<string> ReadFromFile()
 	    {
 		    if (!File.Exists(Path1) && !File.Exists(Path2))
 		    {
