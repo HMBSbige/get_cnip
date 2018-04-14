@@ -6,8 +6,8 @@ namespace getcnIP_dotnetcore
 {
 	internal static class GetCNDomains
     {
-	    private const string Path1 = @"accelerated-domains.china.conf";
-	    private const string Path2 = @"whitelist.txt";
+	    public const string Path1 = @"accelerated-domains.china.conf";
+	    public const string Path2 = @"whitelist.txt";
 
 	    private static string GetDomainFromLine(string str)
 	    {

@@ -74,7 +74,7 @@ namespace getcnIP_dotnetcore
 
 	internal static class GetCNIP
     {
-	    private const string Path = @"delegated-apnic-latest";
+	    public const string Path = @"delegated-apnic-latest";
 
 	    private static KeyValuePair<IPAddress, int>? GetCNIPv4InfoFromLine(string str)
 	    {

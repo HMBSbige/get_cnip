@@ -9,15 +9,18 @@ namespace getcnIP_dotnetcore
     static class GenerateFile
     {
 		private static readonly UTF8Encoding UTF8withoutBOM = new UTF8Encoding(false);
-		private const string Filename_chndomains = @"chndomains.txt";
-		private const string Filename_cnip = @"chn_ip.txt";
-		private const string Filename_addroute = @"add.txt";
-		private const string Filename_delroute = @"del.txt";
-		private const string Filename_ss_cnip = @"ss_cnip.pac";
-		private const string Filename_ss_white = @"ss_white.pac";
-		private const string Filename_ss_white_r = @"ss_white_r.pac";
-		private const string Filename_whitelist_acl = @"whitelist.acl";
+	    private const string Path = @"";
+	    public const string Filename_chndomains = @"chndomains.txt";
+	    public const string Filename_cnip = @"chn_ip.txt";
+	    public const string Filename_addroute = @"add.txt";
+	    public const string Filename_delroute = @"del.txt";
+	    public const string Filename_ss_cnip = @"ss_cnip.pac";
+	    public const string Filename_ss_white = @"ss_white.pac";
+	    public const string Filename_ss_white_r = @"ss_white_r.pac";
+	    public const string Filename_whitelist_acl = @"whitelist.acl";
 
+	    #region private
+		
 		private static string GetcnIpRange(Dictionary<IPAddress, int> ipv4Subnets)
 		{
 			var sb = new StringBuilder("[\n{");
@@ -137,9 +140,13 @@ namespace getcnIP_dotnetcore
 		    return sb.ToString();
 	    }
 
-	    public static void Writechndomains(IEnumerable<string> domains)
+		#endregion
+
+	    #region public
+		
+		public static void Writechndomains(IEnumerable<string> domains)
 	    {
-		    using (var fileS = new FileStream(Filename_chndomains, FileMode.Create,FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_chndomains, FileMode.Create,FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -153,7 +160,7 @@ namespace getcnIP_dotnetcore
 
 	    public static void Writecnip(Dictionary<IPAddress, int> ipv4Subnets)
 	    {
-		    using (var fileS = new FileStream(Filename_cnip, FileMode.Create, FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_cnip, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -169,7 +176,7 @@ namespace getcnIP_dotnetcore
 
 	    public static void Writeaddroute(Dictionary<IPAddress, int> ipv4Subnets)
 	    {
-		    using (var fileS = new FileStream(Filename_addroute, FileMode.Create, FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_addroute, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -185,7 +192,7 @@ namespace getcnIP_dotnetcore
 
 	    public static void Writedelroute(Dictionary<IPAddress, int> ipv4Subnets)
 	    {
-		    using (var fileS = new FileStream(Filename_delroute, FileMode.Create, FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_delroute, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -205,7 +212,7 @@ namespace getcnIP_dotnetcore
 		    sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 		    sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 		    sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-		    using (var fileS = new FileStream(Filename_ss_cnip, FileMode.Create, FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_ss_cnip, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -220,7 +227,7 @@ namespace getcnIP_dotnetcore
 		    sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 		    sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 		    sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-		    using (var fileS = new FileStream(Filename_ss_white, FileMode.Create, FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_ss_white, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -235,7 +242,7 @@ namespace getcnIP_dotnetcore
 		    sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 		    sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 		    sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-		    using (var fileS = new FileStream(Filename_ss_white_r, FileMode.Create, FileAccess.Write))
+		    using (var fileS = new FileStream(Path + Filename_ss_white_r, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -249,7 +256,7 @@ namespace getcnIP_dotnetcore
 		    var sb = new StringBuilder(StringResource.acl_whitelist_template);
 		    sb.Replace(@"__white_domains__", GetACLwhitedomains(domains));
 			sb.Replace(@"__CNIP__", GetACLCNIP(ipv4Subnets));
-			using (var fileS = new FileStream(Filename_whitelist_acl, FileMode.Create, FileAccess.Write))
+			using (var fileS = new FileStream(Path + Filename_whitelist_acl, FileMode.Create, FileAccess.Write))
 		    {
 			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 			    {
@@ -257,5 +264,7 @@ namespace getcnIP_dotnetcore
 			    }
 		    }
 	    }
+	    
+	    #endregion
 	}
 }
