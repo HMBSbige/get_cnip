@@ -6,5 +6,4 @@
 ||github.io
 ||humblebundle-a.akamaihd.net
 ||humblebundle.com
-@@||pixiv.net
 ||reddit.com

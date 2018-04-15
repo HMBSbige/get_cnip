@@ -6,13 +6,56 @@
 * 国内域名表：https://raw.githubusercontent.com/HMBSbige/Text_Translation/master/chndomains.txt
 * ShadowsocksR 安卓客户端用 ACL 文件：https://raw.githubusercontent.com/HMBSbige/Text_Translation/master/ShadowsocksR/whitelist.acl
 
-所需文件：
+## .Net Core 版本
+
+**该版本无 gfwlist 相关的生成**
+
+### 所需文件：
+
+* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
+* [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
+* (可选)自定义域名白名单 whitelist.txt
+
+自行下载后放在根目录下
+
+### 输出文件
+输出在 ```output``` 目录下
+
+[跟下面 C++ 基本相同](#输出文件用处)，除了没有 ```gfwlist.pac```。
+
+### 生成所需平台程序
+例如：
+```
+dotnet publish -c release -r win-x64
+dotnet publish -c release -r linux-x64
+dotnet publish -c release -r osx-x64
+```
+具体RID：https://docs.microsoft.com/zh-cn/dotnet/core/rid-catalog
+
+### Win7、Win2008 等运行错误
+```
+Failed to load the dll from [?X], HRESULT: 0x80070057
+```
+安装补丁：KB2533623
+
+https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot
+
+### .Net 编译所需：
+https://www.microsoft.com/net/download/all
+
+
+
+## C++ 版本
+
+### 所需文件：
 
 * [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
 * [gfwlist.txt](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
 * (可选)gfwlist 自定义规则文件 user-rule.txt
-* (可选)域名白名单 whitelist.txt
+* (可选)自定义域名白名单 whitelist.txt
+
+自行下载后放在根目录下
 
 ## 输出文件用处
 __chn_ip.txt__：

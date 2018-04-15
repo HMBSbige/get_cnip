@@ -9,7 +9,7 @@ namespace getcnIP_dotnetcore
     static class GenerateFile
     {
 		private static readonly UTF8Encoding UTF8withoutBOM = new UTF8Encoding(false);
-	    private const string Path = @"";
+	    public const string Path = @".\output\";
 	    public const string Filename_chndomains = @"chndomains.txt";
 	    public const string Filename_cnip = @"chn_ip.txt";
 	    public const string Filename_addroute = @"add.txt";

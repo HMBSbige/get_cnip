@@ -1,17 +1,23 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace getcnIP_dotnetcore
 {
 	internal static class Program
     {
+	    private static void CheckAndCreateDirectory(string path)
+	    {
+		    Directory.CreateDirectory(path);
+		}
 	    private static void Main()
         {
 	        Console.WriteLine(@"正在分析 CNIPv4...");
 			var chnipv4subnets = GetCNIP.ReadFromFile();
 	        if (chnipv4subnets != null)
 	        {
-		        Console.WriteLine($@"共有{chnipv4subnets.Count}条。");
+		        CheckAndCreateDirectory(GenerateFile.Path);
+				Console.WriteLine($@"共有{chnipv4subnets.Count}条。");
 				Console.WriteLine($@"正在生成 {GenerateFile.Filename_cnip},{GenerateFile.Filename_addroute},{GenerateFile.Filename_delroute}...");
 		        try
 		        {
