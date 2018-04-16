@@ -45,7 +45,7 @@ namespace getcnIP_dotnetcore
 				sb.Append(ipv4Subnet.Value / 256);
 				comma = @",";
 			}
-			sb.Append("}\n];\n");
+			sb.Append("}\n];");
 			return sb.ToString();
 		}
 

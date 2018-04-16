@@ -24,6 +24,9 @@
 [跟下面 C++ 基本相同](#输出文件用处)，除了没有 ```gfwlist.pac```。
 
 ### 生成所需平台程序
+```
+dotnet publish -c release -r $RID
+```
 例如：
 ```
 dotnet publish -c release -r win-x64
