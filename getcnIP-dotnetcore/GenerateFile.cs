@@ -6,20 +6,20 @@ using System.Text;
 
 namespace getcnIP_dotnetcore
 {
-    static class GenerateFile
-    {
+	static class GenerateFile
+	{
 		private static readonly UTF8Encoding UTF8withoutBOM = new UTF8Encoding(false);
-	    public const string Path = @".\output\";
-	    public const string Filename_chndomains = @"chndomains.txt";
-	    public const string Filename_cnip = @"chn_ip.txt";
-	    public const string Filename_addroute = @"add.txt";
-	    public const string Filename_delroute = @"del.txt";
-	    public const string Filename_ss_cnip = @"ss_cnip.pac";
-	    public const string Filename_ss_white = @"ss_white.pac";
-	    public const string Filename_ss_white_r = @"ss_white_r.pac";
-	    public const string Filename_whitelist_acl = @"whitelist.acl";
+		public const string Path = @".\output\";
+		public const string Filename_chndomains = @"chndomains.txt";
+		public const string Filename_cnip = @"chn_ip.txt";
+		public const string Filename_addroute = @"add.txt";
+		public const string Filename_delroute = @"del.txt";
+		public const string Filename_ss_cnip = @"ss_cnip.pac";
+		public const string Filename_ss_white = @"ss_white.pac";
+		public const string Filename_ss_white_r = @"ss_white_r.pac";
+		public const string Filename_whitelist_acl = @"whitelist.acl";
 
-	    #region private
+		#region private
 		
 		private static string GetcnIpRange(Dictionary<IPAddress, int> ipv4Subnets)
 		{
@@ -79,16 +79,16 @@ namespace getcnIP_dotnetcore
 			return sb.ToString();
 		}
 
-	    private static string GetACLCNIP(Dictionary<IPAddress, int> ipv4Subnets)
-	    {
-		    var sb = new StringBuilder();
+		private static string GetACLCNIP(Dictionary<IPAddress, int> ipv4Subnets)
+		{
+			var sb = new StringBuilder();
 			foreach (var ipv4Subnet in ipv4Subnets)
-		    {
+			{
 				var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
-			    sb.AppendLine($@"{p.FirstIP}/{p.CIDR}");
-		    }
-		    return sb.ToString();
-	    }
+				sb.AppendLine($@"{p.FirstIP}/{p.CIDR}");
+			}
+			return sb.ToString();
+		}
 
 		private static string GetPACwhitedomains(IEnumerable<string> domains)
 		{
@@ -130,141 +130,141 @@ namespace getcnIP_dotnetcore
 			return sb.ToString();
 		}
 
-	    private static string GetACLwhitedomains(IEnumerable<string> domains)
-	    {
+		private static string GetACLwhitedomains(IEnumerable<string> domains)
+		{
 			var sb=new StringBuilder();
-		    foreach (var domain in domains)
-		    {
-			    sb.AppendLine($@"^(.*\.)?{domain.Replace(@".", @"\.")}$");
-		    }
-		    return sb.ToString();
-	    }
+			foreach (var domain in domains)
+			{
+				sb.AppendLine($@"^(.*\.)?{domain.Replace(@".", @"\.")}$");
+			}
+			return sb.ToString();
+		}
 
 		#endregion
 
-	    #region public
+		#region public
 		
 		public static void Writechndomains(IEnumerable<string> domains)
-	    {
-		    using (var fileS = new FileStream(Path + Filename_chndomains, FileMode.Create,FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    foreach (var domain in domains)
-				    {
-					    sw.WriteLine(domain);
-				    }
+		{
+			using (var fileS = new FileStream(Path + Filename_chndomains, FileMode.Create,FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					foreach (var domain in domains)
+					{
+						sw.WriteLine(domain);
+					}
 				}
-		    }
-	    }
+			}
+		}
 
-	    public static void Writecnip(Dictionary<IPAddress, int> ipv4Subnets)
-	    {
-		    using (var fileS = new FileStream(Path + Filename_cnip, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    foreach (var ipv4Subnet in ipv4Subnets)
-				    {
-					    var p=new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+		public static void Writecnip(Dictionary<IPAddress, int> ipv4Subnets)
+		{
+			using (var fileS = new FileStream(Path + Filename_cnip, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					foreach (var ipv4Subnet in ipv4Subnets)
+					{
+						var p=new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
 
 						sw.WriteLine($@"{p.FirstIP} {p.LastIP}");
-				    }
-			    }
-		    }
+					}
+				}
+			}
 		}
 
-	    public static void Writeaddroute(Dictionary<IPAddress, int> ipv4Subnets)
-	    {
-		    using (var fileS = new FileStream(Path + Filename_addroute, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    foreach (var ipv4Subnet in ipv4Subnets)
-				    {
-					    var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+		public static void Writeaddroute(Dictionary<IPAddress, int> ipv4Subnets)
+		{
+			using (var fileS = new FileStream(Path + Filename_addroute, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					foreach (var ipv4Subnet in ipv4Subnets)
+					{
+						var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
 
-					    sw.WriteLine($@"add {p.FirstIP} mask {p.Netmask} default METRIC default IF default");
-				    }
-			    }
-		    }
+						sw.WriteLine($@"add {p.FirstIP} mask {p.Netmask} default METRIC default IF default");
+					}
+				}
+			}
 		}
 
-	    public static void Writedelroute(Dictionary<IPAddress, int> ipv4Subnets)
-	    {
-		    using (var fileS = new FileStream(Path + Filename_delroute, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    foreach (var ipv4Subnet in ipv4Subnets)
-				    {
-					    var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+		public static void Writedelroute(Dictionary<IPAddress, int> ipv4Subnets)
+		{
+			using (var fileS = new FileStream(Path + Filename_delroute, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					foreach (var ipv4Subnet in ipv4Subnets)
+					{
+						var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
 
-					    sw.WriteLine($@"delete {p.FirstIP} mask {p.Netmask} default METRIC default IF default");
-				    }
-			    }
-		    }
-	    }
+						sw.WriteLine($@"delete {p.FirstIP} mask {p.Netmask} default METRIC default IF default");
+					}
+				}
+			}
+		}
 		
 		public static void Writesscnip(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
-	    {
+		{
 			var sb=new StringBuilder(StringResource.ss_cnip_template);
-		    sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
-		    sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
-		    sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-		    using (var fileS = new FileStream(Path + Filename_ss_cnip, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
+			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
+			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
+			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
+			using (var fileS = new FileStream(Path + Filename_ss_cnip, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
 					sw.Write(sb);
-			    }
-		    }
+				}
+			}
 		}
 
-	    public static void Writesswhite(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
-	    {
-		    var sb = new StringBuilder(StringResource.ss_white_template);
-		    sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
-		    sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
-		    sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-		    using (var fileS = new FileStream(Path + Filename_ss_white, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    sw.Write(sb);
-			    }
-		    }
-	    }
+		public static void Writesswhite(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		{
+			var sb = new StringBuilder(StringResource.ss_white_template);
+			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
+			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
+			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
+			using (var fileS = new FileStream(Path + Filename_ss_white, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					sw.Write(sb);
+				}
+			}
+		}
 
-	    public static void Writesswhiter(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
-	    {
-		    var sb = new StringBuilder(StringResource.ss_white_r_template);
-		    sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
-		    sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
-		    sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-		    using (var fileS = new FileStream(Path + Filename_ss_white_r, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    sw.Write(sb);
-			    }
-		    }
-	    }
+		public static void Writesswhiter(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		{
+			var sb = new StringBuilder(StringResource.ss_white_r_template);
+			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
+			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
+			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
+			using (var fileS = new FileStream(Path + Filename_ss_white_r, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					sw.Write(sb);
+				}
+			}
+		}
 
-	    public static void Write_whitelist_acl(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
-	    {
-		    var sb = new StringBuilder(StringResource.acl_whitelist_template);
-		    sb.Replace(@"__white_domains__", GetACLwhitedomains(domains));
+		public static void Write_whitelist_acl(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		{
+			var sb = new StringBuilder(StringResource.acl_whitelist_template);
+			sb.Replace(@"__white_domains__", GetACLwhitedomains(domains));
 			sb.Replace(@"__CNIP__", GetACLCNIP(ipv4Subnets));
 			using (var fileS = new FileStream(Path + Filename_whitelist_acl, FileMode.Create, FileAccess.Write))
-		    {
-			    using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-			    {
-				    sw.Write(sb);
-			    }
-		    }
-	    }
-	    
-	    #endregion
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					sw.Write(sb);
+				}
+			}
+		}
+		
+		#endregion
 	}
 }

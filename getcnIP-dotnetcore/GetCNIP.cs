@@ -73,47 +73,47 @@ namespace getcnIP_dotnetcore
 	}
 
 	internal static class GetCNIP
-    {
-	    public const string Path = @"delegated-apnic-latest";
+	{
+		public const string Path = @"delegated-apnic-latest";
 
-	    private static KeyValuePair<IPAddress, int>? GetCNIPv4InfoFromLine(string str)
-	    {
-		    if (string.IsNullOrWhiteSpace(str))
-		    {
-			    return null;
-		    }
+		private static KeyValuePair<IPAddress, int>? GetCNIPv4InfoFromLine(string str)
+		{
+			if (string.IsNullOrWhiteSpace(str))
+			{
+				return null;
+			}
 
-		    var strA = str.Split('|');
+			var strA = str.Split('|');
 			//apnic|CN|ipv4|
 			if (strA.Length > 4 && strA[0]== @"apnic" && strA[1] == @"CN" && strA[2] == @"ipv4")
-		    {
+			{
 				return new KeyValuePair<IPAddress, int>(IPAddress.Parse(strA[3]),Convert.ToInt32(strA[4]));
-		    }
+			}
 
-		    return null;
-	    }
+			return null;
+		}
 
 		public static Dictionary<IPAddress, int> ReadFromFile()
-	    {
-		    if (!File.Exists(Path))
-		    {
-			    return null;
-		    }
+		{
+			if (!File.Exists(Path))
+			{
+				return null;
+			}
 			var ipv4Subnet=new Dictionary<IPAddress,int>();
-		    using (var sr = new StreamReader(Path, Encoding.UTF8))
-		    {
-			    string line;
-			    while ((line = sr.ReadLine()) != null)
-			    {
-				    var p = GetCNIPv4InfoFromLine(line);
-				    if (p != null)
-				    {
-					    ipv4Subnet.Add(p.Value.Key, p.Value.Value);
-				    }
+			using (var sr = new StreamReader(Path, Encoding.UTF8))
+			{
+				string line;
+				while ((line = sr.ReadLine()) != null)
+				{
+					var p = GetCNIPv4InfoFromLine(line);
+					if (p != null)
+					{
+						ipv4Subnet.Add(p.Value.Key, p.Value.Value);
+					}
 				}
-		    }
+			}
 
 			return ipv4Subnet.Count == 0 ? null : ipv4Subnet;
-	    }
+		}
 	}
 }
