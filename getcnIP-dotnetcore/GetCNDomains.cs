@@ -11,6 +11,10 @@ namespace getcnIP_dotnetcore
 
 		private static string GetDomainFromLine(string str)
 		{
+			if (str.Length > 0 && str[0] == '#')
+			{
+				return null;
+			}
 			var sArray = str.Split('/');
 			return sArray[1];
 		}
@@ -22,8 +26,8 @@ namespace getcnIP_dotnetcore
 				return null;
 			}
 
-			var domains=new List<string>();
-			
+			var domains = new List<string>();
+
 			if (File.Exists(Path2))
 			{
 				using (var sr = new StreamReader(Path2, Encoding.UTF8))
