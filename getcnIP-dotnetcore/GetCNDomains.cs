@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace getcnIP_dotnetcore
 {
@@ -11,12 +12,9 @@ namespace getcnIP_dotnetcore
 
 		private static string GetDomainFromLine(string str)
 		{
-			if (str.Length > 0 && str[0] == '#')
-			{
-				return null;
-			}
-			var sArray = str.Split('/');
-			return sArray[1];
+			var reg = new Regex("^server=/(.+)/(.+)$");
+			var match = reg.Match(str);
+			return match.Groups[1].Value;
 		}
 
 		public static IEnumerable<string> ReadFromFile()
