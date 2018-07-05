@@ -13,7 +13,7 @@ namespace getcnIP_dotnetcore
 		private static void Main()
 		{
 			Console.WriteLine(@"正在分析 CNIPv4...");
-			var chnipv4subnets = GetCNIP.ReadFromFile();
+			var chnipv4subnets = GetCNIP.ReadFromIpipNet();
 			if (chnipv4subnets != null)
 			{
 				CheckAndCreateDirectory(GenerateFile.Path);
@@ -61,7 +61,7 @@ namespace getcnIP_dotnetcore
 			}
 			else
 			{
-				Console.WriteLine($@"未找到 {GetCNIP.Path},程序退出");
+				Console.WriteLine($@"未找到 {GetCNIP.IpipNetPath} 或 {GetCNIP.ApnicPath},程序退出");
 			}
 		}
 	}
