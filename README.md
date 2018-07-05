@@ -12,7 +12,7 @@
 
 ### 所需文件：
 
-* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
+* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 或 [china_ip_list.txt](https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
 * (可选)自定义域名白名单 whitelist.txt
 
