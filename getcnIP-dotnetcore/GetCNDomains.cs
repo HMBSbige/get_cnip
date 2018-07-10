@@ -14,7 +14,7 @@ namespace getcnIP_dotnetcore
 		{
 			var reg = new Regex("^server=/(.+)/(.+)$");
 			var match = reg.Match(str);
-			return match.Groups[1].Value;
+			return match.Groups[1].Value.ToLower();
 		}
 
 		public static IEnumerable<string> ReadFromFile()
@@ -24,7 +24,7 @@ namespace getcnIP_dotnetcore
 				return null;
 			}
 
-			var domains = new List<string>();
+			var domains = new HashSet<string>();
 
 			if (File.Exists(Path2))
 			{
