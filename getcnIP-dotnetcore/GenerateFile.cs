@@ -114,6 +114,9 @@ namespace getcnIP_dotnetcore
 					}
 				}
 			}
+
+			OutputLog(m);
+
 			var sb = new StringBuilder();
 			foreach (var domain in m)
 			{
@@ -138,6 +141,16 @@ namespace getcnIP_dotnetcore
 				sb.AppendLine($@"^(.*\.)?{domain.Replace(@".", @"\.")}$");
 			}
 			return sb.ToString();
+		}
+
+		private static void OutputLog(SortedDictionary<string, HashSet<string>> list)
+		{
+			Console.WriteLine();
+			foreach (var domains in list)
+			{
+				Console.WriteLine($@"{domains.Key}:{domains.Value.Count}");
+			}
+			Console.WriteLine();
 		}
 
 		#endregion
