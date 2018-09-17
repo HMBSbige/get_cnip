@@ -33,16 +33,19 @@ namespace getcnIP_dotnetcore
 				Console.WriteLine(@"生成成功！"+Environment.NewLine);
 
 				Console.WriteLine(@"正在分析 CNDomains...");
-				var idomains = GetCNDomains.ReadFromFile();
+				var idomains = GetCNDomains.ReadFromFile(false);
+				var idomains2 = GetCNDomains.ReadFromFile(true);
 				if (idomains != null)
 				{
 					var domains = idomains.ToList();
+					var domains2 = idomains2.ToList();
 					Console.WriteLine($@"共有{domains.Count}条。");
-					Console.WriteLine($@"正在生成 {GenerateFile.Filename_chndomains},{GenerateFile.Filename_ss_cnip},{GenerateFile.Filename_ss_white},{GenerateFile.Filename_ss_white_r},{GenerateFile.Filename_whitelist_acl}...");
+					Console.WriteLine($@"正在生成 {GenerateFile.Filename_chndomains},{GenerateFile.Filename_ss_cnall},{GenerateFile.Filename_ss_cnip},{GenerateFile.Filename_ss_white},{GenerateFile.Filename_ss_white_r},{GenerateFile.Filename_whitelist_acl}...");
 					try
 					{
 						GenerateFile.Writechndomains(domains);
-						GenerateFile.Writesscnip(chnipv4subnets, domains);
+						GenerateFile.Writesscnall(chnipv4subnets, domains);
+						GenerateFile.Writesscnip(chnipv4subnets, domains2);
 						GenerateFile.Writesswhite(chnipv4subnets, domains);
 						GenerateFile.Writesswhiter(chnipv4subnets, domains);
 						GenerateFile.Write_whitelist_acl(chnipv4subnets, domains);

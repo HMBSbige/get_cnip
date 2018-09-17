@@ -17,7 +17,7 @@ namespace getcnIP_dotnetcore
 			return match.Groups[1].Value.ToLower();
 		}
 
-		public static IEnumerable<string> ReadFromFile()
+		public static IEnumerable<string> ReadFromFile(bool onlyuserlist = false)
 		{
 			if (!File.Exists(Path1) && !File.Exists(Path2))
 			{
@@ -42,7 +42,7 @@ namespace getcnIP_dotnetcore
 				}
 			}
 
-			if (File.Exists(Path1))
+			if (File.Exists(Path1) && !onlyuserlist)
 			{
 				using (var sr = new StreamReader(Path1, Encoding.UTF8))
 				{

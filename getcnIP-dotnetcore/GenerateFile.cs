@@ -14,13 +14,14 @@ namespace getcnIP_dotnetcore
 		public const string Filename_cnip = @"chn_ip.txt";
 		public const string Filename_addroute = @"add.txt";
 		public const string Filename_delroute = @"del.txt";
+		public const string Filename_ss_cnall = @"ss_cnall.pac";
 		public const string Filename_ss_cnip = @"ss_cnip.pac";
 		public const string Filename_ss_white = @"ss_white.pac";
 		public const string Filename_ss_white_r = @"ss_white_r.pac";
 		public const string Filename_whitelist_acl = @"whitelist.acl";
 
 		#region private
-		
+
 		private static string GetcnIpRange(Dictionary<IPAddress, int> ipv4Subnets)
 		{
 			var sb = new StringBuilder("[\n{");
@@ -135,7 +136,7 @@ namespace getcnIP_dotnetcore
 
 		private static string GetACLwhitedomains(IEnumerable<string> domains)
 		{
-			var sb=new StringBuilder();
+			var sb = new StringBuilder();
 			foreach (var domain in domains)
 			{
 				sb.AppendLine($@"^(.*\.)?{domain.Replace(@".", @"\.")}$");
@@ -156,10 +157,10 @@ namespace getcnIP_dotnetcore
 		#endregion
 
 		#region public
-		
+
 		public static void Writechndomains(IEnumerable<string> domains)
 		{
-			using (var fileS = new FileStream(Path + Filename_chndomains, FileMode.Create,FileAccess.Write))
+			using (var fileS = new FileStream(Path + Filename_chndomains, FileMode.Create, FileAccess.Write))
 			{
 				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
 				{
@@ -179,7 +180,7 @@ namespace getcnIP_dotnetcore
 				{
 					foreach (var ipv4Subnet in ipv4Subnets)
 					{
-						var p=new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+						var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
 
 						sw.WriteLine($@"{p.FirstIP} {p.LastIP}");
 					}
@@ -218,10 +219,25 @@ namespace getcnIP_dotnetcore
 				}
 			}
 		}
-		
+
+		public static void Writesscnall(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		{
+			var sb = new StringBuilder(StringResource.ss_cnip_template);
+			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
+			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
+			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
+			using (var fileS = new FileStream(Path + Filename_ss_cnall, FileMode.Create, FileAccess.Write))
+			{
+				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
+				{
+					sw.Write(sb);
+				}
+			}
+		}
+
 		public static void Writesscnip(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
 		{
-			var sb=new StringBuilder(StringResource.ss_cnip_template);
+			var sb = new StringBuilder(StringResource.ss_cnip_template);
 			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
@@ -277,7 +293,7 @@ namespace getcnIP_dotnetcore
 				}
 			}
 		}
-		
+
 		#endregion
 	}
 }
