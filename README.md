@@ -12,7 +12,7 @@
 
 ### 所需文件：
 
-* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 或 [china_ip_list.txt](https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt)
+* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 和 [china_ip_list.txt](https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
 * (可选)自定义域名白名单 whitelist.txt
 
@@ -121,13 +121,21 @@ https://github.com/bitbeans/SimpleDnsCrypt
 
 把国内能正常解析的域名都屏蔽了，只解析国外域名，用备用DNS来解析国内域名。
 
+还有 https://github.com/HMBSbige/DNServer
+
+__ss_cnall.pac__：
+
+ShadowsocksR 目录内的 pac.txt。
+
+客户端设置为"PAC 模式"、代理规则选择"全局"，可绕过国内域名和IP，只代理国外的。
+
+因列表过大不支持 Firefox
+
 __ss_cnip.pac__：
 
 ShadowsocksR 目录内的 pac.txt。
 
-上面user.rule的替代品
-
-客户端设置为"PAC 模式"、代理规则选择"全局"，可绕过国内域名和IP，只代理国外的。
+客户端设置为"PAC 模式"、代理规则选择"全局"，可绕过国内IP。
 
 __ss_white.pac__：
 
