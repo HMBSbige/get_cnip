@@ -13,17 +13,19 @@ namespace getcnIP_dotnetcore
 		private static void Main()
 		{
 			Console.WriteLine(@"正在分析 CNIPv4...");
-			var chnipv4subnets = GetCNIP.ReadFromIpipNet();
-			if (chnipv4subnets != null)
+			var chnipv4subnets_IpipNet = GetCNIP.ReadFromIpipNet();
+			var chnipv4subnets_Apnic = GetCNIP.ReadFromApnic();
+			if (chnipv4subnets_Apnic != null)
 			{
 				CheckAndCreateDirectory(GenerateFile.Path);
-				Console.WriteLine($@"共有{chnipv4subnets.Count}条。");
+				Console.WriteLine($@"Apnic:共有{chnipv4subnets_Apnic.Count}条。");
+				Console.WriteLine($@"IpipNet:共有{chnipv4subnets_IpipNet.Count}条。");
 				Console.WriteLine($@"正在生成 {GenerateFile.Filename_cnip},{GenerateFile.Filename_addroute},{GenerateFile.Filename_delroute}...");
 				try
 				{
-					GenerateFile.Writecnip(chnipv4subnets);
-					GenerateFile.Writeaddroute(chnipv4subnets);
-					GenerateFile.Writedelroute(chnipv4subnets);
+					GenerateFile.Writecnip(chnipv4subnets_Apnic);
+					GenerateFile.Writeaddroute(chnipv4subnets_IpipNet);
+					GenerateFile.Writedelroute(chnipv4subnets_IpipNet);
 				}
 				catch (Exception ex)
 				{
@@ -44,11 +46,11 @@ namespace getcnIP_dotnetcore
 					try
 					{
 						GenerateFile.Writechndomains(domains);
-						GenerateFile.Writesscnall(chnipv4subnets, domains);
-						GenerateFile.Writesscnip(chnipv4subnets, domains2);
-						GenerateFile.Writesswhite(chnipv4subnets, domains);
-						GenerateFile.Writesswhiter(chnipv4subnets, domains);
-						GenerateFile.Write_whitelist_acl(chnipv4subnets, domains);
+						GenerateFile.Writesscnall(chnipv4subnets_Apnic, domains);
+						GenerateFile.Writesscnip(chnipv4subnets_Apnic, domains2);
+						GenerateFile.Writesswhite(chnipv4subnets_Apnic, domains);
+						GenerateFile.Writesswhiter(chnipv4subnets_Apnic, domains);
+						GenerateFile.Write_whitelist_acl(chnipv4subnets_IpipNet, domains);
 					}
 					catch (Exception ex)
 					{

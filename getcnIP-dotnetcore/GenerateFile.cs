@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -146,12 +147,10 @@ namespace getcnIP_dotnetcore
 
 		private static void OutputLog(SortedDictionary<string, HashSet<string>> list)
 		{
-			Console.WriteLine();
 			foreach (var domains in list)
 			{
-				Console.WriteLine($@"{domains.Key}:{domains.Value.Count}");
+				Debug.WriteLine($@"{domains.Key}:{domains.Value.Count}");
 			}
-			Console.WriteLine();
 		}
 
 		#endregion
