@@ -94,6 +94,11 @@ namespace getcnIP_dotnetcore
 
 		private static string GetPACwhitedomains(IEnumerable<string> domains)
 		{
+			if (domains == null)
+			{
+				return string.Empty;
+			}
+
 			var m = new SortedDictionary<string, HashSet<string>>();
 			foreach (var domain in domains)
 			{
