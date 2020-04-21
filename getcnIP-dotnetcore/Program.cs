@@ -23,7 +23,7 @@ namespace getcnIP_dotnetcore
 				Console.WriteLine($@"正在生成 {GenerateFile.Filename_cnip},{GenerateFile.Filename_addroute},{GenerateFile.Filename_delroute}...");
 				try
 				{
-					GenerateFile.Writecnip(chnipv4subnets_Apnic);
+					GenerateFile.Writecnip(chnipv4subnets_IpipNet);
 					GenerateFile.Writeaddroute(chnipv4subnets_IpipNet);
 					GenerateFile.Writedelroute(chnipv4subnets_IpipNet);
 				}
