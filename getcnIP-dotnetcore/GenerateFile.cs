@@ -82,14 +82,8 @@ namespace getcnIP
 
 		private static string GetPACwhitedomains(IEnumerable<string> domains)
 		{
-			var d = domains.ToArray();
-			if (d.Length == 0)
-			{
-				return string.Empty;
-			}
-
 			var m = new SortedDictionary<string, SortedDictionary<string, int>>();
-			foreach (var domain in d)
+			foreach (var domain in domains)
 			{
 				var lastIndexOfdot = domain.LastIndexOf('.', domain.Length - 1);
 				if (lastIndexOfdot == -1)
