@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace getcnIP_dotnetcore
+namespace getcnIP
 {
 	internal class IPv4Subnet
 	{

@@ -1,64 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-namespace getcnIP_dotnetcore
+namespace getcnIP
 {
 	internal static class GetCNDomains
 	{
-		public const string Path1 = @"accelerated-domains.china.conf";
-		public const string Path2 = @"whitelist.txt";
-
 		private static string GetDomainFromLine(string str)
 		{
+			str = str.Trim();
+			if (str.StartsWith('#'))
+			{
+				return string.Empty;
+			}
 			var reg = new Regex("^server=/(.+)/(.+)$");
 			var match = reg.Match(str);
-			return match.Groups[1].Value.ToLower();
+			var res = match.Groups[1].Value.ToLower();
+			return string.IsNullOrWhiteSpace(res) ? str : res;
 		}
 
-		public static IEnumerable<string> ReadFromFile(bool onlyuserlist = false)
+		public static async Task<IEnumerable<string>> ReadFromFile(string path)
 		{
-			if (!File.Exists(Path1) && !File.Exists(Path2))
+			if (File.Exists(path))
 			{
-				return null;
+				var str = await File.ReadAllTextAsync(path, Constants.UTF8withoutBOM);
+				return Read(str);
 			}
+			return new List<string>();
+		}
 
+		public static IEnumerable<string> Read(string str)
+		{
 			var domains = new HashSet<string>();
 
-			if (File.Exists(Path2))
+			foreach (var line in str.GetLines())
 			{
-				using (var sr = new StreamReader(Path2, Encoding.UTF8))
+				var domain = GetDomainFromLine(line);
+				if (!string.IsNullOrWhiteSpace(domain))
 				{
-					string line;
-					while ((line = sr.ReadLine()) != null)
-					{
-						var domain = line;
-						if (!string.IsNullOrWhiteSpace(domain))
-						{
-							domains.Add(domain);
-						}
-					}
+					domains.Add(domain);
 				}
 			}
 
-			if (File.Exists(Path1) && !onlyuserlist)
-			{
-				using (var sr = new StreamReader(Path1, Encoding.UTF8))
-				{
-					string line;
-					while ((line = sr.ReadLine()) != null)
-					{
-						var domain = GetDomainFromLine(line);
-						if (!string.IsNullOrWhiteSpace(domain))
-						{
-							domains.Add(domain);
-						}
-					}
-				}
-			}
-
-			return domains.Count == 0 ? null : domains;
+			return domains;
 		}
 	}
 }

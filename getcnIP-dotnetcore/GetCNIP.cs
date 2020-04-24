@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace getcnIP_dotnetcore
+namespace getcnIP
 {
 	internal static class GetCNIP
 	{
-		public const string ApnicPath = @"delegated-apnic-latest";
-		public const string IpipNetPath = @"china_ip_list.txt";
-
 		private static KeyValuePair<IPAddress, int>? GetCNIPv4InfoFromApnicLine(string str)
 		{
 			if (string.IsNullOrWhiteSpace(str))
@@ -48,51 +44,14 @@ namespace getcnIP_dotnetcore
 			return null;
 		}
 
-		public static Dictionary<IPAddress, int> ReadFromIpipNet()
+		public static Dictionary<IPAddress, int> ReadFromIpipNet(string str)
 		{
-			if (!File.Exists(IpipNetPath))
-			{
-				return ReadFromApnic();
-			}
-			var ipv4Subnet = new Dictionary<IPAddress, int>();
-			using (var sr = new StreamReader(IpipNetPath, Encoding.UTF8))
-			{
-				string line;
-				while ((line = sr.ReadLine()) != null)
-				{
-					var p = GetCNIPv4InfoFromIpipNetLine(line);
-					if (p != null)
-					{
-						ipv4Subnet.Add(p.Value.Key, p.Value.Value);
-					}
-				}
-			}
-
-			return ipv4Subnet.Count == 0 ? null : ipv4Subnet;
+			return str.GetLines().Select(GetCNIPv4InfoFromIpipNetLine).Where(p => p != null).ToDictionary(p => p.Value.Key, p => p.Value.Value);
 		}
 
-		public static Dictionary<IPAddress, int> ReadFromApnic()
+		public static Dictionary<IPAddress, int> ReadFromApnic(string str)
 		{
-			if (!File.Exists(ApnicPath))
-			{
-				return null;
-			}
-
-			var ipv4Subnet = new Dictionary<IPAddress, int>();
-			using (var sr = new StreamReader(ApnicPath, Encoding.UTF8))
-			{
-				string line;
-				while ((line = sr.ReadLine()) != null)
-				{
-					var p = GetCNIPv4InfoFromApnicLine(line);
-					if (p != null)
-					{
-						ipv4Subnet.Add(p.Value.Key, p.Value.Value);
-					}
-				}
-			}
-
-			return ipv4Subnet.Count == 0 ? null : ipv4Subnet;
+			return str.GetLines().Select(GetCNIPv4InfoFromApnicLine).Where(p => p != null).ToDictionary(p => p.Value.Key, p => p.Value.Value);
 		}
 	}
 }

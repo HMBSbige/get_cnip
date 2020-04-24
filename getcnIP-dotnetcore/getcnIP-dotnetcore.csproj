@@ -3,20 +3,26 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>getcnIP</RootNamespace>
+    <AssemblyName>getcnIP</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="StringResource.Designer.cs">
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>StringResource.resx</DependentUpon>
+      <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="StringResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringResource.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

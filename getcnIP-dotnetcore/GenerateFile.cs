@@ -2,25 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace getcnIP_dotnetcore
+namespace getcnIP
 {
 	static class GenerateFile
 	{
-		private static readonly UTF8Encoding UTF8withoutBOM = new UTF8Encoding(false);
-		public const string Path = @".\output\";
-		public const string Filename_chndomains = @"chndomains.txt";
-		public const string Filename_cnip = @"chn_ip.txt";
-		public const string Filename_addroute = @"add.txt";
-		public const string Filename_delroute = @"del.txt";
-		public const string Filename_ss_cnall = @"ss_cnall.pac";
-		public const string Filename_ss_cnip = @"ss_cnip.pac";
-		public const string Filename_ss_white = @"ss_white.pac";
-		public const string Filename_ss_white_r = @"ss_white_r.pac";
-		public const string Filename_whitelist_acl = @"whitelist.acl";
-
 		#region private
 
 		private static string GetcnIpRange(Dictionary<IPAddress, int> ipv4Subnets)
@@ -65,10 +56,7 @@ namespace getcnIP_dotnetcore
 				}
 			}
 			var masterNet = new List<uint>(masterNetSet.Count);
-			foreach (var x in masterNetSet)
-			{
-				masterNet.Add(x);
-			}
+			masterNet.AddRange(masterNetSet);
 			//masterNet.Sort();
 			foreach (var x in masterNet)
 			{
@@ -94,50 +82,37 @@ namespace getcnIP_dotnetcore
 
 		private static string GetPACwhitedomains(IEnumerable<string> domains)
 		{
-			if (domains == null)
+			var d = domains.ToArray();
+			if (d.Length == 0)
 			{
 				return string.Empty;
 			}
 
-			var m = new SortedDictionary<string, HashSet<string>>();
-			foreach (var domain in domains)
+			var m = new SortedDictionary<string, SortedDictionary<string, int>>();
+			foreach (var domain in d)
 			{
 				var lastIndexOfdot = domain.LastIndexOf('.', domain.Length - 1);
 				if (lastIndexOfdot == -1)
 				{
 					continue;
 				}
-				var secondlevel = domain.Remove(lastIndexOfdot);
-				var toplevel = domain.Substring(lastIndexOfdot + 1);
-				if (!string.IsNullOrWhiteSpace(secondlevel) && !string.IsNullOrWhiteSpace(toplevel))
+				var secondLevel = domain.Remove(lastIndexOfdot);
+				var topLevel = domain.Substring(lastIndexOfdot + 1);
+				if (!string.IsNullOrWhiteSpace(secondLevel) && !string.IsNullOrWhiteSpace(topLevel))
 				{
-					if (m.ContainsKey(toplevel))
+					if (m.TryGetValue(topLevel, out var v))
 					{
-						m[toplevel].Add(secondlevel);
+						v[secondLevel] = 1;
 					}
 					else
 					{
-						m[toplevel] = new HashSet<string> { secondlevel };
+						m[topLevel] = new SortedDictionary<string, int> { [secondLevel] = 1 };
 					}
 				}
 			}
 
 			OutputLog(m);
-
-			var sb = new StringBuilder();
-			foreach (var domain in m)
-			{
-				var ssb = new StringBuilder();
-				foreach (var seconddomain in domain.Value)
-				{
-					ssb.AppendFormat("\"{0}\":1,\n", seconddomain);
-				}
-				ssb.Remove(ssb.Length - 2, 2);
-				ssb.Append("\n");
-				sb.AppendFormat("\"{0}\":{{\n{1}}},", domain.Key, ssb);
-			}
-			sb.Remove(sb.Length - 1, 1);
-			return sb.ToString();
+			return JsonSerializer.Serialize(m, Constants.Options);
 		}
 
 		private static string GetACLwhitedomains(IEnumerable<string> domains)
@@ -150,7 +125,7 @@ namespace getcnIP_dotnetcore
 			return sb.ToString();
 		}
 
-		private static void OutputLog(SortedDictionary<string, HashSet<string>> list)
+		private static void OutputLog(SortedDictionary<string, SortedDictionary<string, int>> list)
 		{
 			foreach (var domains in list)
 			{
@@ -162,140 +137,124 @@ namespace getcnIP_dotnetcore
 
 		#region public
 
-		public static void Writechndomains(IEnumerable<string> domains)
+		public static async Task Writecnip(Dictionary<IPAddress, int> ipv4Subnets)
 		{
-			using (var fileS = new FileStream(Path + Filename_chndomains, FileMode.Create, FileAccess.Write))
+			Console.WriteLine($@"正在生成 {Constants.Filename_cnip}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_cnip);
+
+			var sb = new StringBuilder();
+			foreach (var p in ipv4Subnets.Select(ipv4Subnet => new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value)))
 			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					foreach (var domain in domains)
-					{
-						sw.WriteLine(domain);
-					}
-				}
+				sb.Append($"{p.FirstIP} {p.LastIP}\n");
 			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writecnip(Dictionary<IPAddress, int> ipv4Subnets)
+		public static async Task Writeaddroute(Dictionary<IPAddress, int> ipv4Subnets)
 		{
-			using (var fileS = new FileStream(Path + Filename_cnip, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					foreach (var ipv4Subnet in ipv4Subnets)
-					{
-						var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+			Console.WriteLine($@"正在生成 {Constants.Filename_addroute}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_addroute);
 
-						sw.WriteLine($@"{p.FirstIP} {p.LastIP}");
-					}
-				}
+			var sb = new StringBuilder();
+			foreach (var p in ipv4Subnets.Select(ipv4Subnet => new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value)))
+			{
+				sb.Append($"add {p.FirstIP} mask {p.Netmask} default METRIC default IF default\n");
 			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writeaddroute(Dictionary<IPAddress, int> ipv4Subnets)
+		public static async Task Writedelroute(Dictionary<IPAddress, int> ipv4Subnets)
 		{
-			using (var fileS = new FileStream(Path + Filename_addroute, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					foreach (var ipv4Subnet in ipv4Subnets)
-					{
-						var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+			Console.WriteLine($@"正在生成 {Constants.Filename_delroute}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_delroute);
 
-						sw.WriteLine($@"add {p.FirstIP} mask {p.Netmask} default METRIC default IF default");
-					}
-				}
+			var sb = new StringBuilder();
+			foreach (var p in ipv4Subnets.Select(ipv4Subnet => new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value)))
+			{
+				sb.Append($"delete {p.FirstIP} mask {p.Netmask} default METRIC default IF default\n");
 			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writedelroute(Dictionary<IPAddress, int> ipv4Subnets)
+		public static async Task Writechndomains(IEnumerable<string> domains)
 		{
-			using (var fileS = new FileStream(Path + Filename_delroute, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					foreach (var ipv4Subnet in ipv4Subnets)
-					{
-						var p = new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value);
+			Console.WriteLine($@"正在生成 {Constants.Filename_chndomains}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_chndomains);
 
-						sw.WriteLine($@"delete {p.FirstIP} mask {p.Netmask} default METRIC default IF default");
-					}
-				}
+			var sb = new StringBuilder();
+			foreach (var domain in domains)
+			{
+				sb.Append($"{domain}\n");
 			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writesscnall(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		public static async Task Writesscnall(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
 		{
-			var sb = new StringBuilder(StringResource.ss_cnip_template);
+			Console.WriteLine($@"正在生成 {Constants.Filename_ss_cnall}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_ss_cnall);
+
+			var sb = new StringBuilder(Resource.ss_cnip_temp);
 			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-			using (var fileS = new FileStream(Path + Filename_ss_cnall, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					sw.Write(sb);
-				}
-			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writesscnip(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		public static async Task Writesscnip(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
 		{
-			var sb = new StringBuilder(StringResource.ss_cnip_template);
+			Console.WriteLine($@"正在生成 {Constants.Filename_ss_cnip}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_ss_cnip);
+
+			var sb = new StringBuilder(Resource.ss_cnip_temp);
 			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-			using (var fileS = new FileStream(Path + Filename_ss_cnip, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					sw.Write(sb);
-				}
-			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writesswhite(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		public static async Task Writesswhite(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
 		{
-			var sb = new StringBuilder(StringResource.ss_white_template);
+			Console.WriteLine($@"正在生成 {Constants.Filename_ss_white}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_ss_white);
+
+			var sb = new StringBuilder(Resource.ss_white_temp);
 			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-			using (var fileS = new FileStream(Path + Filename_ss_white, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					sw.Write(sb);
-				}
-			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Writesswhiter(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		public static async Task Writesswhiter(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
 		{
-			var sb = new StringBuilder(StringResource.ss_white_r_template);
+			Console.WriteLine($@"正在生成 {Constants.Filename_ss_white_r}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_ss_white_r);
+
+			var sb = new StringBuilder(Resource.ss_white_r_temp);
 			sb.Replace(@"__cnIpRange__", GetcnIpRange(ipv4Subnets));
 			sb.Replace(@"__cnIp16Range__", GetcnIp16Range(ipv4Subnets));
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
-			using (var fileS = new FileStream(Path + Filename_ss_white_r, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					sw.Write(sb);
-				}
-			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
-		public static void Write_whitelist_acl(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
+		public static async Task Write_whitelist_acl(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
 		{
-			var sb = new StringBuilder(StringResource.acl_whitelist_template);
+			Console.WriteLine($@"正在生成 {Constants.Filename_whitelist_acl}...");
+			var path = Path.Combine(Constants.Path, Constants.Filename_whitelist_acl);
+
+			var sb = new StringBuilder(Resource.whitelist_temp);
 			sb.Replace(@"__white_domains__", GetACLwhitedomains(domains));
 			sb.Replace(@"__CNIP__", GetACLCNIP(ipv4Subnets));
-			using (var fileS = new FileStream(Path + Filename_whitelist_acl, FileMode.Create, FileAccess.Write))
-			{
-				using (var sw = new StreamWriter(fileS, UTF8withoutBOM))
-				{
-					sw.Write(sb);
-				}
-			}
+
+			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
 		}
 
 		#endregion
