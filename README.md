@@ -8,20 +8,27 @@
 
 ## .Net Core 版本
 
-**该版本无 gfwlist 相关的生成**
-
 ### 所需文件：
 
-* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 和 [china_ip_list.txt](https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt)
+* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 
+* (可选) [china_ip_list.txt](https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt)
 * [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
-* (可选)自定义域名白名单 whitelist.txt
+* (可选) [apple.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf)
+* (可选) [google.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf)
+* (可选) 自定义域名白名单 whitelist.txt
 
-自行下载后放在根目录下
+### 模式
+#### 本地
+`--local` 运行
+
+加载根目录下的文件，并生成
+
+#### 网络
+从网络下载并加载根目录下的 `whitelist.txt`，并生成
+
 
 ### 输出文件
 输出在 ```output``` 目录下
-
-[跟下面 C++ 基本相同](#输出文件用处)，除了没有 ```gfwlist.pac```。
 
 ### 生成所需平台程序
 ```
@@ -35,37 +42,11 @@ dotnet publish -c release -r osx-x64
 ```
 具体RID：https://docs.microsoft.com/zh-cn/dotnet/core/rid-catalog
 
-### Win7、Win2008 等运行错误
-```
-Failed to load the dll from [?X], HRESULT: 0x80070057
-```
-安装补丁：KB2533623
-
-https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot
-
-### .Net 编译所需：
-https://www.microsoft.com/net/download/all
-
-
-
-## C++ 版本
-
-### 所需文件：
-
-* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest)
-* [gfwlist.txt](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
-* [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
-* (可选)gfwlist 自定义规则文件 user-rule.txt
-* (可选)自定义域名白名单 whitelist.txt
-
-自行下载后放在根目录下
 
 ## 输出文件用处
 __chn_ip.txt__：
 
 直接放进 ShadowsocksR 目录内,代理规则选择"绕过局域网和大陆"
-
-~~其实将 delegated-apnic-latest 放入 ShadowsocksR 根目录后重启 ShadowsocksR 也可以自己生成~~
 
 __add.txt__：
 
@@ -105,31 +86,15 @@ pause
 ```
 注：重启系统后自动清空路由表
 
-__gfwlist.pac__：
-
-ShadowsocksR 目录内的 pac.txt（GFWList）。
-
-~~其实用SSR自己生成的就行了~~
-
 __chndomains.txt__：
 
-https://github.com/bitbeans/SimpleDnsCrypt
-
-↑可以用来一键自建 Windows 的DNS服务器
-
-给这软件里的屏蔽域名用的。
-
-把国内能正常解析的域名都屏蔽了，只解析国外域名，用备用DNS来解析国内域名。
-
-还有 https://github.com/HMBSbige/DNServer
+国内域名
 
 __ss_cnall.pac__：
 
 ShadowsocksR 目录内的 pac.txt。
 
 客户端设置为"PAC 模式"、代理规则选择"全局"，可绕过国内域名和IP，只代理国外的。
-
-因列表过大不支持 Firefox
 
 __ss_cnip.pac__：
 
