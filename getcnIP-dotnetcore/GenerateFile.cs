@@ -198,6 +198,8 @@ namespace getcnIP
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
 
 			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
+
+			await MinifiedJs(path);
 		}
 
 		public static async Task Writesscnip(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
@@ -211,6 +213,8 @@ namespace getcnIP
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
 
 			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
+
+			await MinifiedJs(path);
 		}
 
 		public static async Task Writesswhite(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
@@ -224,6 +228,8 @@ namespace getcnIP
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
 
 			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
+
+			await MinifiedJs(path);
 		}
 
 		public static async Task Writesswhiter(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
@@ -237,6 +243,8 @@ namespace getcnIP
 			sb.Replace(@"__white_domains__", GetPACwhitedomains(domains));
 
 			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
+
+			await MinifiedJs(path);
 		}
 
 		public static async Task Write_whitelist_acl(Dictionary<IPAddress, int> ipv4Subnets, IEnumerable<string> domains)
@@ -249,6 +257,25 @@ namespace getcnIP
 			sb.Replace(@"__CNIP__", GetACLCNIP(ipv4Subnets));
 
 			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);
+		}
+
+		private static async Task MinifiedJs(string path)
+		{
+			if (!File.Exists(path))
+			{
+				return;
+			}
+
+			var oldSize = Utils.GetFileSize(path);
+
+			var js = await File.ReadAllTextAsync(path, Constants.UTF8withoutBOM);
+			var minifier = new Microsoft.Ajax.Utilities.Minifier();
+			var minifiedString = minifier.MinifyJavaScript(js);
+			await File.WriteAllTextAsync(path, minifiedString, Constants.UTF8withoutBOM);
+
+			var newSize = Utils.GetFileSize(path);
+
+			Console.WriteLine($@"{Path.GetFileName(path)} ({Utils.BytesToString(oldSize)} => {Utils.BytesToString(newSize)})");
 		}
 
 		#endregion

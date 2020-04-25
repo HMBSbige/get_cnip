@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <PackageReference Include="AjaxMin" Version="5.14.5506.26202" />
   </ItemGroup>
 
   <ItemGroup>
