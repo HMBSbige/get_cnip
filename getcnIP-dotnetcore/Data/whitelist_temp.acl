@@ -45,3 +45,6 @@ __white_domains__
 
 # 国内ip地址
 __CNIP__
+
+[proxy_list]
+^(.*\.)?googleapis\.cn$

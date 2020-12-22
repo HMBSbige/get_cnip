@@ -1,4 +1,5 @@
-﻿using System;
+using NUglify;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -269,8 +270,8 @@ namespace getcnIP
 			var oldSize = Utils.GetFileSize(path);
 
 			var js = await File.ReadAllTextAsync(path, Constants.UTF8withoutBOM);
-			var minifier = new Microsoft.Ajax.Utilities.Minifier();
-			var minifiedString = minifier.MinifyJavaScript(js);
+			var result = Uglify.Js(js);
+			var minifiedString = result.Code;
 			await File.WriteAllTextAsync(path, minifiedString, Constants.UTF8withoutBOM);
 
 			var newSize = Utils.GetFileSize(path);

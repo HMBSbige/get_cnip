@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>getcnIP</RootNamespace>
     <AssemblyName>getcnIP</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AjaxMin" Version="5.14.5506.26202" />
+    <PackageReference Include="NUglify" Version="1.11.5" />
   </ItemGroup>
 
   <ItemGroup>
