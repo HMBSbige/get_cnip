@@ -9,8 +9,6 @@ namespace getcnIP
 		public const string ApnicUrl = @"https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest";
 		public const string IpipNetUrl = @"https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt";
 		public const string AcceleratedDomainsChinaUrl = @"https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf";
-		public const string AppleChinaUrl = @"https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf";
-		public const string GoogleChinaUrl = @"https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf";
 		public const string GfwlistUrl = @"https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt";
 
 		public static readonly UTF8Encoding UTF8withoutBOM = new(false);

@@ -11,8 +11,6 @@ namespace getcnIP
 		private static string apnicStr = string.Empty;
 		private static string ipipNetStr = string.Empty;
 		private static string AcceleratedDomainsChinaStr = string.Empty;
-		private static string AppleChinaStr = string.Empty;
-		private static string GoogleChinaStr = string.Empty;
 
 		private static async Task Main(string[] args)
 		{
@@ -49,14 +47,10 @@ namespace getcnIP
 			await GenerateFile.Writedelroute(chnIpv4subnets_IpipNet);
 
 			var d1 = GetCNDomains.Read(AcceleratedDomainsChinaStr);
-			var d2 = GetCNDomains.Read(AppleChinaStr);
-			var d3 = GetCNDomains.Read(GoogleChinaStr);
 			var userWhiteList = (await GetCNDomains.ReadFromFile(Constants.WhiteListPath)).ToArray();
 
 			var domains = new HashSet<string>();
 			domains.UnionWith(d1);
-			domains.UnionWith(d2);
-			domains.UnionWith(d3);
 			domains.UnionWith(userWhiteList);
 			Console.WriteLine($@"共有域名 {domains.Count} 条，其中用户自定义 {userWhiteList.Length} 条");
 
@@ -75,8 +69,6 @@ namespace getcnIP
 			apnicStr = await Utils.ReadTextAsync(Constants.ApnicPath);
 			ipipNetStr = await Utils.ReadTextAsync(Constants.IpipNetPath);
 			AcceleratedDomainsChinaStr = await Utils.ReadTextAsync(Constants.AcceleratedDomainsChinaPath);
-			AppleChinaStr = await Utils.ReadTextAsync(Constants.AppleChinaPath);
-			GoogleChinaStr = await Utils.ReadTextAsync(Constants.GoogleChinaPath);
 		}
 
 		private static async Task LoadFilesFromInternetAsync()
@@ -84,8 +76,6 @@ namespace getcnIP
 			apnicStr = await HttpRequest.GetAsync(Constants.ApnicUrl);
 			ipipNetStr = await HttpRequest.GetAsync(Constants.IpipNetUrl);
 			AcceleratedDomainsChinaStr = await HttpRequest.GetAsync(Constants.AcceleratedDomainsChinaUrl);
-			AppleChinaStr = await HttpRequest.GetAsync(Constants.AppleChinaUrl);
-			GoogleChinaStr = await HttpRequest.GetAsync(Constants.GoogleChinaUrl);
 		}
 	}
 }
