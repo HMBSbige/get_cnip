@@ -25,6 +25,23 @@ namespace getcnIP
 			return null;
 		}
 
+		private static KeyValuePair<IPAddress, int>? GetCNIPv6InfoFromApnicLine(string str)
+		{
+			if (string.IsNullOrWhiteSpace(str))
+			{
+				return null;
+			}
+
+			var strA = str.Split('|');
+			//apnic|CN|ipv6|
+			if (strA.Length > 4 && strA[0] == @"apnic" && strA[1] == @"CN" && strA[2] == @"ipv6")
+			{
+				return new KeyValuePair<IPAddress, int>(IPAddress.Parse(strA[3]), Convert.ToInt32(strA[4]));
+			}
+
+			return null;
+		}
+
 		private static KeyValuePair<IPAddress, int>? GetCNIPv4InfoFromIpipNetLine(string str)
 		{
 			if (string.IsNullOrWhiteSpace(str))
@@ -46,12 +63,26 @@ namespace getcnIP
 
 		public static Dictionary<IPAddress, int> ReadFromIpipNet(string str)
 		{
-			return str.GetLines().Select(GetCNIPv4InfoFromIpipNetLine).Where(p => p != null).ToDictionary(p => p.Value.Key, p => p.Value.Value);
+			return str.GetLines()
+				.Select(GetCNIPv4InfoFromIpipNetLine)
+				.Where(p => p != null)
+				.ToDictionary(p => p.Value.Key, p => p.Value.Value);
 		}
 
-		public static Dictionary<IPAddress, int> ReadFromApnic(string str)
+		public static Dictionary<IPAddress, int> ReadFromApnicv4(string str)
 		{
-			return str.GetLines().Select(GetCNIPv4InfoFromApnicLine).Where(p => p != null).ToDictionary(p => p.Value.Key, p => p.Value.Value);
+			return str.GetLines()
+				.Select(GetCNIPv4InfoFromApnicLine)
+				.Where(p => p != null)
+				.ToDictionary(p => p.Value.Key, p => p.Value.Value);
+		}
+
+		public static Dictionary<IPAddress, int> ReadFromApnicv6(string str)
+		{
+			return str.GetLines()
+				.Select(GetCNIPv6InfoFromApnicLine)
+				.Where(p => p != null)
+				.ToDictionary(p => p.Value.Key, p => p.Value.Value);
 		}
 	}
 }

@@ -132,15 +132,21 @@ namespace getcnIP
 
 		#region public
 
-		public static async Task Writecnip(Dictionary<IPAddress, int> ipv4Subnets)
+		public static async Task Writecnip(Dictionary<IPAddress, int> ipv4Subnets, Dictionary<IPAddress, int> ipv6Subnets)
 		{
 			Console.WriteLine($@"正在生成 {Constants.Filename_cnip}...");
 			var path = Path.Combine(Constants.Path, Constants.Filename_cnip);
 
 			var sb = new StringBuilder();
-			foreach (var p in ipv4Subnets.Select(ipv4Subnet => new IPv4Subnet(ipv4Subnet.Key, ipv4Subnet.Value)))
+
+			foreach (var (ip, host) in ipv4Subnets)
 			{
-				sb.Append($"{p.FirstIP} {p.LastIP}\n");
+				sb.Append($"{ip}/{IPv4Subnet.Hosts2CIDR(host)}\n");
+			}
+
+			foreach (var (ip, cidr) in ipv6Subnets)
+			{
+				sb.Append($"{ip}/{cidr}\n");
 			}
 
 			await File.WriteAllTextAsync(path, sb.ToString(), Constants.UTF8withoutBOM);

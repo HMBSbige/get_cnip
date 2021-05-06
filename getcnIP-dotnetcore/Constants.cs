@@ -13,7 +13,7 @@ namespace getcnIP
 		public const string GoogleChinaUrl = @"https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf";
 		public const string GfwlistUrl = @"https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt";
 
-		public static readonly UTF8Encoding UTF8withoutBOM = new UTF8Encoding(false);
+		public static readonly UTF8Encoding UTF8withoutBOM = new(false);
 
 		public const string Path = @"output";
 		public const string Filename_chndomains = @"chndomains.txt";

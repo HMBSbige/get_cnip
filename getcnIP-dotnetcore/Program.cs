@@ -31,9 +31,12 @@ namespace getcnIP
 		private static async Task Do()
 		{
 			var chnIpv4subnets_IpipNet = GetCNIP.ReadFromIpipNet(ipipNetStr);
-			var chnIpv4subnets_Apnic = GetCNIP.ReadFromApnic(apnicStr);
-			Console.WriteLine($@"Apnic:共有{chnIpv4subnets_Apnic.Count}条。");
-			Console.WriteLine($@"IpipNet:共有{chnIpv4subnets_IpipNet.Count}条。");
+			var chnIpv4subnets_Apnic = GetCNIP.ReadFromApnicv4(apnicStr);
+			var chnIpv6subnets_Apnic = GetCNIP.ReadFromApnicv6(apnicStr);
+			Console.WriteLine($@"Apnic v4:共有 {chnIpv4subnets_Apnic.Count} 条。");
+			Console.WriteLine($@"Apnic v6:共有 {chnIpv6subnets_Apnic.Count} 条。");
+			Console.WriteLine($@"IpipNet:共有 {chnIpv4subnets_IpipNet.Count} 条。");
+
 			if (chnIpv4subnets_IpipNet.Count == 0)
 			{
 				chnIpv4subnets_IpipNet = chnIpv4subnets_Apnic;
@@ -41,7 +44,7 @@ namespace getcnIP
 
 			Directory.CreateDirectory(Constants.Path);
 
-			await GenerateFile.Writecnip(chnIpv4subnets_IpipNet);
+			await GenerateFile.Writecnip(chnIpv4subnets_IpipNet, chnIpv6subnets_Apnic);
 			await GenerateFile.Writeaddroute(chnIpv4subnets_IpipNet);
 			await GenerateFile.Writedelroute(chnIpv4subnets_IpipNet);
 
