@@ -6,47 +6,12 @@
 * 国内域名表：https://raw.githubusercontent.com/HMBSbige/Text_Translation/master/chndomains.txt
 * ShadowsocksR 安卓客户端用 ACL 文件：https://raw.githubusercontent.com/HMBSbige/Text_Translation/master/ShadowsocksR/whitelist.acl
 
-## .Net Core 版本
-
-### 所需文件：
-
-* [delegated-apnic-latest](https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest) 
-* (可选) [china_ip_list.txt](https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt)
-* [accelerated-domains.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf)
-* (可选) [apple.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf)
-* (可选) [google.china.conf](https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf)
-* (可选) 自定义域名白名单 whitelist.txt
-
-### 模式
-#### 本地
-`--local` 运行
-
-加载根目录下的文件，并生成
-
-#### 网络
-从网络下载并加载根目录下的 `whitelist.txt`，并生成
-
-
-### 输出文件
-输出在 ```output``` 目录下
-
-### 生成所需平台程序
-```
-dotnet publish -c release -r $RID
-```
-例如：
-```
-dotnet publish -c release -r win-x64
-dotnet publish -c release -r linux-x64
-dotnet publish -c release -r osx-x64
-```
-具体RID：https://docs.microsoft.com/zh-cn/dotnet/core/rid-catalog
-
-
 ## 输出文件用处
 __chn_ip.txt__：
 
-直接放进 ShadowsocksR 目录内,代理规则选择"绕过局域网和大陆"
+就是国内 CIDR v4 + v6
+
+直接放在 ShadowsocksR 的根目录，代理规则选择 "绕过局域网和大陆" 或 "绕过局域网和非大陆"
 
 __add.txt__：
 
@@ -88,7 +53,7 @@ pause
 
 __chndomains.txt__：
 
-国内域名
+国内域名列表
 
 __ss_cnall.pac__：
 
@@ -120,13 +85,6 @@ ShadowsocksR 安卓客户端用 ACL 文件
 
 可绕过国内域名和IP，只代理国外的。
 
-## 自用脚本
-```
-aria2c -x10 -s10 --https-proxy="https://127.0.0.1:23333" --allow-overwrite=true -Z https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf
-getcnip
-pause
-```
-
 ## 关于cmroute.dll
 我能找到的文档：https://technet.microsoft.com/zh-cn/library/dd672665(v=ws.10).aspx
 
@@ -146,7 +104,6 @@ pause
 
 
 * 网关 跃点数 接口一般都默认（default）
-
 
 * 用`route print` 命令查看 __接口列表__
 
