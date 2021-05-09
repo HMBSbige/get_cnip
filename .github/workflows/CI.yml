@@ -51,7 +51,7 @@ jobs:
       uses: crazy-max/ghaction-upx@v1
       with:
         files: target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe
-        args: -9
+        args: --best
 
     - name: Upload ${{ env.TARGET }}
       continue-on-error: true
