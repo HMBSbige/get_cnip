@@ -33,7 +33,7 @@ jobs:
     - name: Install cross
       run: cargo install cross
 
-    - name: Build ${{ matrix.target }}
+    - name: Build
       run: cross build --release --target="${{ matrix.target }}"
 
     - name: strip
@@ -47,13 +47,37 @@ jobs:
         files: target/${{ matrix.target }}/release/${{ env.ProjectName }}
         args: --best
 
-    - name: Upload ${{ matrix.target }}
+    - name: Upload
       continue-on-error: true
       if: ${{ !startsWith(github.ref, 'refs/tags/') }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.ProjectName }}.${{ matrix.target }}
         path: target/${{ matrix.target }}/release/${{ env.ProjectName }}
+
+    - name: Get tag
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+      id: tag
+      uses: dawidd6/action-get-tag@v1
+
+    - name: Package
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+      shell: pwsh
+      run: 7z a -mx9 "build/release/$env:ProjectName-${{ steps.tag.outputs.tag }}.${{ matrix.target }}.7z" "./target/${{ matrix.target }}/release/${{ env.ProjectName }}"
+
+    - name: Create a new GitHub release if a new tag is pushed
+      uses: softprops/action-gh-release@v1
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: v${{ steps.tag.outputs.tag }}
+        prerelease: true
+        draft: false
+        files: build/release/*
+        body: |
+          ## 更新日志：
+          * 这是 GitHub Actions 自动化部署，更新日志应该很快会手动更新
 
   build-windows:
     runs-on: windows-latest
@@ -72,7 +96,7 @@ jobs:
         toolchain: stable
         default: true
 
-    - name: Build ${{ env.TARGET }}
+    - name: Build
       run: cargo build --release --target="${{ env.TARGET }}"
 
     - name: Run UPX
@@ -82,10 +106,34 @@ jobs:
         files: target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe
         args: --best
 
-    - name: Upload ${{ env.TARGET }}
+    - name: Upload
       continue-on-error: true
       if: ${{ !startsWith(github.ref, 'refs/tags/') }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.ProjectName }}.${{ env.TARGET }}
         path: target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe
+
+    - name: Get tag
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+      id: tag
+      uses: dawidd6/action-get-tag@v1
+
+    - name: Package
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+      shell: pwsh
+      run: 7z a -mx9 "build/release/$env:ProjectName-${{ steps.tag.outputs.tag }}.${{ matrix.target }}.7z" "./target/${{ matrix.target }}/release/${{ env.ProjectName }}.exe"
+
+    - name: Create a new GitHub release if a new tag is pushed
+      uses: softprops/action-gh-release@v1
+      if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: v${{ steps.tag.outputs.tag }}
+        prerelease: true
+        draft: false
+        files: build/release/*
+        body: |
+          ## 更新日志：
+          * 这是 GitHub Actions 自动化部署，更新日志应该很快会手动更新
