@@ -17,7 +17,6 @@ jobs:
           - x86_64-unknown-linux-gnu
           - x86_64-unknown-linux-musl
           - aarch64-unknown-linux-gnu
-          - aarch64-unknown-linux-musl
 
     steps:
     - name: Checkout code
@@ -75,9 +74,6 @@ jobs:
         prerelease: true
         draft: false
         files: build/release/*
-        body: |
-          ## 更新日志：
-          * 这是 GitHub Actions 自动化部署，更新日志应该很快会手动更新
 
   build-windows:
     runs-on: windows-latest
@@ -122,7 +118,7 @@ jobs:
     - name: Package
       if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
       shell: pwsh
-      run: 7z a -mx9 "build/release/$env:ProjectName-${{ steps.tag.outputs.tag }}.${{ matrix.target }}.7z" "./target/${{ matrix.target }}/release/${{ env.ProjectName }}.exe"
+      run: 7z a -mx9 "build/release/$env:ProjectName-${{ steps.tag.outputs.tag }}.${{ env.TARGET }}.7z" "./target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe"
 
     - name: Create a new GitHub release if a new tag is pushed
       uses: softprops/action-gh-release@v1
