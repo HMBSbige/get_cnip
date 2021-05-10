@@ -14,8 +14,10 @@ jobs:
     strategy:
       matrix:
         target:
-          - x86_64-pc-windows-gnu
           - x86_64-unknown-linux-gnu
+          - x86_64-unknown-linux-musl
+          - aarch64-unknown-linux-gnu
+          - aarch64-unknown-linux-musl
 
     steps:
     - name: Checkout code
@@ -23,6 +25,10 @@ jobs:
 
     - name: Install Rust
       uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        default: true
 
     - name: Install cross
       run: cargo install cross
@@ -31,9 +37,11 @@ jobs:
       run: cross build --release --target="${{ matrix.target }}"
 
     - name: strip
+      continue-on-error: true
       run: strip target/${{ matrix.target }}/release/${{ env.ProjectName }}
 
     - name: Run UPX
+      continue-on-error: true
       uses: crazy-max/ghaction-upx@v1
       with:
         files: target/${{ matrix.target }}/release/${{ env.ProjectName }}
@@ -57,10 +65,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        default: true
+
     - name: Build ${{ env.TARGET }}
       run: cargo build --release --target="${{ env.TARGET }}"
 
     - name: Run UPX
+      continue-on-error: true
       uses: crazy-max/ghaction-upx@v1
       with:
         files: target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe
