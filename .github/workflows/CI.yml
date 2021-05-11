@@ -44,7 +44,7 @@ jobs:
       uses: crazy-max/ghaction-upx@v1
       with:
         files: target/${{ matrix.target }}/release/${{ env.ProjectName }}
-        args: --best
+        args: --best --ultra-brute
 
     - name: Upload
       continue-on-error: true
@@ -100,7 +100,7 @@ jobs:
       uses: crazy-max/ghaction-upx@v1
       with:
         files: target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe
-        args: --best
+        args: --best --ultra-brute
 
     - name: Upload
       continue-on-error: true
