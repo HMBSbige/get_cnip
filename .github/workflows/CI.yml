@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install Rust
-      uses: actions-rs/toolchain@v1
+      uses: actions-rs/toolchain@v1.0.7
       with:
         profile: minimal
         toolchain: stable
@@ -86,7 +86,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install Rust
-      uses: actions-rs/toolchain@v1
+      uses: actions-rs/toolchain@v1.0.7
       with:
         profile: minimal
         toolchain: stable
