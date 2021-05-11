@@ -41,7 +41,7 @@ jobs:
 
     - name: Run UPX
       continue-on-error: true
-      uses: crazy-max/ghaction-upx@v1
+      uses: crazy-max/ghaction-upx@v1.4.0
       with:
         files: target/${{ matrix.target }}/release/${{ env.ProjectName }}
         args: --best --ultra-brute
@@ -97,7 +97,7 @@ jobs:
 
     - name: Run UPX
       continue-on-error: true
-      uses: crazy-max/ghaction-upx@v1
+      uses: crazy-max/ghaction-upx@v1.4.0
       with:
         files: target/${{ env.TARGET }}/release/${{ env.ProjectName }}.exe
         args: --best --ultra-brute
